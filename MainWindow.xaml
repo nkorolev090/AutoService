@@ -18,5 +18,11 @@
         <materialDesign:Card Padding="32" Margin="16">
             <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">My First Material Design App</TextBlock>
         </materialDesign:Card>
+        <Button
+  Width="500"
+  Content="_MID"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+  Style="{StaticResource MaterialDesignRaisedButton}"
+  ToolTip="Resource name: MaterialDesignRaisedButton" Margin="79,124,221,278" />
     </Grid>
 </Window>
