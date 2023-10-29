@@ -16,25 +16,29 @@
      FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <Image Source="Source/Preview.png" Height="440" Stretch="UniformToFill" HorizontalAlignment ="Right" VerticalAlignment="Bottom"/>
+            <Image Source="Source/Preview.png" Stretch="UniformToFill" HorizontalAlignment ="Right" VerticalAlignment="Bottom"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="90"/>
-                <RowDefinition Height="230"/>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
-                <Image Source="Source/Logo.png" Width= "150"/>
-                <Label Content="АвтоСервис 37" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5"/>
+                <Image Source="Source/Logo.png"/>
             </Grid>
             <Grid Grid.Row="2">
-                <Button
+                <Label Content="АвтоСервис 37" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                 <Button
+                     VerticalAlignment="Top"
+                     Margin="0, 10, 0, 10"
   Width="80"
   Content="Войти"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
