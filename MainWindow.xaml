@@ -15,14 +15,32 @@
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <materialDesign:Card Padding="32" Margin="16">
-            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">My First Material Design App</TextBlock>
-        </materialDesign:Card>
-        <Button
-  Width="500"
-  Content="_MID"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Image Source="Source/Preview.png" Height="440" Stretch="UniformToFill" HorizontalAlignment ="Right" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Image Source="Source/Logo.png" Width= "150"/>
+                <Label Content="АвтоСервис 37" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Button
+  Width="80"
+  Content="Войти"
   IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-  Style="{StaticResource MaterialDesignRaisedButton}"
-  ToolTip="Resource name: MaterialDesignRaisedButton" Margin="79,124,221,278" />
+  Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
+  ToolTip="Resource name: MaterialDesignRaisedSecondaryLightButton" />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
