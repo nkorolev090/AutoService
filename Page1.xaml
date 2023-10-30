@@ -6,9 +6,162 @@
       xmlns:local="clr-namespace:AutoService"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page1">
-
+      Title="Page1"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+TextElement.FontWeight="Regular"
+TextElement.FontSize="13"
+TextOptions.TextFormattingMode="Ideal"
+TextOptions.TextRenderingMode="Auto"
+Background="{DynamicResource MaterialDesignPaper}"
+FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        
+        <materialDesign:Card>
+            <TabControl
+    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+    SnapsToDevicePixels="True"
+    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+    TabStripPlacement="Left">
+                <materialDesign:NavigationRailAssist.FloatingContent>
+                    <Button
+        Margin="8"
+        Content="{materialDesign:PackIcon Kind=Plus}"
+        Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}" />
+                </materialDesign:NavigationRailAssist.FloatingContent>
+                <TabItem MinWidth="110"> 
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="AccountBox" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Профиль" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel>
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            Text="Записи"
+                            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                            Margin="10"/>
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                            
+                    </Grid>
+                    </StackPanel>
+                    
+                </TabItem>
+                <TabItem MinWidth="110">
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="BookMultiple" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Записи" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel
+        Margin="16">
+                        <TextBlock
+          Margin="0,0,0,8"
+          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+          Text="Recent" />
+                        <TextBlock>
+          <Run
+            Text="tab 2 content. Default look and behaviors." />
+          <LineBreak />
+          <LineBreak />
+          <Run
+            FontStyle="Italic">
+          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+        </Run>
+                        </TextBlock>
+                    </StackPanel>
+                </TabItem>
+                <TabItem MinWidth="110">
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="CogBox" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Настройки" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel
+        Margin="16">
+                        <TextBlock
+          Margin="0,0,0,8"
+          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+          Text="Photos" />
+                        <TextBlock>
+          <Run
+            Text="tab 3 content. Default look and behaviors." />
+          <LineBreak />
+          <LineBreak />
+          <Run
+            FontStyle="Italic">
+          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+        </Run>
+                        </TextBlock>
+                    </StackPanel>
+                </TabItem>
+                <TabItem MinWidth="110">
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="InformationSlabBox" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="О программе" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel
+        Margin="16">
+                        <TextBlock
+          Margin="0,0,0,8"
+          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+          Text="Sounds" />
+                        <TextBlock>
+          <Run
+            Text="tab 4 content. Default look and behaviors." />
+          <LineBreak />
+          <LineBreak />
+          <Run
+            FontStyle="Italic">
+          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+        </Run>
+                        </TextBlock>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </materialDesign:Card>
     </Grid>
 </Page>
