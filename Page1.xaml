@@ -25,7 +25,7 @@ FontFamily="{DynamicResource MaterialDesignFont}">
                 <materialDesign:NavigationRailAssist.FloatingContent>
                     <Button
         Margin="8"
-        Content="{materialDesign:PackIcon Kind=Plus}"
+        Content="{materialDesign:PackIcon Kind=BookPlus, Size=22}"
         Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}" />
                 </materialDesign:NavigationRailAssist.FloatingContent>
                 <TabItem MinWidth="110"> 
@@ -41,40 +41,6 @@ FontFamily="{DynamicResource MaterialDesignFont}">
                             <TextBlock
             HorizontalAlignment="Center"
             Text="Профиль" />
-                        </StackPanel>
-                    </TabItem.Header>
-                    <StackPanel>
-                        <TextBlock
-                            HorizontalAlignment="Left"
-                            Text="Записи"
-                            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                            Margin="10"/>
-                        <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-                            
-                    </Grid>
-                    </StackPanel>
-                    
-                </TabItem>
-                <TabItem MinWidth="110">
-                    <TabItem.Header>
-                        <StackPanel
-          Width="auto"
-          Height="auto">
-                            <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="BookMultiple" />
-                            <TextBlock
-            HorizontalAlignment="Center"
-            Text="Записи" />
                         </StackPanel>
                     </TabItem.Header>
                     <StackPanel
@@ -94,6 +60,83 @@ FontFamily="{DynamicResource MaterialDesignFont}">
         </Run>
                         </TextBlock>
                     </StackPanel>
+                </TabItem>
+                <TabItem MinWidth="110">
+                    <TabItem.Header>
+                        <StackPanel
+          Width="auto"
+          Height="auto">
+                            <materialDesign:PackIcon
+            Width="24"
+            Height="24"
+            HorizontalAlignment="Center"
+            Kind="BookMultiple" />
+                            <TextBlock
+            HorizontalAlignment="Center"
+            Text="Записи" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel>
+                        <TextBlock
+         HorizontalAlignment="Left"
+         Text="Записи"
+         Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+         Margin="10"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel 
+             Background="LightGoldenrodYellow" 
+             VerticalAlignment="Center" 
+             Orientation="Horizontal" 
+             Grid.Row="0">
+                                <TextBlock Text="10.10.2023" Margin="5"/>
+                                <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
+                                <TextBlock Text="Ваз 21099" Margin="5"/>
+                                <TextBlock Text="Иванов И.И." Margin="5"/>
+                                <TextBlock Text="(На рассмотрении)" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel 
+             Background="LightGreen"
+             VerticalAlignment="Center"
+             Orientation="Horizontal" 
+             Grid.Row="1">
+                                <TextBlock Text="10.10.2023" Margin="5"/>
+                                <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
+                                <TextBlock Text="Ваз 21099" Margin="5"/>
+                                <TextBlock Text="Иванов И.И." Margin="5"/>
+                                <TextBlock Text="(Принято)" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel 
+             Background="LightPink"
+             VerticalAlignment="Center" 
+             Orientation="Horizontal" 
+             Grid.Row="2">
+                                <TextBlock Text="10.10.2023" Margin="5"/>
+                                <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
+                                <TextBlock Text="Ваз 21099" Margin="5"/>
+                                <TextBlock Text="Иванов И.И." Margin="5"/>
+                                <TextBlock Text="(Отклонено)" Margin="5"/>
+                            </StackPanel>
+                            <StackPanel 
+             Background="LightGray"
+             VerticalAlignment="Center" 
+             Orientation="Horizontal" 
+             Grid.Row="3">
+                                <TextBlock Text="10.10.2023" Margin="5"/>
+                                <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
+                                <TextBlock Text="Ваз 21099" Margin="5"/>
+                                <TextBlock Text="Иванов И.И." Margin="5"/>
+                                <TextBlock Text="(Завершено)" Margin="5"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
                 </TabItem>
                 <TabItem MinWidth="110">
                     <TabItem.Header>
