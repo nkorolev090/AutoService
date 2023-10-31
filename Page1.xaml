@@ -83,13 +83,6 @@ FontFamily="{DynamicResource MaterialDesignFont}">
          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
          Margin="10"/>
                         <StackPanel>
-                            <!--<Grid.RowDefinitions>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="40"/>
-                            </Grid.RowDefinitions>-->
                             <StackPanel 
              Background="LightGoldenrodYellow" 
              VerticalAlignment="Center" 
