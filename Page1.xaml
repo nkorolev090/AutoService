@@ -82,19 +82,20 @@ FontFamily="{DynamicResource MaterialDesignFont}">
          Text="Записи"
          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
          Margin="10"/>
-                        <Grid>
-                            <Grid.RowDefinitions>
+                        <StackPanel>
+                            <!--<Grid.RowDefinitions>
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="40"/>
-                            </Grid.RowDefinitions>
+                            </Grid.RowDefinitions>-->
                             <StackPanel 
              Background="LightGoldenrodYellow" 
              VerticalAlignment="Center" 
              Orientation="Horizontal" 
-             Grid.Row="0">
+             Margin="0,5,0,5"
+             >
                                 <TextBlock Text="10.10.2023" Margin="5"/>
                                 <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
                                 <TextBlock Text="Ваз 21099" Margin="5"/>
@@ -104,8 +105,9 @@ FontFamily="{DynamicResource MaterialDesignFont}">
                             <StackPanel 
              Background="LightGreen"
              VerticalAlignment="Center"
-             Orientation="Horizontal" 
-             Grid.Row="1">
+             Orientation="Horizontal"
+                                 Margin="0,5,0,5"
+             >
                                 <TextBlock Text="10.10.2023" Margin="5"/>
                                 <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
                                 <TextBlock Text="Ваз 21099" Margin="5"/>
@@ -116,7 +118,8 @@ FontFamily="{DynamicResource MaterialDesignFont}">
              Background="LightPink"
              VerticalAlignment="Center" 
              Orientation="Horizontal" 
-             Grid.Row="2">
+                                 Margin="0,5,0,5"
+             >
                                 <TextBlock Text="10.10.2023" Margin="5"/>
                                 <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
                                 <TextBlock Text="Ваз 21099" Margin="5"/>
@@ -127,14 +130,15 @@ FontFamily="{DynamicResource MaterialDesignFont}">
              Background="LightGray"
              VerticalAlignment="Center" 
              Orientation="Horizontal" 
-             Grid.Row="3">
+                                 Margin="0,5,0,5"
+             >
                                 <TextBlock Text="10.10.2023" Margin="5"/>
                                 <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
                                 <TextBlock Text="Ваз 21099" Margin="5"/>
                                 <TextBlock Text="Иванов И.И." Margin="5"/>
                                 <TextBlock Text="(Завершено)" Margin="5"/>
                             </StackPanel>
-                        </Grid>
+                        </StackPanel>
                     </StackPanel>
 
                 </TabItem>
