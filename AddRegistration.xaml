@@ -15,19 +15,41 @@ TextOptions.TextRenderingMode="Auto"
 Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
     <StackPanel>
-        <ComboBox
-  materialDesign:ComboBoxAssist.MaxLength="2"
-  materialDesign:HintAssist.Hint="Search"
-  materialDesign:HintAssist.HintOpacity=".26"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <ComboBox 
+                    Margin="10"
+  materialDesign:ComboBoxAssist.MaxLength="10"
+  materialDesign:HintAssist.Hint="Поиск"
+  materialDesign:HintAssist.HintOpacity=".5"
+  materialDesign:HintAssist.HelperText="Выберите вид работ"
+  Style="{StaticResource MaterialDesignOutlinedComboBox}"
   IsEditable="True">
-            <ComboBoxItem
+                <ComboBoxItem
     Content="Apple" />
-            <ComboBoxItem
+                <ComboBoxItem
     Content="Banana" />
-            <ComboBoxItem
+                <ComboBoxItem
     Content="Pear" />
-            <ComboBoxItem
+                <ComboBoxItem
     Content="Orange" />
-        </ComboBox>
+            </ComboBox>
+            </Grid>
+            <Grid Grid.Column="1">
+                <DatePicker
+  Width="140"
+                    Margin="10"
+  materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="1"
+  materialDesign:HintAssist.FloatingOffset="0,-22"
+  materialDesign:HintAssist.HelperText="Выберите дату"
+  materialDesign:HintAssist.Hint="Pick Date"
+  Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+            </Grid>
+        </Grid>
+       
     </StackPanel>
 </Window>
