@@ -14,8 +14,12 @@ TextOptions.TextFormattingMode="Ideal"
 TextOptions.TextRenderingMode="Auto"
 Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
-    <StackPanel>
-        <Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -29,15 +33,15 @@ FontFamily="{DynamicResource MaterialDesignFont}">
   materialDesign:HintAssist.HelperText="Выберите вид работ"
   Style="{StaticResource MaterialDesignOutlinedComboBox}"
   IsEditable="True">
-                <ComboBoxItem
+                    <ComboBoxItem
     Content="Apple" />
-                <ComboBoxItem
+                    <ComboBoxItem
     Content="Banana" />
-                <ComboBoxItem
+                    <ComboBoxItem
     Content="Pear" />
-                <ComboBoxItem
+                    <ComboBoxItem
     Content="Orange" />
-            </ComboBox>
+                </ComboBox>
             </Grid>
             <Grid Grid.Column="1">
                 <DatePicker
@@ -50,6 +54,8 @@ FontFamily="{DynamicResource MaterialDesignFont}">
   Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
             </Grid>
         </Grid>
-       
-    </StackPanel>
+        <Grid Grid.Row="1">
+            
+        </Grid>
+    </Grid>
 </Window>
