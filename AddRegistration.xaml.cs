@@ -17,8 +17,17 @@ namespace AutoService
     /// <summary>
     /// Логика взаимодействия для AddRegistration.xaml
     /// </summary>
+    public class GridItem
+    {
+        public GridItem() { }
+
+        DateTime time;
+        String masterName;
+        int cost;
+    }
     public partial class AddRegistration : Window
     {
+
         public AddRegistration()
         {
             InitializeComponent();
