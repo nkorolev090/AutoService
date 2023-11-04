@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoService"
         mc:Ignorable="d"
-        Title="AddRegistration" Height="410" Width="581"
+        Title="AddRegistration" MinHeight="410" MinWidth="670"
+        Height="410"
+        Width="670"
            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 TextElement.FontWeight="Regular"
@@ -16,104 +18,132 @@ Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <ComboBox 
-                    Margin="10"
-  materialDesign:ComboBoxAssist.MaxLength="10"
-  materialDesign:HintAssist.Hint="Поиск"
-  materialDesign:HintAssist.HintOpacity=".5"
-  materialDesign:HintAssist.HelperText="Выберите вид работ"
-  Style="{StaticResource MaterialDesignOutlinedComboBox}"
-  IsEditable="True">
-                    <ComboBoxItem
-    Content="Apple" />
-                    <ComboBoxItem
-    Content="Banana" />
-                    <ComboBoxItem
-    Content="Pear" />
-                    <ComboBoxItem
-    Content="Orange" />
-                </ComboBox>
-            </Grid>
-            <Grid Grid.Column="1">
-                <DatePicker
-  Width="140"
-                    Margin="10"
-  materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="1"
-  materialDesign:HintAssist.FloatingOffset="0,-22"
-  materialDesign:HintAssist.HelperText="Выберите дату"
-  materialDesign:HintAssist.Hint="Pick Date"
-  Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-            </Grid>
+            
+            <TabControl
+                TabStripPlacement="Left">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Magnify" Margin="0,0,5,0"/>
+                            <TextBlock Text="Поиск"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="6*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <ComboBox 
+                  Margin="10"
+materialDesign:ComboBoxAssist.MaxLength="10"
+materialDesign:HintAssist.Hint="Поиск"
+materialDesign:HintAssist.HintOpacity=".5"
+materialDesign:HintAssist.HelperText="Выберите вид работ"
+Style="{StaticResource MaterialDesignOutlinedComboBox}"
+IsEditable="True">
+                                    <ComboBoxItem
+  Content="Apple" />
+                                    <ComboBoxItem
+  Content="Banana" />
+                                    <ComboBoxItem
+  Content="Pear" />
+                                    <ComboBoxItem
+  Content="Orange" />
+                                </ComboBox>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <DatePicker
+Width="140"
+                  Margin="10"
+materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="1"
+materialDesign:HintAssist.FloatingOffset="0,-22"
+materialDesign:HintAssist.HelperText="Выберите дату"
+materialDesign:HintAssist.Hint="Pick Date"
+Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <DataGrid
+              CanUserAddRows="False"
+AutoGenerateColumns="False"
+  x:Name="itemsGrid"
+      >
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Width="0.6*">
+                                        <DataGridTemplateColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" Kind="CartOutline"/>
+                                                <TextBlock Text="Корзина"/>
+                                            </StackPanel>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox
+  IsChecked="False"
+  Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}">
+                                                    <materialDesign:PackIcon Width="20" Kind="Plus"/>
+                                                </CheckBox>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+
+
+                                    <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding time}">
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
+                                                <TextBlock Text="Время"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+
+                                    <DataGridTextColumn Width="0.9*" IsReadOnly="True" CanUserResize="False" Binding="{Binding fullName}">
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="FaceMan"/>
+                                                <TextBlock Text="ФИО Мастера"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+
+                                    <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding cost}">
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>
+                                                <TextBlock Text="Стоимость"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CartHeart"  Margin="0,0,5,0"/>
+                            <TextBlock Text="Корзина"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+            </TabControl>
+           
+            
         </Grid>
-        
         <Grid Grid.Row="1">
-            <DataGrid
-                CanUserAddRows="False"
-  AutoGenerateColumns="False"
-    x:Name="itemsGrid"
-        >
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="0.6*">
-                        <DataGridTemplateColumn.Header>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <materialDesign:PackIcon Width="24" Kind="CartOutline"/>
-                                <TextBlock Text="Корзина"/>
-                            </StackPanel>
-                        </DataGridTemplateColumn.Header>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox
-    IsChecked="False"
-    Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}">
-                                    <materialDesign:PackIcon Width="20" Kind="Plus"/>
-                                </CheckBox>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-
-
-                    <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding time}">
-                        <DataGridTextColumn.Header>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
-                                <TextBlock Text="Время"/>
-                            </StackPanel>
-                        </DataGridTextColumn.Header>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding fullName}">
-                        <DataGridTextColumn.Header>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="FaceMan"/>
-                                <TextBlock Text="ФИО Мастера"/>
-                            </StackPanel>
-                        </DataGridTextColumn.Header>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding cost}">
-                        <DataGridTextColumn.Header>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>
-                                <TextBlock Text="Стоимость"/>
-                            </StackPanel>
-                        </DataGridTextColumn.Header>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-                
-            </DataGrid>
-        </Grid>
-
-        <Grid Grid.Row="2">
             <Button
                 HorizontalAlignment="Right"
                 Width="150"
