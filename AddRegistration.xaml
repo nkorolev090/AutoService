@@ -57,26 +57,31 @@ FontFamily="{DynamicResource MaterialDesignFont}">
         
         <Grid Grid.Row="1">
             <DataGrid
+                
+  AutoGenerateColumns="False"
   CanUserAddRows="False"
- 
+  x:Name="itemsGrid"
   SelectionMode="Extended"
   SelectionUnit="Cell">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn>
-                        <DataGridCheckBoxColumn.HeaderTemplate>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.Header>
+                            <materialDesign:PackIcon Kind="CartOutline" />
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox
-    IsChecked="True"
-    Style="{StaticResource MaterialDesignFilterChipSecondaryCheckBox}">
-                                    <materialDesign:PackIcon Kind="CartOutline" />
+    IsChecked="False"
+    Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}">
+                                    
                                 </CheckBox>
                             </DataTemplate>
-                        </DataGridCheckBoxColumn.HeaderTemplate>
-                    </DataGridCheckBoxColumn>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Время" IsReadOnly="True" CanUserResize="False"/>
-                    <DataGridTextColumn Header="ФИО Мастера" IsReadOnly="True" CanUserResize="False"/>
-                    <DataGridTextColumn Header="Стоимость" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="Время" IsReadOnly="True" CanUserResize="False" Binding="{Binding time}"/>
+                    <DataGridTextColumn Header="ФИО Мастера" IsReadOnly="True" CanUserResize="False" Binding="{Binding fullName}"/>
+                    <DataGridTextColumn Header="Стоимость" IsReadOnly="True" CanUserResize="False" Binding="{Binding cost}"/>
                 </DataGrid.Columns>
                 
             </DataGrid>
