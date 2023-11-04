@@ -23,14 +23,15 @@ namespace AutoService
         ObservableCollection<gridItem> items;
         public AddRegistration()
         {
+             InitializeComponent();
             
-            InitializeComponent();
             items= new ObservableCollection<gridItem>();
 
             items.Add(new gridItem { time = "10:00", fullName = "Иванов И.И.", cost = 1000 });
             items.Add(new gridItem { time = "11:00", fullName = "Петров А.И.", cost = 1500 });
             items.Add(new gridItem { time = "12:30", fullName = "Иванов И.И.", cost = 1000 });
             itemsGrid.ItemsSource = items;
+           
         }
 
         
