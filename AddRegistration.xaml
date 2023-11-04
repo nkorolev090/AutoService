@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoService"
         mc:Ignorable="d"
-        Title="AddRegistration" Height="306" Width="365"
+        Title="AddRegistration" Height="410" Width="576"
            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 TextElement.FontWeight="Regular"
@@ -54,8 +54,32 @@ FontFamily="{DynamicResource MaterialDesignFont}">
   Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
             </Grid>
         </Grid>
+        
         <Grid Grid.Row="1">
-            
+            <DataGrid
+  CanUserAddRows="False"
+ 
+  SelectionMode="Extended"
+  SelectionUnit="Cell">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn>
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox
+    IsChecked="True"
+    Style="{StaticResource MaterialDesignFilterChipSecondaryCheckBox}">
+                                    <materialDesign:PackIcon Kind="CartOutline" />
+                                </CheckBox>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+
+                    <DataGridTextColumn Header="Время" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="ФИО Мастера" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="Стоимость" IsReadOnly="True" CanUserResize="False"/>
+                </DataGrid.Columns>
+                
+            </DataGrid>
         </Grid>
     </Grid>
 </Window>
