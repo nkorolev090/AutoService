@@ -28,7 +28,7 @@ FontFamily="{DynamicResource MaterialDesignFont}">
         Content="{materialDesign:PackIcon Kind=BookPlus, Size=22}"
         Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}" />
                 </materialDesign:NavigationRailAssist.FloatingContent>
-                <TabItem MinWidth="110"> 
+                <TabItem MinWidth="110">
                     <TabItem.Header>
                         <StackPanel
           Width="auto"
@@ -43,23 +43,49 @@ FontFamily="{DynamicResource MaterialDesignFont}">
             Text="Профиль" />
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel
-        Margin="16">
-                        <TextBlock
-          Margin="0,0,0,8"
-          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-          Text="Recent" />
-                        <TextBlock>
-          <Run
-            Text="tab 2 content. Default look and behaviors." />
-          <LineBreak />
-          <LineBreak />
-          <Run
-            FontStyle="Italic">
-          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </Run>
-                        </TextBlock>
-                    </StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32*"/>
+                            <RowDefinition Height="43*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="128*"/>
+                                <ColumnDefinition Width="217*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" CornerRadius="5" Margin="20">
+                                <Border.Background>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="Source/profile.jpg"/>
+                                </Border.Background>
+                            </Border>
+                            <Grid Grid.Column="1">
+                                <materialDesign:Card
+                                    Margin="18"
+  Padding="10"
+Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
+  Background="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                    <StackPanel>
+                                         <TextBlock
+                                             Padding="2"
+    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                        HorizontalAlignment="Right"
+    Text="Иванов Иван Иванович" />
+                                        <TextBlock
+                                             Padding="2"
+Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                    HorizontalAlignment="Right"
+Text="+7(952)812" />
+                                        <TextBlock
+                                             Padding="2"
+Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                    HorizontalAlignment="Right"
+Text="01.01.2000" />
+                                    </StackPanel>
+                                   
+                                </materialDesign:Card>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </TabItem>
                 <TabItem MinWidth="110">
                     <TabItem.Header>
