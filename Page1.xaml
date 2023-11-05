@@ -61,29 +61,98 @@ FontFamily="{DynamicResource MaterialDesignFont}">
                             <Grid Grid.Column="1">
                                 <materialDesign:Card
                                     Margin="18"
-  Padding="10"
+                                    Padding="5"
 Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
   Background="{DynamicResource PrimaryHueDarkForegroundBrush}">
-                                    <StackPanel>
-                                         <TextBlock
+                                    <Grid>
+                                        <Button
+HorizontalAlignment="Left"
+VerticalAlignment="Bottom"
+Content="{materialDesign:PackIcon Kind=Pencil,Size=22}"
+Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
+                                        
+                                        <StackPanel>
+                                            <TextBlock
                                              Padding="2"
     Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                                         HorizontalAlignment="Right"
     Text="Иванов Иван Иванович" />
-                                        <TextBlock
+                                            <TextBlock
+                                             Padding="2"
+Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                                    HorizontalAlignment="Right"
+Text="Платиновый уровень" />
+                                            <TextBlock
                                              Padding="2"
 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                                     HorizontalAlignment="Right"
 Text="+7(952)812" />
-                                        <TextBlock
+                                            <TextBlock
                                              Padding="2"
 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                                     HorizontalAlignment="Right"
 Text="01.01.2000" />
-                                    </StackPanel>
-                                   
+
+                                        </StackPanel>
+                                    </Grid>
+
+
                                 </materialDesign:Card>
                             </Grid>
+                                
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <StackPanel>
+                                <TextBlock
+                                    Text="Автомобили"
+                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                    Padding="5, 0, 0, 0"/>
+                                <DataGrid
+              CanUserAddRows="True"
+AutoGenerateColumns="False"
+  x:Name="itemsGrid"
+      >
+                                    <DataGrid.Columns>
+                                        
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False">
+                                            <DataGridTextColumn.Header>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Marker"/>
+                                                    <TextBlock Text="Марка"/>
+                                                </StackPanel>
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False">
+                                            <DataGridTextColumn.Header>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
+                                                    <TextBlock Text="Модель"/>
+                                                </StackPanel>
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False">
+                                            <DataGridTextColumn.Header>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Color"/>
+                                                    <TextBlock Text="Цвет"/>
+                                                </StackPanel>
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                        
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False">
+                                            <DataGridTextColumn.Header>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Counter"/>
+                                                    <TextBlock Text="Пробег"/>
+                                                </StackPanel>
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+                            </StackPanel>
                         </Grid>
                     </Grid>
                 </TabItem>
