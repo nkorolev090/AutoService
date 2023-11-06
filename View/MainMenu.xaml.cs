@@ -18,11 +18,16 @@ namespace AutoService.Views
     /// <summary>
     /// Логика взаимодействия для Page1.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class MainMenu : Window
     {
-        public Page1()
+        public MainMenu()
         {
             InitializeComponent();
+        }
+
+        public static implicit operator Window(MainMenu v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
