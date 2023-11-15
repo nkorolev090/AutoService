@@ -74,7 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="Util\ViewNavigator.cs" />
+    <Compile Include="ViewModel\MainWViewModel.cs" />
     <Compile Include="View\AddRegistration.xaml.cs">
       <DependentUpon>AddRegistration.xaml</DependentUpon>
     </Compile>
@@ -125,13 +127,11 @@
     <Resource Include="Source\Preview.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Source\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Source\profile.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ViewModel\" />
+    <Resource Include="Source\Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

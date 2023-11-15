@@ -20,7 +20,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <Image Source="Source/Preview.png" Stretch="UniformToFill" HorizontalAlignment ="Right" VerticalAlignment="Bottom"/>
+            <Image Source="/Source/Preview.png" Stretch="UniformToFill" HorizontalAlignment ="Right" VerticalAlignment="Bottom"/>
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -30,7 +30,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
-                <Image Source="Source/Logo.png"/>
+                <Image Source="/Source/Logo.png"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Label Content="АвтоСервис 37" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>

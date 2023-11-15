@@ -25,9 +25,6 @@ namespace AutoService.Views
             InitializeComponent();
         }
 
-        public static implicit operator Window(MainMenu v)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }
