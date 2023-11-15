@@ -25,6 +25,7 @@ FontFamily="{DynamicResource MaterialDesignFont}">
                 <materialDesign:NavigationRailAssist.FloatingContent>
                     <Button
         Margin="8"
+                        Command="{Binding OpenAddRegCommand}"
         Content="{materialDesign:PackIcon Kind=BookPlus, Size=22}"
         Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}" />
                 </materialDesign:NavigationRailAssist.FloatingContent>

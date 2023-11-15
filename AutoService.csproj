@@ -76,7 +76,9 @@
     </Page>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Util\ViewNavigator.cs" />
-    <Compile Include="ViewModel\MainWViewModel.cs" />
+    <Compile Include="ViewModels\AddRegistrationViewModel.cs" />
+    <Compile Include="ViewModels\MainMenuViewModel.cs" />
+    <Compile Include="ViewModels\MainWViewModel.cs" />
     <Compile Include="View\AddRegistration.xaml.cs">
       <DependentUpon>AddRegistration.xaml</DependentUpon>
     </Compile>
