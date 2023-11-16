@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoService"
         mc:Ignorable="d"
-        Title="AddRegistration" MinHeight="410" MinWidth="670"
+        Title="AddRegistration" MinHeight="410" MinWidth="705"
         Height="410"
-        Width="670"
+        Width="705"
            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 TextElement.FontWeight="Regular"
@@ -39,11 +39,16 @@ FontFamily="{DynamicResource MaterialDesignFont}">
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <ComboBox 
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <ComboBox 
                   Margin="10"
 materialDesign:ComboBoxAssist.MaxLength="10"
 materialDesign:HintAssist.Hint="Поиск"
@@ -59,7 +64,22 @@ IsEditable="True">
   Content="Pear" />
                                     <ComboBoxItem
   Content="Orange" />
-                                </ComboBox>
+                                </ComboBox> 
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Button
+                                        HorizontalAlignment="Left"
+                                        Foreground="AliceBlue"
+                                        Width="40"
+                                        Height="40"
+  Style="{StaticResource MaterialDesignFloatingActionButton}"
+  ToolTip="MaterialDesignFloatingActionSecondaryLightButton">
+                                        <materialDesign:PackIcon
+    Width="30"
+    Height="30"
+    Kind="About" />
+                                    </Button>
+                                </Grid>
                             </Grid>
                             <Grid Grid.Column="1">
                                 <DatePicker
@@ -138,6 +158,68 @@ AutoGenerateColumns="False"
                             <TextBlock Text="Корзина"/>
                         </StackPanel>
                     </TabItem.Header>
+                    <DataGrid
+              CanUserAddRows="False"
+AutoGenerateColumns="False"
+  x:Name="itemShopGrid"
+      >
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Width="0.6*">
+                                <DataGridTemplateColumn.Header>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <materialDesign:PackIcon Width="24" Kind="CartOutline"/>
+                                        <TextBlock Text="Корзина"/>
+                                    </StackPanel>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox
+  IsChecked="False"
+  Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}">
+                                            <materialDesign:PackIcon Width="20" Kind="Plus"/>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding breakdown}">
+                                <DataGridTextColumn.Header>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="HammerWrench"/>
+                                        <TextBlock Text="Вид работ"/>
+                                    </StackPanel>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            
+                            <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding time}">
+                                <DataGridTextColumn.Header>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
+                                        <TextBlock Text="Время"/>
+                                    </StackPanel>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="0.8*" IsReadOnly="True" CanUserResize="False" Binding="{Binding fullName}">
+                                <DataGridTextColumn.Header>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="FaceMan"/>
+                                        <TextBlock Text="ФИО Мастера"/>
+                                    </StackPanel>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding cost}">
+                                <DataGridTextColumn.Header>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>
+                                        <TextBlock Text="Стоимость"/>
+                                    </StackPanel>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
                 </TabItem>
             </TabControl>
            
