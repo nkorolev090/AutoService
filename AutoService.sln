@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationCore", "Applicat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BEFF44C9-9F4B-45C8-B93A-7EC7D4C5B0DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "..\..\..\..\Рабочий стол\Конструирование и проектирование\Lab5MVC\DomainModel\DomainModel.csproj", "{F628245B-9BD1-4215-91DC-B5ECB27DE394}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{F628245B-9BD1-4215-91DC-B5ECB27DE394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "..\..\..\..\Рабочий стол\Конструирование и проектирование\Lab5MVC\Interfaces\Interfaces.csproj", "{D9608023-D963-40CF-9496-7D545B8120A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{D9608023-D963-40CF-9496-7D545B8120A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "..\..\..\..\Рабочий стол\Конструирование и проектирование\Lab5MVC\DAL\DAL.csproj", "{2F9EABFF-0647-4ED5-9CC7-13682D90F073}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{C267A94E-4308-412E-971C-6C43CF080E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "..\..\..\..\Рабочий стол\Конструирование и проектирование\Lab5MVC\BLL\BLL.csproj", "{C267A94E-4308-412E-971C-6C43CF080E13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{2F9EABFF-0647-4ED5-9CC7-13682D90F073}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,14 +35,14 @@ Global
 		{D9608023-D963-40CF-9496-7D545B8120A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9608023-D963-40CF-9496-7D545B8120A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9608023-D963-40CF-9496-7D545B8120A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F9EABFF-0647-4ED5-9CC7-13682D90F073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F9EABFF-0647-4ED5-9CC7-13682D90F073}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F9EABFF-0647-4ED5-9CC7-13682D90F073}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F9EABFF-0647-4ED5-9CC7-13682D90F073}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C267A94E-4308-412E-971C-6C43CF080E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C267A94E-4308-412E-971C-6C43CF080E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C267A94E-4308-412E-971C-6C43CF080E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C267A94E-4308-412E-971C-6C43CF080E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F9EABFF-0647-4ED5-9CC7-13682D90F073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F9EABFF-0647-4ED5-9CC7-13682D90F073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F9EABFF-0647-4ED5-9CC7-13682D90F073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F9EABFF-0647-4ED5-9CC7-13682D90F073}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,8 +50,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{F628245B-9BD1-4215-91DC-B5ECB27DE394} = {1F5F093D-B8B7-41D6-AEA1-FCFD7230A866}
 		{D9608023-D963-40CF-9496-7D545B8120A8} = {1F5F093D-B8B7-41D6-AEA1-FCFD7230A866}
-		{2F9EABFF-0647-4ED5-9CC7-13682D90F073} = {BEFF44C9-9F4B-45C8-B93A-7EC7D4C5B0DD}
 		{C267A94E-4308-412E-971C-6C43CF080E13} = {BEFF44C9-9F4B-45C8-B93A-7EC7D4C5B0DD}
+		{2F9EABFF-0647-4ED5-9CC7-13682D90F073} = {BEFF44C9-9F4B-45C8-B93A-7EC7D4C5B0DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4949151B-5BD0-433B-81AF-481D4420C4E7}
