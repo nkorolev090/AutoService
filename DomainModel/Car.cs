@@ -1,4 +1,4 @@
-namespace DAL
+namespace DomainModel
 {
     using System;
     using System.Collections.Generic;
