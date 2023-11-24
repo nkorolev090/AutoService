@@ -5,7 +5,7 @@ namespace Interfaces.Repository
 {
     public interface IReportsRepository
     {
-        List<ReportData> Report1(int val);
-        List<SPResult> ExecuteSP(int study_year, int housing);
+        //List<ReportData> Report1(int val);
+        //List<SPResult> ExecuteSP(int study_year, int housing);
     }
 }

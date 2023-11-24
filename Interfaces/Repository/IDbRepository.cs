@@ -9,11 +9,8 @@ namespace Interfaces.Repository
 {
     public interface IDbRepository
     {
-        IRepository<Check_IN> Check_Ins {  get; }
-        IRepository<City> Cities { get; }
-        IRepository<Student> Students { get; }
-        IRepository<Room> Rooms { get; }
-        IReportsRepository Reports { get; }
+        IRepository<Client> Clients {  get; }
+        IRepository<Car> Cars { get; }
         int Save();
     }
 }

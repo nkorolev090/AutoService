@@ -11,77 +11,40 @@ namespace DAL.Repository
 {
     public class DbRepositorySQL : IDbRepository
     {
-        private ModelDB db;
-        private CheckInRepositorySQL checkInRepository;
-        private CityRepositorySQL cityRepository;
-        private ReportRepositorySQL reportRepository;
-        private StudentRepositorySQL studentRepository;
-        private RoomRepositorySQL roomRepository;
+        private ModelAutoService db;
+       private ClientRepositorySQL clientRepository;
+        private CarRepositorySQL carRepository;
 
         public DbRepositorySQL() {
-            db = new ModelDB();
+            db = new ModelAutoService();
         }
 
-        public IRepository<Check_IN> Check_Ins 
+
+        public IRepository<Client> Clients 
         {
             get
             {
-                if(checkInRepository == null)
+                if (clientRepository == null)
                 {
-                    checkInRepository = new CheckInRepositorySQL(db);
+                    clientRepository = new ClientRepositorySQL(db);
                 }
-                return checkInRepository;
+                return clientRepository;
             }
         }
 
-        public IRepository<City> Cities 
+        
+
+        public IRepository<Car> Cars
         {
             get
             {
-                if(cityRepository == null)
+                if (carRepository == null)
                 {
-                    cityRepository = new CityRepositorySQL(db);
+                    carRepository = new CarRepositorySQL(db);
                 }
-                return cityRepository;
+                return carRepository;
             }
         }
-
-        public IRepository<Student> Students
-        {
-            get
-            {
-                if (studentRepository == null)
-                {
-                    studentRepository = new StudentRepositorySQL(db);
-                }
-                return studentRepository;
-            }
-        }
-
-        public IReportsRepository Reports
-        {
-            get
-            {
-                if(reportRepository == null)
-                {
-                    reportRepository = new ReportRepositorySQL(db);
-                }
-                return reportRepository;
-            }
-        }
-
-        public IRepository<Room> Rooms 
-        {
-            get
-            {
-                if (roomRepository == null)
-                {
-                    roomRepository = new RoomRepositorySQL(db);
-                }
-                return roomRepository;
-            }
-        }
-
 
         public int Save()
         {
