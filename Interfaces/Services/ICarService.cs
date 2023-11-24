@@ -10,8 +10,8 @@ namespace Interfaces.Services
     public interface ICarService
     {
         List<CarDTO> GetAllCarDTO();
-        bool CreateCarDTO(ClientDTO p);
-        void UpdateCarDTO(ClientDTO p);
+        void CreateCarDTO(CarDTO p);
+        void UpdateCarDTO(CarDTO p);
         CarDTO GetCarDTO(int id);
         void DeleteCarDTO(int id);
     }
