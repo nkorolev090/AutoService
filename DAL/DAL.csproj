@@ -87,24 +87,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Breakdown.cs" />
-    <Compile Include="Car.cs" />
-    <Compile Include="Client.cs" />
-    <Compile Include="Discount.cs" />
-    <Compile Include="Mechanic.cs" />
-    <Compile Include="Mechanic_Breakdown.cs" />
     <Compile Include="ModelAutoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registration.cs" />
-    <Compile Include="Repair_Review.cs" />
     <Compile Include="Repository\CheckInRepositorySQL.cs" />
     <Compile Include="Repository\CityRepositorySQL.cs" />
     <Compile Include="Repository\DbRepositorySQL.cs" />
     <Compile Include="Repository\ReportRepositorySQL.cs" />
     <Compile Include="Repository\RoomRepositorySQL.cs" />
     <Compile Include="Repository\StudentRepositorySQL.cs" />
-    <Compile Include="Slot.cs" />
-    <Compile Include="Status.cs" />
     <Compile Include="sysdiagram.cs" />
   </ItemGroup>
   <ItemGroup>
