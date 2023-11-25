@@ -26,6 +26,7 @@ namespace AutoService.Views
         {
             InitializeComponent();
             DataContext = new MainMenuViewModel(carService);
+            
         }
 
       

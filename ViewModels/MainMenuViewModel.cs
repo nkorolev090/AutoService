@@ -10,13 +10,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using AutoService.Models;
 
 namespace AutoService.ViewModels
 {
     public class MainMenuViewModel : INotifyPropertyChanged
     {
         ICarService carService;
-        public ObservableCollection<CarDTO> Cars; 
+        public ObservableCollection<CarModel> Cars { get; set; }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -29,7 +30,7 @@ namespace AutoService.ViewModels
         public MainMenuViewModel(ICarService carService) { 
         
             this.carService = carService;
-            Cars = new ObservableCollection<CarDTO>(carService.GetAllCarDTO()); 
+            Cars = new ObservableCollection<CarModel>(carService.GetAllCarDTO().Select(i => new CarModel(i))); 
         }
 
 

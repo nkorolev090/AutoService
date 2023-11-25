@@ -26,6 +26,7 @@ namespace Interfaces.DTO
             id = car.id;
             model = car.model;
             owner_id = car.owner_id;
+            color = car.color;
             brand = car.brand;
             br_mod = car.brand + " " + car.model;
             mileage = car.mileage;

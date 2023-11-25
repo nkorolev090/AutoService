@@ -108,15 +108,14 @@ Text="01.01.2000" />
                                     Text="Автомобили"
                                     Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                                     Padding="5, 0, 0, 0"/>
-                                <DataGrid
-                                    ItemsSource="{Binding Cars}"
+                                <DataGrid 
+              ItemsSource="{Binding Cars}"
               CanUserAddRows="True"
 AutoGenerateColumns="False"
-  x:Name="itemsGrid"
       >
                                     <DataGrid.Columns>
-                                        
-                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding brand}">
+
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Brand}">
                                             <DataGridTextColumn.Header>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                     <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Marker"/>
@@ -125,7 +124,7 @@ AutoGenerateColumns="False"
                                             </DataGridTextColumn.Header>
                                         </DataGridTextColumn>
 
-                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding model}">
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Model}">
                                             <DataGridTextColumn.Header>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                     <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
@@ -134,7 +133,7 @@ AutoGenerateColumns="False"
                                             </DataGridTextColumn.Header>
                                         </DataGridTextColumn>
 
-                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding color}">
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Color}">
                                             <DataGridTextColumn.Header>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                     <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Color"/>
@@ -143,7 +142,7 @@ AutoGenerateColumns="False"
                                             </DataGridTextColumn.Header>
                                         </DataGridTextColumn>
 
-                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding mileage}">
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Mileage}">
                                             <DataGridTextColumn.Header>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                     <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Counter"/>
@@ -300,5 +299,6 @@ AutoGenerateColumns="False"
                 </TabItem>
             </TabControl>
         </materialDesign:Card>
+        
     </Grid>
 </Window>
