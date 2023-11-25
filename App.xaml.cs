@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using AutoService.Util;
+using Interfaces.Services;
+using Ninject;
 
 namespace AutoService
 {
@@ -16,6 +18,11 @@ namespace AutoService
     {
         private void ApplicationStartUp(object sender, StartupEventArgs e)
         {
+            var kernel = new StandardKernel(new NinjectRegistration(), new ReposModule("ModelAutoService"));
+
+            
+            ICarService carService = kernel.Get<ICarService>();
+            ViewNavigator.SetServices(carService);
             ViewNavigator.ApplicationStartNavigation();
         }
     }

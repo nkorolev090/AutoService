@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoService.Views;
+using Interfaces.Services;
 
 namespace AutoService.Util
 {
@@ -16,8 +17,13 @@ namespace AutoService.Util
     }
     internal static class ViewNavigator
     {
-        
+        private static ICarService carService;
         private static Window currentView_;
+
+        public static void SetServices(ICarService carS)
+        {
+            carService = carS;
+        }
         private static Window currentView
         { 
             get => currentView_;
@@ -40,7 +46,7 @@ namespace AutoService.Util
                     currentView = new MainWindow();
                     break;
                 case Views.MainMenuView:
-                    currentView = new MainMenu();
+                    currentView = new MainMenu(carService);
                     break;
                 case Views.AddRegistrationView:
                     currentView = new AddRegistration();

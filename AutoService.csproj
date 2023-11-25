@@ -86,6 +86,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="Util\NinjectRegistration.cs" />
+    <Compile Include="Util\ReposModule.cs" />
     <Compile Include="Util\ViewNavigator.cs" />
     <Compile Include="ViewModels\AddRegistrationViewModel.cs" />
     <Compile Include="ViewModels\MainMenuViewModel.cs" />
@@ -142,7 +144,20 @@
   <ItemGroup>
     <Resource Include="Source\profile.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="BLL\BLL.csproj">
+      <Project>{c267a94e-4308-412e-971c-6c43cf080e13}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="DAL\DAL.csproj">
+      <Project>{2f9eabff-0647-4ed5-9cc7-13682d90f073}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="Interfaces\Interfaces.csproj">
+      <Project>{d9608023-d963-40cf-9496-7d545b8120a8}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Source\Logo.png" />
   </ItemGroup>

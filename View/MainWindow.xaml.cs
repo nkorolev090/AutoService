@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AutoService.ViewModels;
+using Interfaces.Services;
 
 namespace AutoService.Views
 {
@@ -21,6 +22,7 @@ namespace AutoService.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();

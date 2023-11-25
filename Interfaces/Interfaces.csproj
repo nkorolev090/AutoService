@@ -92,7 +92,6 @@
     <Compile Include="Repository\IReportsRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Services\ICarService.cs" />
-    <Compile Include="Services\ICheckInService.cs" />
     <Compile Include="Services\IClientService.cs" />
   </ItemGroup>
   <ItemGroup>
