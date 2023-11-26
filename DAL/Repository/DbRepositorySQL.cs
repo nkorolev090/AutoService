@@ -14,6 +14,8 @@ namespace DAL.Repository
         private ModelAutoService db;
        private ClientRepositorySQL clientRepository;
         private CarRepositorySQL carRepository;
+        private SlotRepositorySQL slotRepository;
+        private RegistrationRepositorySQL registrationRepository;
 
         public DbRepositorySQL() {
             db = new ModelAutoService();
@@ -46,6 +48,29 @@ namespace DAL.Repository
             }
         }
 
+        public IRepository<Slot> Slots
+        {
+            get
+            {
+                if (slotRepository == null)
+                {
+                    slotRepository = new SlotRepositorySQL(db);
+                }
+                return slotRepository;
+            }
+        }
+
+        public IRepository<Registration> Registrations
+        {
+            get
+            {
+                if (registrationRepository == null)
+                {
+                    registrationRepository = new RegistrationRepositorySQL(db);
+                }
+                return registrationRepository;
+            }
+        }
         public int Save()
         {
             return db.SaveChanges();

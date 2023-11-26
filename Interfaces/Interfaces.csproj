@@ -87,6 +87,8 @@
   <ItemGroup>
     <Compile Include="DTO\Car.cs" />
     <Compile Include="DTO\Client.cs" />
+    <Compile Include="DTO\Registration.cs" />
+    <Compile Include="DTO\Slot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IDbRepository.cs" />
     <Compile Include="Repository\IReportsRepository.cs" />
