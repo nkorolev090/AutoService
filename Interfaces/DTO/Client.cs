@@ -17,6 +17,8 @@ namespace Interfaces.DTO
 
         public int discount_id { get; set; }
 
+        public string discount_name { get; set; }
+
         public string discount_points { get; set; }
 
         public string surname { get; set; }
@@ -27,6 +29,7 @@ namespace Interfaces.DTO
             id = client.id;
             name = client.name;
             discount_id = client.discount_id;
+            discount_name = client.Discount.name;
             discount_points = client.discount_points;
             surname = client.surname;
             midname = client.midname;

@@ -31,6 +31,10 @@ namespace BLL.Services
            return db.Cars.GetList().Select(i => new CarDTO(i)).ToList();
         }
 
+        public List<CarDTO> GetAllCarDTO(int owner_id)
+        {
+            return db.Cars.GetList().Where(i => i.owner_id == owner_id).Select(a => new CarDTO(a)).ToList();
+        }
         public CarDTO GetCarDTO(int id)
         {
             return new CarDTO(db.Cars.GetItem(id));

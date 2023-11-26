@@ -18,11 +18,13 @@ namespace AutoService.Util
     internal static class ViewNavigator
     {
         private static ICarService carService;
+        private static IClientService clientService;
         private static Window currentView_;
 
-        public static void SetServices(ICarService carS)
+        public static void SetServices(ICarService carS, IClientService clientS)
         {
             carService = carS;
+            clientService = clientS;
         }
         private static Window currentView
         { 
@@ -46,7 +48,7 @@ namespace AutoService.Util
                     currentView = new MainWindow();
                     break;
                 case Views.MainMenuView:
-                    currentView = new MainMenu(carService);
+                    currentView = new MainMenu(carService, clientService);
                     break;
                 case Views.AddRegistrationView:
                     currentView = new AddRegistration();

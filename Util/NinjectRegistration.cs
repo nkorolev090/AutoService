@@ -14,6 +14,7 @@ namespace AutoService.Util
         public override void Load()
         {
             Bind<ICarService>().To<CarService>();
+            Bind<IClientService>().To<ClientService>();
         }
     }
 }

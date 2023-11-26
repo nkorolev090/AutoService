@@ -77,12 +77,12 @@ Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
                                              Padding="2"
     Style="{StaticResource MaterialDesignHeadline5TextBlock}"
                                         HorizontalAlignment="Right"
-    Text="Иванов Иван Иванович" />
+    Text="{Binding Client.full_name}" />
                                             <TextBlock
                                              Padding="2"
 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                                     HorizontalAlignment="Right"
-Text="Платиновый уровень" />
+Text="{Binding Client.discount_name}" />
                                             <TextBlock
                                              Padding="2"
 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
