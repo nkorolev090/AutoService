@@ -14,27 +14,31 @@ namespace DAL.Repository
         public SlotRepositorySQL(ModelAutoService db) { this.db = db; }
         public void Create(Slot item)
         {
-            throw new NotImplementedException();
+            db.Slots.Add(item);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var item = db.Slots.Find(id);
+            if(item != null)
+            {
+                db.Slots.Remove(item);
+            }
         }
 
         public Slot GetItem(int id)
         {
-            throw new NotImplementedException();
+           return db.Slots.Find(id);
         }
 
         public List<Slot> GetList()
         {
-            throw new NotImplementedException();
+            return db.Slots.ToList();
         }
 
         public void Update(Slot item)
         {
-            throw new NotImplementedException();
+            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

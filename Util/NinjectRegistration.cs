@@ -15,6 +15,8 @@ namespace AutoService.Util
         {
             Bind<ICarService>().To<CarService>();
             Bind<IClientService>().To<ClientService>();
+            Bind<ISlotService>().To<SlotService>();
+            Bind<IRegistrationService>().To<RegistrationService>();
         }
     }
 }

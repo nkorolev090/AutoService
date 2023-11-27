@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Breakdown.cs" />
     <Compile Include="DTO\Car.cs" />
     <Compile Include="DTO\Client.cs" />
     <Compile Include="DTO\Registration.cs" />
@@ -95,6 +96,8 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Services\ICarService.cs" />
     <Compile Include="Services\IClientService.cs" />
+    <Compile Include="Services\IRegistrationService.cs" />
+    <Compile Include="Services\ISlotService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

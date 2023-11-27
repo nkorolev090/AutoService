@@ -12,7 +12,7 @@ namespace DAL.Repository
     public class DbRepositorySQL : IDbRepository
     {
         private ModelAutoService db;
-       private ClientRepositorySQL clientRepository;
+        private ClientRepositorySQL clientRepository;
         private CarRepositorySQL carRepository;
         private SlotRepositorySQL slotRepository;
         private RegistrationRepositorySQL registrationRepository;

@@ -33,7 +33,11 @@ namespace Interfaces.DTO
         {
             this.id = slot.id;
             this.breakdown_id = slot.breakdown_id;
-            this.breakdown_name = slot.Breakdown.title;
+            if( slot.breakdown_id != null )
+            {
+                this.breakdown_name = slot.Breakdown.title;
+            }
+            
             this.mechanic_id = slot.mechanic_id;
             this.mechanic_name = slot.Mechanic.surname + " " + slot.Mechanic.name[0] + ". " + slot.Mechanic.midname[0] + ".";
             this.start_time = slot.start_time;

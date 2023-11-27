@@ -14,27 +14,31 @@ namespace DAL.Repository
         public RegistrationRepositorySQL(ModelAutoService db) { this.db = db; }
         public void Create(Registration item)
         {
-            throw new NotImplementedException();
+            db.Registrations.Add(item);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var item = db.Registrations.Find(id);
+            if (item != null)
+            {
+                db.Registrations.Remove(item);
+            }
         }
 
         public Registration GetItem(int id)
         {
-            throw new NotImplementedException();
+            return db.Registrations.Find(id);
         }
 
         public List<Registration> GetList()
         {
-            throw new NotImplementedException();
+            return db.Registrations.ToList();
         }
 
         public void Update(Registration item)
         {
-            throw new NotImplementedException();
+            db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

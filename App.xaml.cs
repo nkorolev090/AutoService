@@ -23,7 +23,9 @@ namespace AutoService
             
             ICarService carService = kernel.Get<ICarService>();
             IClientService clientService = kernel.Get<IClientService>();
-            ViewNavigator.SetServices(carService, clientService);
+            ISlotService slotService = kernel.Get<ISlotService>();
+            IRegistrationService registrationService = kernel.Get<IRegistrationService>();  
+            ViewNavigator.SetServices(carService, clientService, registrationService, slotService);
             ViewNavigator.ApplicationStartNavigation();
         }
     }
