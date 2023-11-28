@@ -24,7 +24,7 @@ namespace BLL.Services
             
             List<int> mechanic_ids = db.Mechanic_Breakdowns.GetList().Where(i => i.breakdown_id == breakdown_id).Select(i=>i.mechanic_id).ToList();
             List<DateTime> dateTimes = db.Slots.GetList().Select(i => i.start_date).ToList();
-            return db.Slots.GetList().Where(i => i.start_date == startDate).Where(i=> mechanic_ids.Contains(i.mechanic_id)).Select(i => new SlotDTO(i)).ToList();
+            return db.Slots.GetList().Where(i => i.start_date == startDate && i.breakdown_id == null).Where(i=> mechanic_ids.Contains(i.mechanic_id)).Select(i => new SlotDTO(i)).ToList();
         }
 
         public SlotDTO GetSlot(int id)
@@ -40,10 +40,12 @@ namespace BLL.Services
             s.finish_date = slot.finish_date;
             s.finish_time = slot.finish_time;
             s.mechanic_id = slot.mechanic_id;
+            s.breakdown_id = slot.breakdown_id;
             s.Mechanic = db.Mechanics.GetItem(slot.mechanic_id);
             if(slot.breakdown_id != null) { 
                 s.Breakdown = db.Breakdowns.GetItem((int)slot.breakdown_id);
             }
+            db.Save();
         }
     }
 }

@@ -161,6 +161,7 @@ ItemsSource="{Binding Slots}"
               CanUserAddRows="False"
 AutoGenerateColumns="False"
   ItemsSource="{Binding CartSlots}"
+                        SelectedItem="{Binding SelectedCartSlot}"
       >
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="0.6*">
@@ -173,7 +174,7 @@ AutoGenerateColumns="False"
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <CheckBox
-  IsChecked="False"
+  IsChecked="{Binding DataContext.SlotIsUnChecked, RelativeSource={RelativeSource AncestorType=Window}}"
   Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}">
                                             <materialDesign:PackIcon Width="20" Kind="Plus"/>
                                         </CheckBox>

@@ -20,12 +20,39 @@ namespace AutoService.ViewModels
         IBreakdownService breakdownService;
         IRegistrationService registrationService;
         public ObservableCollection<SlotDTO> CartSlots { get; set; }
+        public SlotDTO SelectedCartSlot { get; set; }
         public ObservableCollection<SlotDTO> Slots { get; set; }
         public SlotDTO SelectedSlot { get; set; }
         public ObservableCollection<BreakdownDTO> Breakdowns { get; set; }
-        public BreakdownDTO SelectedBreakdown { get; set; }
-
-        public DateTime StartDate {  get; set; }
+        private BreakdownDTO selectedBreakdown;
+        public BreakdownDTO SelectedBreakdown
+        { get { return selectedBreakdown; }
+            set
+            {
+                selectedBreakdown = value;
+                List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
+                Slots.Clear();
+                foreach (SlotDTO s in listS)
+                {
+                    Slots.Add(s);
+                }
+            }
+        }
+        private DateTime startDate;
+        public DateTime StartDate 
+        {
+            get {  return startDate; }
+            set
+            {
+                startDate = value;
+                List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
+                Slots.Clear();
+                foreach (SlotDTO s in listS)
+                {
+                    Slots.Add(s);
+                }
+            }
+        }
         public AddRegistrationViewModel(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService) 
         {
             
@@ -55,12 +82,7 @@ namespace AutoService.ViewModels
                     openAboutBreakdown = new RelayCommand(obj =>
                     {
                         //MessageBox.Show(SelectedBreakdown.title + "\n" + SelectedBreakdown.info + "\n " + SelectedBreakdown.price + "Руб.");
-                      List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
-                        Slots.Clear();
-                        foreach(SlotDTO s in listS)
-                        {
-                            Slots.Add(s);
-                        }
+                      
                     }));
             }
         }
@@ -74,12 +96,32 @@ namespace AutoService.ViewModels
             }
             set
             {
-                slotIsChecked = value;
+                //slotIsChecked = value;
                 SelectedSlot.breakdown_id = SelectedBreakdown.id;
                 SelectedSlot.cost = SelectedBreakdown.price;
                 SelectedSlot.breakdown_name = SelectedBreakdown.title;
+                slotService.UpdateSlot(SelectedSlot);
                 CartSlots.Add(SelectedSlot);
                 Slots.Remove(SelectedSlot);
+            }
+        }
+
+        private bool slotIsUnChecked = true;
+        public bool SlotIsUnChecked
+        {
+            get
+            {
+                return slotIsUnChecked;
+            }
+            set
+            {
+                //slotIsChecked = value;
+                SelectedCartSlot.breakdown_id = null;
+                SelectedCartSlot.cost = 0;
+                SelectedCartSlot.breakdown_name = null;
+                slotService.UpdateSlot(SelectedCartSlot);
+                CartSlots.Remove(SelectedCartSlot);
+               
             }
         }
     }
