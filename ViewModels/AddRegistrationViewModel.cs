@@ -23,7 +23,10 @@ namespace AutoService.ViewModels
         public SlotDTO SelectedCartSlot { get; set; }
         public ObservableCollection<SlotDTO> Slots { get; set; }
         public SlotDTO SelectedSlot { get; set; }
+
+        //привязка для комбобокса с видами работ
         public ObservableCollection<BreakdownDTO> Breakdowns { get; set; }
+
         private BreakdownDTO selectedBreakdown;
         public BreakdownDTO SelectedBreakdown
         { get { return selectedBreakdown; }
@@ -38,6 +41,7 @@ namespace AutoService.ViewModels
                 }
             }
         }
+        //Привязка для календаря
         private DateTime startDate;
         public DateTime StartDate 
         {
@@ -72,6 +76,7 @@ namespace AutoService.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
+        //Команда для вывода доп сведений об виде работ
         private RelayCommand openAboutBreakdown;
         public RelayCommand OpenAboutBreakdown
         {
@@ -86,7 +91,7 @@ namespace AutoService.ViewModels
                     }));
             }
         }
-
+        //Команда для чекбоксов запроса
         private bool slotIsChecked;
         public bool SlotIsChecked
         {
@@ -96,7 +101,6 @@ namespace AutoService.ViewModels
             }
             set
             {
-                //slotIsChecked = value;
                 SelectedSlot.breakdown_id = SelectedBreakdown.id;
                 SelectedSlot.cost = SelectedBreakdown.price;
                 SelectedSlot.breakdown_name = SelectedBreakdown.title;
@@ -106,6 +110,7 @@ namespace AutoService.ViewModels
             }
         }
 
+        //Команда для чекбоксов корзины
         private bool slotIsUnChecked = true;
         public bool SlotIsUnChecked
         {
@@ -115,7 +120,6 @@ namespace AutoService.ViewModels
             }
             set
             {
-                //slotIsChecked = value;
                 SelectedCartSlot.breakdown_id = null;
                 SelectedCartSlot.cost = 0;
                 SelectedCartSlot.breakdown_name = null;
