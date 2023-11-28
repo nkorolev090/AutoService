@@ -89,6 +89,7 @@ HorizontalAlignment="Left" Width="311">
                                 <DatePicker
 Width="140"
                   Margin="10"
+                                    SelectedDate="{Binding StartDate}"
 materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="1"
 materialDesign:HintAssist.FloatingOffset="0,-22"
 materialDesign:HintAssist.HelperText="Выберите дату"
@@ -101,7 +102,7 @@ Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
                             <DataGrid
               CanUserAddRows="False"
 AutoGenerateColumns="False"
-  ItemsSource="{Binding Slots}"
+ItemsSource="{Binding Slots}"
                                 SelectedItem="{Binding SelectedSlot}"
       >
                                 <DataGrid.Columns>

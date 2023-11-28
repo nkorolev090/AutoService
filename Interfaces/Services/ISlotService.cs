@@ -10,6 +10,8 @@ namespace Interfaces.Services
     public interface ISlotService
     {
         List<SlotDTO> GetAllSlots();
+        List<SlotDTO> GetSlotsByDate_Breakdown(DateTime startDate, int breakdown_id);
+
         void UpdateSlot(SlotDTO slot);
         SlotDTO GetSlot(int id);
     }

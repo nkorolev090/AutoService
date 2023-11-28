@@ -24,6 +24,8 @@ namespace AutoService.ViewModels
         public SlotDTO SelectedSlot { get; set; }
         public ObservableCollection<BreakdownDTO> Breakdowns { get; set; }
         public BreakdownDTO SelectedBreakdown { get; set; }
+
+        public DateTime StartDate {  get; set; }
         public AddRegistrationViewModel(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService) 
         {
             
@@ -31,7 +33,7 @@ namespace AutoService.ViewModels
             this.registrationService = registrationService;
             this.breakdownService = breakdownService;
             slotIsChecked = false;
-            Slots = new ObservableCollection<SlotDTO>(slotService.GetAllSlots());
+            Slots = new ObservableCollection<SlotDTO>();
             CartSlots = new ObservableCollection<SlotDTO>();
             Breakdowns = new ObservableCollection<BreakdownDTO>(breakdownService.GetAllBreakdowns());
         }
@@ -52,8 +54,13 @@ namespace AutoService.ViewModels
                 return openAboutBreakdown ?? (
                     openAboutBreakdown = new RelayCommand(obj =>
                     {
-                        MessageBox.Show(SelectedBreakdown.title + "\n" + SelectedBreakdown.info + "\n " + SelectedBreakdown.price + "Руб.");
-
+                        //MessageBox.Show(SelectedBreakdown.title + "\n" + SelectedBreakdown.info + "\n " + SelectedBreakdown.price + "Руб.");
+                      List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
+                        Slots.Clear();
+                        foreach(SlotDTO s in listS)
+                        {
+                            Slots.Add(s);
+                        }
                     }));
             }
         }

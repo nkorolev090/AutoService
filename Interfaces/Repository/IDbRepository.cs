@@ -15,6 +15,7 @@ namespace Interfaces.Repository
         IRepository<Registration> Registrations { get; }
         IRepository<Breakdown> Breakdowns { get; }
         IRepository<Mechanic> Mechanics { get; }
+        IRepository<Mechanic_Breakdown> Mechanic_Breakdowns {  get; }
         int Save();
     }
 }

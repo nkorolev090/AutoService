@@ -93,6 +93,7 @@
     <Compile Include="Repository\CarRepositorySQL.cs" />
     <Compile Include="Repository\ClientRepositorySQL.cs" />
     <Compile Include="Repository\DbRepositorySQL.cs" />
+    <Compile Include="Repository\MechanicBreakdownRepositorySQL.cs" />
     <Compile Include="Repository\MechanicRepositorySQL.cs" />
     <Compile Include="Repository\RegistrationRepositorySQL.cs" />
     <Compile Include="Repository\SlotRepositorySQL.cs" />
