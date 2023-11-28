@@ -21,15 +21,17 @@ namespace AutoService.Util
         private static IClientService clientService;
         private static IRegistrationService registrationService;
         private static ISlotService slotService;
+        private static IBreakdownService    breakdownService;
 
         private static Window currentView_;
 
-        public static void SetServices(ICarService carS, IClientService clientS, IRegistrationService registrationS, ISlotService slotS)
+        public static void SetServices(ICarService carS, IClientService clientS, IRegistrationService registrationS, ISlotService slotS, IBreakdownService breakdownS)
         {
             carService = carS;
             clientService = clientS;
             registrationService = registrationS;
             slotService = slotS;
+            breakdownService = breakdownS;
         }
         private static Window currentView
         { 
@@ -56,7 +58,7 @@ namespace AutoService.Util
                     currentView = new MainMenu(carService, clientService);
                     break;
                 case Views.AddRegistrationView:
-                    currentView = new AddRegistration(slotService);
+                    currentView = new AddRegistration(slotService, registrationService, breakdownService);
                     break;
             }
             previousView.Close();

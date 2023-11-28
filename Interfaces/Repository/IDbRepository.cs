@@ -13,6 +13,7 @@ namespace Interfaces.Repository
         IRepository<Car> Cars { get; }
         IRepository<Slot> Slots { get; }
         IRepository<Registration> Registrations { get; }
+        IRepository<Breakdown> Breakdowns { get; }
         int Save();
     }
 }

@@ -16,6 +16,7 @@ namespace DAL.Repository
         private CarRepositorySQL carRepository;
         private SlotRepositorySQL slotRepository;
         private RegistrationRepositorySQL registrationRepository;
+        private BreakdownRepositorySQL breakdownRepository;
 
         public DbRepositorySQL() {
             db = new ModelAutoService();
@@ -69,6 +70,18 @@ namespace DAL.Repository
                     registrationRepository = new RegistrationRepositorySQL(db);
                 }
                 return registrationRepository;
+            }
+        }
+
+        public IRepository<Breakdown> Breakdowns
+        {
+            get
+            {
+                if (breakdownRepository == null)
+                {
+                    breakdownRepository = new BreakdownRepositorySQL(db);
+                }
+                return breakdownRepository;
             }
         }
         public int Save()

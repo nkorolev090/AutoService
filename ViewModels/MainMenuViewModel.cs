@@ -32,7 +32,7 @@ namespace AutoService.ViewModels
         
             this.carService = carService;
             this.clientService = clientService;
-            Client = clientService.GetClientDTO(1);
+            Client = clientService.GetClientDTO(2);
             Cars = new ObservableCollection<CarModel>(carService.GetAllCarDTO(Client.id).Select(i => new CarModel(i))); 
             
         }

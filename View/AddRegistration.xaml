@@ -22,7 +22,7 @@ FontFamily="{DynamicResource MaterialDesignFont}">
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            
+
             <TabControl
                 TabStripPlacement="Left">
                 <TabItem>
@@ -49,22 +49,25 @@ FontFamily="{DynamicResource MaterialDesignFont}">
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
                                     <ComboBox 
-                  Margin="10"
+                                        ItemsSource="{Binding Breakdowns}"
+                                        
+                                        Margin="10,0,0,0"
+                                        
+                                       SelectedItem="{Binding SelectedBreakdown}"
 materialDesign:ComboBoxAssist.MaxLength="10"
 materialDesign:HintAssist.Hint="Поиск"
 materialDesign:HintAssist.HintOpacity=".5"
 materialDesign:HintAssist.HelperText="Выберите вид работ"
 Style="{StaticResource MaterialDesignOutlinedComboBox}"
-IsEditable="True">
-                                    <ComboBoxItem
-  Content="Apple" />
-                                    <ComboBoxItem
-  Content="Banana" />
-                                    <ComboBoxItem
-  Content="Pear" />
-                                    <ComboBoxItem
-  Content="Orange" />
-                                </ComboBox> 
+HorizontalAlignment="Left" Width="311">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding title}"></TextBlock>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                        
+
+                                    </ComboBox>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <Button
@@ -72,6 +75,7 @@ IsEditable="True">
                                         Foreground="AliceBlue"
                                         Width="40"
                                         Height="40"
+                                        Command="{Binding OpenAboutBreakdown}"
   Style="{StaticResource MaterialDesignFloatingActionButton}"
   ToolTip="MaterialDesignFloatingActionSecondaryLightButton">
                                         <materialDesign:PackIcon
@@ -98,6 +102,7 @@ Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
               CanUserAddRows="False"
 AutoGenerateColumns="False"
   ItemsSource="{Binding Slots}"
+                                SelectedItem="{Binding SelectedSlot}"
       >
                                 <DataGrid.Columns>
                                     <DataGridTemplateColumn Width="0.6*">
@@ -110,7 +115,7 @@ AutoGenerateColumns="False"
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <CheckBox
-  IsChecked="False"
+  IsChecked="{Binding DataContext.SlotIsChecked, RelativeSource={RelativeSource AncestorType=Window}}"
   Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}">
                                                     <materialDesign:PackIcon Width="20" Kind="Plus"/>
                                                 </CheckBox>
@@ -137,7 +142,7 @@ AutoGenerateColumns="False"
                                         </DataGridTextColumn.Header>
                                     </DataGridTextColumn>
 
-                                    
+
                                 </DataGrid.Columns>
 
                             </DataGrid>
@@ -154,7 +159,7 @@ AutoGenerateColumns="False"
                     <DataGrid
               CanUserAddRows="False"
 AutoGenerateColumns="False"
-  x:Name="itemShopGrid"
+  ItemsSource="{Binding CartSlots}"
       >
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Width="0.6*">
@@ -183,7 +188,7 @@ AutoGenerateColumns="False"
                                     </StackPanel>
                                 </DataGridTextColumn.Header>
                             </DataGridTextColumn>
-                            
+
                             <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding time}">
                                 <DataGridTextColumn.Header>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -215,8 +220,8 @@ AutoGenerateColumns="False"
                     </DataGrid>
                 </TabItem>
             </TabControl>
-           
-            
+
+
         </Grid>
         <Grid Grid.Row="1">
             <Button

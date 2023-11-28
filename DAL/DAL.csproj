@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="ModelAutoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BreakdownRepositorySQL.cs" />
     <Compile Include="Repository\CarRepositorySQL.cs" />
     <Compile Include="Repository\ClientRepositorySQL.cs" />
     <Compile Include="Repository\DbRepositorySQL.cs" />

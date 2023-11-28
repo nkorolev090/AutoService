@@ -17,6 +17,7 @@ namespace AutoService.Util
             Bind<IClientService>().To<ClientService>();
             Bind<ISlotService>().To<SlotService>();
             Bind<IRegistrationService>().To<RegistrationService>();
+            Bind<IBreakdownService>().To<BreakdownService>();
         }
     }
 }

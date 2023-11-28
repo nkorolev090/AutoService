@@ -22,18 +22,13 @@ namespace AutoService.Views
     /// </summary>
     public partial class AddRegistration : Window
     {
-        //ObservableCollection<gridItem> items;
-        public AddRegistration(ISlotService slotService)
+        
+        public AddRegistration(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService)
         {
              InitializeComponent();
             
-            DataContext = new AddRegistrationViewModel(slotService);
-            //items= new ObservableCollection<gridItem>();
-
-            //items.Add(new gridItem { time = "10:00", fullName = "Иванов И.И.", cost = 1000 });
-            //items.Add(new gridItem { time = "11:00", fullName = "Петров А.И.", cost = 1500 });
-            //items.Add(new gridItem { time = "12:30", fullName = "Иванов И.И.", cost = 1000 });
-            //itemsGrid.ItemsSource = items;
+            DataContext = new AddRegistrationViewModel(slotService, registrationService, breakdownService);
+           
            
         }
 
