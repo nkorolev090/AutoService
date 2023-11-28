@@ -13,7 +13,8 @@ namespace Interfaces.DTO
         public int id { get; set; }
 
         public int? breakdown_id { get; set; }
-        public string breakdown_name { get; set; }    
+        public string breakdown_name { get; set; } 
+        public int cost {  get; set; }
 
         public int mechanic_id { get; set; }
 
@@ -36,6 +37,7 @@ namespace Interfaces.DTO
             if( slot.breakdown_id != null )
             {
                 this.breakdown_name = slot.Breakdown.title;
+                this.cost = slot.Breakdown.price;
             }
             
             this.mechanic_id = slot.mechanic_id;

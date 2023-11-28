@@ -68,8 +68,9 @@ namespace AutoService.ViewModels
             set
             {
                 slotIsChecked = value;
-                MessageBox.Show(SelectedSlot.id.ToString());
-                
+                SelectedSlot.breakdown_id = SelectedBreakdown.id;
+                SelectedSlot.cost = SelectedBreakdown.price;
+                SelectedSlot.breakdown_name = SelectedBreakdown.title;
                 CartSlots.Add(SelectedSlot);
                 Slots.Remove(SelectedSlot);
             }

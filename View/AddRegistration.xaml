@@ -180,7 +180,7 @@ AutoGenerateColumns="False"
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
-                            <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding breakdown}">
+                            <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding breakdown_name}">
                                 <DataGridTextColumn.Header>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="HammerWrench"/>
@@ -189,7 +189,7 @@ AutoGenerateColumns="False"
                                 </DataGridTextColumn.Header>
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding time}">
+                            <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_time}">
                                 <DataGridTextColumn.Header>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
@@ -198,7 +198,7 @@ AutoGenerateColumns="False"
                                 </DataGridTextColumn.Header>
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn Width="0.8*" IsReadOnly="True" CanUserResize="False" Binding="{Binding fullName}">
+                            <DataGridTextColumn Width="0.8*" IsReadOnly="True" CanUserResize="False" Binding="{Binding mechanic_name}">
                                 <DataGridTextColumn.Header>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="FaceMan"/>

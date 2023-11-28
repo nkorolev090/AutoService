@@ -26,13 +26,16 @@ namespace BLL.Services
 
         public void UpdateSlot(SlotDTO slot)
         {
-            //Slot s = db.Slots.GetItem(slot.id);
-            //s.start_time = slot.start_time;
-            //s.start_date = slot.start_date;
-            //s.finish_date = slot.finish_date;
-            //s.finish_time = slot.finish_time;
-            //s.mechanic_id = slot.mechanic_id;
-            //s.Mechanic = db.
+            Slot s = db.Slots.GetItem(slot.id);
+            s.start_time = slot.start_time;
+            s.start_date = slot.start_date;
+            s.finish_date = slot.finish_date;
+            s.finish_time = slot.finish_time;
+            s.mechanic_id = slot.mechanic_id;
+            s.Mechanic = db.Mechanics.GetItem(slot.mechanic_id);
+            if(slot.breakdown_id != null) { 
+                s.Breakdown = db.Breakdowns.GetItem((int)slot.breakdown_id);
+            }
         }
     }
 }
