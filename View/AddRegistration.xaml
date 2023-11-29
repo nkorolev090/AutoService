@@ -18,8 +18,8 @@ Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
 
@@ -226,7 +226,31 @@ AutoGenerateColumns="False"
 
         </Grid>
         <Grid Grid.Row="1">
-            <Button
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0"
+                                        ItemsSource="{Binding Cars}"
+                                        
+                                        Margin="10"
+                                        
+                                       SelectedItem="{Binding SelectedCar}"
+materialDesign:ComboBoxAssist.MaxLength="10"
+materialDesign:HintAssist.Hint="Поиск"
+materialDesign:HintAssist.HintOpacity=".5"
+materialDesign:HintAssist.HelperText="Выберите автомобиль"
+Style="{StaticResource MaterialDesignOutlinedComboBox}"
+HorizontalAlignment="Left" Width="311">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding br_mod}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+
+            </ComboBox>
+            <Button Grid.Column="1"
                 HorizontalAlignment="Right"
                 Width="150"
     Margin="5"

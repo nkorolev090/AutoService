@@ -23,6 +23,8 @@ namespace AutoService.ViewModels
         public SlotDTO SelectedCartSlot { get; set; }
         public ObservableCollection<SlotDTO> Slots { get; set; }
         public SlotDTO SelectedSlot { get; set; }
+        public ObservableCollection<CarDTO> Cars { get; set; } 
+        public CarDTO SelectedCar { get; set; }
 
         //привязка для комбобокса с видами работ
         public ObservableCollection<BreakdownDTO> Breakdowns { get; set; }
@@ -57,7 +59,7 @@ namespace AutoService.ViewModels
                 }
             }
         }
-        public AddRegistrationViewModel(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService) 
+        public AddRegistrationViewModel(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService, ICarService carService) 
         {
             
             this.slotService = slotService;
@@ -67,6 +69,7 @@ namespace AutoService.ViewModels
             Slots = new ObservableCollection<SlotDTO>();
             CartSlots = new ObservableCollection<SlotDTO>();
             Breakdowns = new ObservableCollection<BreakdownDTO>(breakdownService.GetAllBreakdowns());
+            Cars = new ObservableCollection<CarDTO>(carService.GetAllCarDTO(1));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

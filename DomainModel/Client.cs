@@ -32,6 +32,12 @@ namespace DomainModel
         public string surname { get; set; }
 
         [Required]
+        [StringLength(12)]
+        public string tel_number { get; set; }
+        [Required]
+        public DateTime birth_date { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string midname { get; set; }
 

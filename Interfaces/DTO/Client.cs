@@ -24,6 +24,9 @@ namespace Interfaces.DTO
         public string surname { get; set; }
 
         public string midname { get; set; }
+        public string tel_number { get; set; }
+        public DateTime birth_date { get; set; }
+        public string birth_short { get; set; }
 
         public ClientDTO(Client client) {
             id = client.id;
@@ -33,6 +36,9 @@ namespace Interfaces.DTO
             discount_points = client.discount_points;
             surname = client.surname;
             midname = client.midname;
+            tel_number = client.tel_number;
+            birth_date = client.birth_date;
+            birth_short = birth_date.ToShortDateString();
             full_name = name + " " + midname + " " + surname;
         }
     }

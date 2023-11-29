@@ -58,7 +58,7 @@ namespace AutoService.Util
                     currentView = new MainMenu(carService, clientService);
                     break;
                 case Views.AddRegistrationView:
-                    currentView = new AddRegistration(slotService, registrationService, breakdownService);
+                    currentView = new AddRegistration(slotService, registrationService, breakdownService, carService);
                     break;
             }
             previousView.Close();

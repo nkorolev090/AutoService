@@ -87,12 +87,12 @@ Text="{Binding Client.discount_name}" />
                                              Padding="2"
 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                                     HorizontalAlignment="Right"
-Text="+7(952)812" />
+Text="{Binding  Client.tel_number}" />
                                             <TextBlock
                                              Padding="2"
 Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                                     HorizontalAlignment="Right"
-Text="01.01.2000" />
+Text="{Binding  Client.birth_short}" />
 
                                         </StackPanel>
                                     </Grid>

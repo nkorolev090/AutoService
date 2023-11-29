@@ -23,11 +23,11 @@ namespace AutoService.Views
     public partial class AddRegistration : Window
     {
         
-        public AddRegistration(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService)
+        public AddRegistration(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService, ICarService carService)
         {
              InitializeComponent();
             
-            DataContext = new AddRegistrationViewModel(slotService, registrationService, breakdownService);
+            DataContext = new AddRegistrationViewModel(slotService, registrationService, breakdownService, carService);
            
            
         }
