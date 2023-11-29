@@ -22,6 +22,7 @@ namespace Interfaces.DTO
         public string status_name { get; set; }
 
         public int? review_id { get; set; }
+        public int? reg_price { get; set; }
 
         public RegistrationDTO(Registration registration) {
             id = registration.id;
@@ -31,6 +32,7 @@ namespace Interfaces.DTO
             status = registration.status;
             status_name = registration.Status1.name;
             review_id = registration.review_id;
+            reg_price = registration.reg_price;
         }
     }
 }

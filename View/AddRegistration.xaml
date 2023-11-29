@@ -65,7 +65,7 @@ HorizontalAlignment="Left" Width="311">
                                                 <TextBlock Text="{Binding title}"></TextBlock>
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
-                                        
+
 
                                     </ComboBox>
                                 </Grid>
@@ -227,21 +227,20 @@ AutoGenerateColumns="False"
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="236*"/>
+                <ColumnDefinition Width="301*"/>
+                <ColumnDefinition Width="168*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="0"
+            <ComboBox
                                         ItemsSource="{Binding Cars}"
-                                        
-                                        Margin="10"
-                                        
                                        SelectedItem="{Binding SelectedCar}"
 materialDesign:ComboBoxAssist.MaxLength="10"
 materialDesign:HintAssist.Hint="Поиск"
 materialDesign:HintAssist.HintOpacity=".5"
 materialDesign:HintAssist.HelperText="Выберите автомобиль"
 Style="{StaticResource MaterialDesignOutlinedComboBox}"
-HorizontalAlignment="Left" Width="311">
+           Margin="10,0,0,0"    
+HorizontalAlignment="Left" Width="212" Height="48">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding br_mod}"></TextBlock>
@@ -250,10 +249,16 @@ HorizontalAlignment="Left" Width="311">
 
 
             </ComboBox>
-            <Button Grid.Column="1"
-                HorizontalAlignment="Right"
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Итого:"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
+
+                <TextBlock Text="{Binding RegPrice}"  Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+            </StackPanel>
+            <Button Grid.Column="2"
+                HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                 Width="150"
-    Margin="5"
+    Margin="5,0,0,0"
     materialDesign:ButtonProgressAssist.IsIndeterminate="True"
     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
     materialDesign:ButtonProgressAssist.Value="-1"

@@ -25,6 +25,7 @@ namespace AutoService.ViewModels
         public SlotDTO SelectedSlot { get; set; }
         public ObservableCollection<CarDTO> Cars { get; set; } 
         public CarDTO SelectedCar { get; set; }
+        public int RegPrice { get; set;}
 
         //привязка для комбобокса с видами работ
         public ObservableCollection<BreakdownDTO> Breakdowns { get; set; }
@@ -66,6 +67,7 @@ namespace AutoService.ViewModels
             this.registrationService = registrationService;
             this.breakdownService = breakdownService;
             slotIsChecked = false;
+            RegPrice = 0;
             Slots = new ObservableCollection<SlotDTO>();
             CartSlots = new ObservableCollection<SlotDTO>();
             Breakdowns = new ObservableCollection<BreakdownDTO>(breakdownService.GetAllBreakdowns());

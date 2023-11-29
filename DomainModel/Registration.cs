@@ -26,6 +26,8 @@ namespace DomainModel
 
         public int? review_id { get; set; }
 
+        public int? reg_price { get; set; }
+
         public virtual Car Car { get; set; }
 
         public virtual Repair_Review Repair_Review { get; set; }
