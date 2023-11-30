@@ -38,5 +38,11 @@ namespace BLL.Services
         {
             throw new NotImplementedException();
         }
+
+        public int GetClientDiscount(int id)
+        {
+            
+            return db.Clients.GetItem(id).Discount.sale;
+        }
     }
 }

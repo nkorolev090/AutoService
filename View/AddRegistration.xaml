@@ -250,9 +250,16 @@ HorizontalAlignment="Left" Width="212" Height="48">
 
             </ComboBox>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Итого:"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" />
+                
+                <TextBlock Text="Скидка:"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5" />
 
-                <TextBlock Text="{Binding RegPrice}"  Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
+                <TextBlock Text="{Binding ClientDiscountName}"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5"/>
+                
+                <TextBlock Text="Итого:"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5"/>
+
+                <TextBlock Text="{Binding RegPrice}"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5"/>
+
+               
             </StackPanel>
             <Button Grid.Column="2"
                 HorizontalAlignment="Left"

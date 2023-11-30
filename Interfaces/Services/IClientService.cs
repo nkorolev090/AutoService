@@ -14,5 +14,6 @@ namespace Interfaces.Services
         void UpdateClientDTO(ClientDTO p);
         ClientDTO GetClientDTO(int id);
         void DeleteClientDTO(int id);
+        int GetClientDiscount(int id);
     }
 }

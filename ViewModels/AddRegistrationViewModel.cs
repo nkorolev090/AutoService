@@ -12,11 +12,17 @@ using BLL.Services;
 using Interfaces.DTO;
 using Interfaces.Services;
 
+
 namespace AutoService.ViewModels
 {
+    
     public class AddRegistrationViewModel : INotifyPropertyChanged
     {
+        const int client_id = 2;
+
+
         ISlotService slotService;
+        IClientService clientService;
         IBreakdownService breakdownService;
         IRegistrationService registrationService;
         public ObservableCollection<SlotDTO> CartSlots { get; set; }
@@ -25,7 +31,22 @@ namespace AutoService.ViewModels
         public SlotDTO SelectedSlot { get; set; }
         public ObservableCollection<CarDTO> Cars { get; set; } 
         public CarDTO SelectedCar { get; set; }
-        public int RegPrice { get; set;}
+        private int regPrice;
+        public int RegPrice
+        {
+            get
+            {
+                return regPrice;
+            }
+            set
+            {
+                regPrice = value;
+                OnPropertyChanged("RegPrice");
+            }
+        }
+
+        public string ClientDiscountName { get; set; }
+        public int ClientDiscount { get; set; }
 
         //привязка для комбобокса с видами работ
         public ObservableCollection<BreakdownDTO> Breakdowns { get; set; }
@@ -52,26 +73,35 @@ namespace AutoService.ViewModels
             set
             {
                 startDate = value;
-                List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
-                Slots.Clear();
-                foreach (SlotDTO s in listS)
+                if (selectedBreakdown != null)
                 {
-                    Slots.Add(s);
+                    List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
+                    Slots.Clear();
+                    foreach (SlotDTO s in listS)
+                    {
+                        Slots.Add(s);
+                    }
                 }
             }
         }
-        public AddRegistrationViewModel(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService, ICarService carService) 
+        public AddRegistrationViewModel(ISlotService slotService, IRegistrationService registrationService, IBreakdownService breakdownService, ICarService carService, IClientService clientService) 
         {
             
             this.slotService = slotService;
             this.registrationService = registrationService;
             this.breakdownService = breakdownService;
+            this.clientService = clientService;
+            
+            StartDate = DateTime.Now;
             slotIsChecked = false;
             RegPrice = 0;
             Slots = new ObservableCollection<SlotDTO>();
             CartSlots = new ObservableCollection<SlotDTO>();
             Breakdowns = new ObservableCollection<BreakdownDTO>(breakdownService.GetAllBreakdowns());
-            Cars = new ObservableCollection<CarDTO>(carService.GetAllCarDTO(1));
+            Cars = new ObservableCollection<CarDTO>(carService.GetAllCarDTO(2));
+            ClientDiscount = clientService.GetClientDiscount(client_id);
+            ClientDiscountName = ClientDiscount.ToString() + "%";
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -110,6 +140,7 @@ namespace AutoService.ViewModels
                 SelectedSlot.cost = SelectedBreakdown.price;
                 SelectedSlot.breakdown_name = SelectedBreakdown.title;
                 slotService.UpdateSlot(SelectedSlot);
+                RegPrice += (int)(SelectedSlot.cost * (double)((100-ClientDiscount)/100.0));
                 CartSlots.Add(SelectedSlot);
                 Slots.Remove(SelectedSlot);
             }
@@ -125,6 +156,7 @@ namespace AutoService.ViewModels
             }
             set
             {
+                RegPrice -= (int)(SelectedCartSlot.cost * (double)((100 - ClientDiscount) / 100.0));
                 SelectedCartSlot.breakdown_id = null;
                 SelectedCartSlot.cost = 0;
                 SelectedCartSlot.breakdown_name = null;
