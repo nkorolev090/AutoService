@@ -8,6 +8,7 @@
         Title="AddRegistration" MinHeight="410" MinWidth="705"
         Height="410"
         Width="705"
+        WindowStyle="None"
            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 TextElement.FontWeight="Regular"
@@ -18,10 +19,26 @@ Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5 2 5 0"  VerticalAlignment="Top">
+                <Button Height="20" Width="20" Padding="0" Margin="0 0 5 0"
+        Background="Transparent"
+        Command="{Binding CancelWindow}">
+                    <materialDesign:PackIcon Foreground="DarkSlateGray" Kind="CheckboxBlankOutline" Width="15" Height="15"/>
+                </Button>
+                <Button Height="20" Width="20" Padding="0"
+                    Background="Transparent"
+                    Command="{Binding CancelWindow}">
+                <materialDesign:PackIcon Foreground="DarkSlateGray" Kind="CloseOutline" Width="15" Height="15"/>
+            </Button>
+            </StackPanel>
+           
+        </Grid>
+        <Grid Grid.Row="1">
 
             <TabControl
                 TabStripPlacement="Left">
@@ -225,7 +242,7 @@ AutoGenerateColumns="False"
 
 
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="236*"/>
                 <ColumnDefinition Width="301*"/>
@@ -251,15 +268,14 @@ HorizontalAlignment="Left" Width="212" Height="48">
             </ComboBox>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 
-                <TextBlock Text="Скидка:"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5" />
+                <TextBlock Foreground="DarkSlateGray" Text="Скидка:"  Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="5" />
 
-                <TextBlock Text="{Binding ClientDiscountName}"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5"/>
-                
-                <TextBlock Text="Итого:"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5"/>
+                <TextBlock Foreground="DarkSlateGray"  Text="{Binding ClientDiscountName}"  Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="5"/>
 
-                <TextBlock Text="{Binding RegPrice}"  Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5"/>
+                <TextBlock Foreground="DarkSlateGray"  Text="Итого:"  Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="5"/>
 
-               
+                <TextBlock Foreground="DarkSlateGray"  Text="{Binding RegPrice}"  Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="5"/>
+
             </StackPanel>
             <Button Grid.Column="2"
                 HorizontalAlignment="Left"
