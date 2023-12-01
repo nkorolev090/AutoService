@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:AutoService"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page1"
+      WindowStyle="None"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 TextElement.FontWeight="Regular"
@@ -16,7 +16,27 @@ TextOptions.TextRenderingMode="Auto"
 Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <materialDesign:Card>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5 2 5 0"  VerticalAlignment="Top">
+                <Button Height="20" Width="20" Padding="0" Margin="0 0 5 0"
+Background="Transparent"
+Command="{Binding CancelWindow}">
+                    <materialDesign:PackIcon Foreground="DarkSlateGray" Kind="CheckboxBlankOutline" Width="15" Height="15"/>
+                </Button>
+                <Button Height="20" Width="20" Padding="0"
+            Background="Transparent"
+            Command="{Binding CancelWindow}">
+                    <materialDesign:PackIcon Foreground="DarkSlateGray" Kind="CloseOutline" Width="15" Height="15"/>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <materialDesign:Card>
             <TabControl
     materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
     SnapsToDevicePixels="True"
@@ -299,6 +319,8 @@ AutoGenerateColumns="False"
                 </TabItem>
             </TabControl>
         </materialDesign:Card>
+        </Grid>
+        
         
     </Grid>
 </Window>
