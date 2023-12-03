@@ -192,65 +192,57 @@ AutoGenerateColumns="False"
             Text="Записи" />
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel>
-                        <TextBlock
-         HorizontalAlignment="Left"
-         Text="Записи"
-         Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-         Margin="10"/>
                         <StackPanel>
-                            <StackPanel 
-             Background="LightGoldenrodYellow" 
-             VerticalAlignment="Center" 
-             Orientation="Horizontal" 
-             Margin="0,5,0,5"
-             >
-                                <TextBlock Text="10.10.2023" Margin="5"/>
-                                <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
-                                <TextBlock Text="Ваз 21099" Margin="5"/>
-                                <TextBlock Text="Иванов И.И." Margin="5"/>
-                                <TextBlock Text="(На рассмотрении)" Margin="5"/>
-                            </StackPanel>
-                            <StackPanel 
-             Background="LightGreen"
-             VerticalAlignment="Center"
-             Orientation="Horizontal"
-                                 Margin="0,5,0,5"
-             >
-                                <TextBlock Text="10.10.2023" Margin="5"/>
-                                <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
-                                <TextBlock Text="Ваз 21099" Margin="5"/>
-                                <TextBlock Text="Иванов И.И." Margin="5"/>
-                                <TextBlock Text="(Принято)" Margin="5"/>
-                            </StackPanel>
-                            <StackPanel 
-             Background="LightPink"
-             VerticalAlignment="Center" 
-             Orientation="Horizontal" 
-                                 Margin="0,5,0,5"
-             >
-                                <TextBlock Text="10.10.2023" Margin="5"/>
-                                <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
-                                <TextBlock Text="Ваз 21099" Margin="5"/>
-                                <TextBlock Text="Иванов И.И." Margin="5"/>
-                                <TextBlock Text="(Отклонено)" Margin="5"/>
-                            </StackPanel>
-                            <StackPanel 
-             Background="LightGray"
-             VerticalAlignment="Center" 
-             Orientation="Horizontal" 
-                                 Margin="0,5,0,5"
-             >
-                                <TextBlock Text="10.10.2023" Margin="5"/>
-                                <TextBlock Text ="Замена тормозных колодок" Margin="5"/>
-                                <TextBlock Text="Ваз 21099" Margin="5"/>
-                                <TextBlock Text="Иванов И.И." Margin="5"/>
-                                <TextBlock Text="(Завершено)" Margin="5"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
+                            <TextBlock Margin="8" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Записи"/>
+                            <DataGrid 
+              ItemsSource="{Binding Registratons}"
+              CanUserAddRows="True"
+AutoGenerateColumns="False"
+      >
+                            <DataGrid.Columns>
 
-                </TabItem>
+                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Brand}">
+                                    <DataGridTextColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CalendarRange"/>
+                                            <TextBlock Text="Дата"/>
+                                        </StackPanel>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Model}">
+                                    <DataGridTextColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
+                                            <TextBlock Text="Время"/>
+                                        </StackPanel>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Color}">
+                                    <DataGridTextColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
+                                            <TextBlock Text="Автомобиль"/>
+                                        </StackPanel>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Mileage}">
+                                    <DataGridTextColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>
+                                            <TextBlock Text="Стоимость"/>
+                                        </StackPanel>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                        </StackPanel>
+                        
+
+                    </TabItem>
                 <TabItem MinWidth="110">
                     <TabItem.Header>
                         <StackPanel

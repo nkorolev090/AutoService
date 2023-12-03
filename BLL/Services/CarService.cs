@@ -24,6 +24,7 @@ namespace BLL.Services
         public void DeleteCarDTO(int id)
         {
             db.Cars.Delete(id);
+            db.Save();
         }
 
         public List<CarDTO> GetAllCarDTO()

@@ -1,4 +1,5 @@
-﻿using Interfaces.DTO;
+﻿using DomainModel;
+using Interfaces.DTO;
 using Interfaces.Repository;
 using Interfaces.Services;
 using System;
@@ -15,7 +16,14 @@ namespace BLL.Services
         public RegistrationService(IDbRepository db) { this.db = db; }
         public void CreateRegistration(RegistrationDTO registration)
         {
-            throw new NotImplementedException();
+            Registration reg = new Registration();
+            reg.car_id = registration.car_id;
+            reg.reg_price = registration.reg_price;
+            reg.info = registration.info;
+            reg.review_id = registration.review_id;
+            reg.Car = db.Cars.GetItem(registration.car_id);
+            db.Save();
+            //reg.Repair_Review;
         }
 
         public List<RegistrationDTO> GetClientRegistrations(int client_id)

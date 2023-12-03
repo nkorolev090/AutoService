@@ -52,5 +52,20 @@ namespace AutoService.ViewModels
                     }));
             }
         }
+
+        private RelayCommand cancelWindow;
+        public RelayCommand CancelWindow
+        {
+            get
+            {
+
+                return cancelWindow ?? (
+                    cancelWindow = new RelayCommand(obj =>
+                    {
+                        ViewNavigator.SwitchViewTo(Util.Views.MainWindowView);
+
+                    }));
+            }
+        }
     }
 }
