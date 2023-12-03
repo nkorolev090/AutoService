@@ -34,5 +34,9 @@ namespace Interfaces.DTO
             review_id = registration.review_id;
             reg_price = registration.reg_price;
         }
+
+        public RegistrationDTO()
+        {
+        }
     }
 }

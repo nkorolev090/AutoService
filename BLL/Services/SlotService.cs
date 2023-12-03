@@ -45,6 +45,11 @@ namespace BLL.Services
             if(slot.breakdown_id != null) { 
                 s.Breakdown = db.Breakdowns.GetItem((int)slot.breakdown_id);
             }
+            s.registration_id = slot.registration_id;
+            if(slot.registration_id != null)
+            {
+                s.Registration = db.Registrations.GetItem((int)slot.registration_id);
+            }
             db.Save();
         }
     }

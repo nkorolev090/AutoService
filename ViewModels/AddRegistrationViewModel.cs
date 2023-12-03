@@ -180,5 +180,37 @@ namespace AutoService.ViewModels
                     }));
             }
         }
+
+        private RelayCommand createRegistraytion;
+        public RelayCommand CreateRegistraytion
+        {
+            get
+            {
+
+                return createRegistraytion ?? (
+                    createRegistraytion = new RelayCommand(obj =>
+                    {
+                        if (CartSlots.Count > 0)
+                        {
+                            RegistrationDTO registration = new RegistrationDTO();
+                            registration.car_id = SelectedCar.id;
+                            registration.review_id = null;
+                            registration.info = null;
+                            registration.status = 1;
+                            registration.reg_price = RegPrice;
+                            int reg_id = registrationService.CreateRegistration(registration);
+
+                            foreach (SlotDTO slotDTO in CartSlots)
+                            {
+                                slotDTO.registration_id = reg_id;
+                                slotService.UpdateSlot(slotDTO);
+                                CartSlots.Remove(slotDTO);
+                            }
+                            registration = registrationService.GetItem(reg_id);
+                            registrationService.UpdateRegistration(registration);
+                        }
+                    }));
+            }
+        }
     }
 }

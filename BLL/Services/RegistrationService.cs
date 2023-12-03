@@ -14,7 +14,7 @@ namespace BLL.Services
     {
         IDbRepository db;
         public RegistrationService(IDbRepository db) { this.db = db; }
-        public void CreateRegistration(RegistrationDTO registration)
+        public int CreateRegistration(RegistrationDTO registration)
         {
             Registration reg = new Registration();
             reg.car_id = registration.car_id;
@@ -22,8 +22,16 @@ namespace BLL.Services
             reg.info = registration.info;
             reg.review_id = registration.review_id;
             reg.Car = db.Cars.GetItem(registration.car_id);
-            db.Save();
             //reg.Repair_Review;
+            //reg.Status1
+            db.Save();
+
+            return db.Registrations.GetList().Last().id;
+            
+        }
+        public RegistrationDTO GetItem(int id)
+        {
+            return new RegistrationDTO(db.Registrations.GetItem(id));
         }
 
         public List<RegistrationDTO> GetClientRegistrations(int client_id)
@@ -33,7 +41,18 @@ namespace BLL.Services
 
         public void UpdateRegistration(RegistrationDTO registration)
         {
-            throw new NotImplementedException();
+            Registration reg = db.Registrations.GetItem(registration.id);
+            reg.reg_price = registration.reg_price;
+            reg.info = registration.info;
+            reg.car_id = registration.car_id;
+            reg.Car = db.Cars.GetItem(registration.car_id);
+            reg.Slots = db.Slots.GetList().Where(i => i.registration_id == registration.id).ToList();
+            reg.status = registration.status;
+            reg.review_id = registration.review_id;
+            //reg.Repair_Review
+            //reg.Status1
+            db.Save();
+
         }
     }
 }

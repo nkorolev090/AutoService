@@ -9,8 +9,9 @@ namespace Interfaces.Services
 {
     public interface IRegistrationService
     {
+        RegistrationDTO GetItem(int id);
         List<RegistrationDTO> GetClientRegistrations(int client_id);
-        void CreateRegistration(RegistrationDTO registration);
+        int CreateRegistration(RegistrationDTO registration);
         void UpdateRegistration(RegistrationDTO registration);
     }
 }

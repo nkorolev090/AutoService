@@ -286,6 +286,7 @@ HorizontalAlignment="Left" Width="212" Height="48">
     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
     materialDesign:ButtonProgressAssist.Value="-1"
     Content="Создать заявку"
+                    Command="{Binding CreateRegistraytion}"
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
     Style="{StaticResource MaterialDesignRaisedButton}" />
         </Grid>
