@@ -18,8 +18,11 @@ namespace AutoService.ViewModels
     {
         ICarService carService;
         IClientService clientService;
+        IRegistrationService registrationService;
         public ObservableCollection<CarModel> Cars { get; set; }
         public ClientDTO Client { get; set; }
+
+        public ObservableCollection<RegistrationDTO> Registrations { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
@@ -28,12 +31,13 @@ namespace AutoService.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        public MainMenuViewModel(ICarService carService, IClientService clientService) { 
-        
+        public MainMenuViewModel(ICarService carService, IClientService clientService, IRegistrationService registrationService) { 
+            this.registrationService = registrationService;
             this.carService = carService;
             this.clientService = clientService;
             Client = clientService.GetClientDTO(2);
-            Cars = new ObservableCollection<CarModel>(carService.GetAllCarDTO(Client.id).Select(i => new CarModel(i))); 
+            Cars = new ObservableCollection<CarModel>(carService.GetAllCarDTO(Client.id).Select(i => new CarModel(i)));
+            Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetClientRegistrations(Client.id));
             
         }
 

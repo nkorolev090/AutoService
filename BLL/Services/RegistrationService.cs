@@ -21,7 +21,9 @@ namespace BLL.Services
             reg.reg_price = registration.reg_price;
             reg.info = registration.info;
             reg.review_id = registration.review_id;
+            reg.status = registration.status;
             reg.Car = db.Cars.GetItem(registration.car_id);
+            db.Registrations.Create(reg);
             //reg.Repair_Review;
             //reg.Status1
             db.Save();
@@ -36,7 +38,7 @@ namespace BLL.Services
 
         public List<RegistrationDTO> GetClientRegistrations(int client_id)
         {
-            throw new NotImplementedException();
+            return db.Registrations.GetList().Where(i => i.Car.owner_id == client_id).ToList().Select(i => new RegistrationDTO(i)).ToList();
         }
 
         public void UpdateRegistration(RegistrationDTO registration)

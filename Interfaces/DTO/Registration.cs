@@ -16,6 +16,9 @@ namespace Interfaces.DTO
 
         public string car_name {  get; set; }
 
+        public string start_date {  get; set; }
+        public string start_time {  get; set; }
+
         public string info { get; set; }
 
         public int status { get; set; }
@@ -30,9 +33,11 @@ namespace Interfaces.DTO
             car_name = registration.Car.brand + " " + registration.Car.model;
             info = registration.info;
             status = registration.status;
-            status_name = registration.Status1.name;
+           // status_name = registration.Status1.name;
             review_id = registration.review_id;
             reg_price = registration.reg_price;
+            start_date = registration.Slots.First().start_date.ToShortDateString();
+            start_time = registration.Slots.First().start_time.ToString();
         }
 
         public RegistrationDTO()
