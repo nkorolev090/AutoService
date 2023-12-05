@@ -23,9 +23,10 @@ namespace BLL.Services
             reg.review_id = registration.review_id;
             reg.status = registration.status;
             reg.Car = db.Cars.GetItem(registration.car_id);
+            if(registration.review_id != null)
+                reg.Repair_Review = db.Repair_Reviews.GetItem((int)registration.review_id);
+            reg.Status1 = db.Statuses.GetItem(registration.status);
             db.Registrations.Create(reg);
-            //reg.Repair_Review;
-            //reg.Status1
             db.Save();
 
             return db.Registrations.GetList().Last().id;
@@ -51,8 +52,9 @@ namespace BLL.Services
             reg.Slots = db.Slots.GetList().Where(i => i.registration_id == registration.id).ToList();
             reg.status = registration.status;
             reg.review_id = registration.review_id;
-            //reg.Repair_Review
-            //reg.Status1
+            if(registration.review_id != null) { reg.Repair_Review = db.Repair_Reviews.GetItem((int)registration.review_id); }
+            
+            reg.Status1 = db.Statuses.GetItem(registration.status);
             db.Save();
 
         }

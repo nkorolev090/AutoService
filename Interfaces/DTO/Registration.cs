@@ -33,11 +33,21 @@ namespace Interfaces.DTO
             car_name = registration.Car.brand + " " + registration.Car.model;
             info = registration.info;
             status = registration.status;
-           // status_name = registration.Status1.name;
+            status_name = registration.Status1.name;
             review_id = registration.review_id;
             reg_price = registration.reg_price;
-            start_date = registration.Slots.First().start_date.ToShortDateString();
-            start_time = registration.Slots.First().start_time.ToString();
+            DateTime minDate = new DateTime(3000, 1, 1);
+            TimeSpan minTime = new TimeSpan();
+            foreach(Slot slot in registration.Slots)
+            {
+                if(slot.start_date < minDate)
+                {
+                    minDate = slot.start_date;
+                    minTime = slot.start_time;
+                }
+            }
+            start_date = minDate.ToShortDateString();
+            start_time = minTime.ToString();
         }
 
         public RegistrationDTO()

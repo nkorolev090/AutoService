@@ -19,6 +19,8 @@ namespace DAL.Repository
         private BreakdownRepositorySQL breakdownRepository;
         private MechanicRepositorySQL mechanicRepository;
         private MechanicBreakdownRepositorySQL mechanicBreakdownRepository;
+        private Repair_ReviewRepositorySQL reviewRepository;
+        private StatusRepositorySQL statusRepository;
         public DbRepositorySQL() {
             db = new ModelAutoService();
         }
@@ -107,6 +109,30 @@ namespace DAL.Repository
                     mechanicBreakdownRepository = new MechanicBreakdownRepositorySQL(db);
                 }
                 return mechanicBreakdownRepository;
+            }
+        }
+
+        public IRepository<Repair_Review> Repair_Reviews
+        {
+            get
+            {
+                if (reviewRepository == null)
+                {
+                    reviewRepository = new Repair_ReviewRepositorySQL(db);
+                }
+                return reviewRepository;
+            }
+        }
+
+        public IRepository<Status> Statuses
+        {
+            get
+            {
+                if (statusRepository == null)
+                {
+                    statusRepository = new StatusRepositorySQL(db);
+                }
+                return statusRepository;
             }
         }
         public int Save()

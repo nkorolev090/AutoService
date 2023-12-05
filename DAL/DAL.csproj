@@ -96,7 +96,9 @@
     <Compile Include="Repository\MechanicBreakdownRepositorySQL.cs" />
     <Compile Include="Repository\MechanicRepositorySQL.cs" />
     <Compile Include="Repository\RegistrationRepositorySQL.cs" />
+    <Compile Include="Repository\Repair_ReviewRepositorySQL.cs" />
     <Compile Include="Repository\SlotRepositorySQL.cs" />
+    <Compile Include="Repository\StatusRepositorySQL.cs" />
     <Compile Include="sysdiagram.cs" />
   </ItemGroup>
   <ItemGroup>

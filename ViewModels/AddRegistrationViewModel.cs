@@ -204,8 +204,8 @@ namespace AutoService.ViewModels
                             {
                                 slotDTO.registration_id = reg_id;
                                 slotService.UpdateSlot(slotDTO);
-                                //CartSlots.Remove(slotDTO);
                             }
+                            CartSlots.Clear();
                             registration = registrationService.GetItem(reg_id);
                             registrationService.UpdateRegistration(registration);
                         }

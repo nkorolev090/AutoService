@@ -199,46 +199,54 @@ AutoGenerateColumns="False"
               CanUserAddRows="True"
 AutoGenerateColumns="False"
       >
-                            <DataGrid.Columns>
+                                <DataGrid.Columns>
 
                                     <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_date}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CalendarRange"/>
-                                            <TextBlock Text="Дата"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CalendarRange"/>
+                                                <TextBlock Text="Дата"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
 
                                     <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_time}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
-                                            <TextBlock Text="Время"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
+                                                <TextBlock Text="Время"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
 
                                     <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding car_name}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
-                                            <TextBlock Text="Автомобиль"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
+                                                <TextBlock Text="Автомобиль"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
 
                                     <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding reg_price}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>
-                                            <TextBlock Text="Стоимость"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
-                            </DataGrid.Columns>
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>
+                                                <TextBlock Text="Стоимость"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
 
-                        </DataGrid>
+                                    <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding status_name}">
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ProgressCheck"/>
+                                                <TextBlock Text="Статус"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </StackPanel>
                         
 
