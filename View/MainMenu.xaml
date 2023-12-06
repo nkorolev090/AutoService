@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AutoService"
+      xmlns:util="clr-namespace:AutoService.Util"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       WindowStyle="None"
@@ -15,6 +16,9 @@ TextOptions.TextFormattingMode="Ideal"
 TextOptions.TextRenderingMode="Auto"
 Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <util:RegistrationDialogConverter x:Key="sizeConverter"></util:RegistrationDialogConverter>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -198,6 +202,7 @@ AutoGenerateColumns="False"
               ItemsSource="{Binding Registrations}"
               CanUserAddRows="True"
 AutoGenerateColumns="False"
+                                SelectedItem="{Binding SelectedRegistraytion}"
       >
                                 <DataGrid.Columns>
 
@@ -322,5 +327,45 @@ AutoGenerateColumns="False"
         </Grid>
         
         
+        <!--Диалоговое окно-->
+
+        <materialDesign:DialogHost Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" DialogMargin="8" Style="{StaticResource MaterialDesignEmbeddedDialogHost}" 
+        IsOpen="{Binding IsDialogOpen}" >
+            <materialDesign:DialogHost.DialogContent >
+                <ScrollViewer CanContentScroll="False" Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualHeight,Converter={StaticResource sizeConverter}}"
+                      Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualHeight,Converter={StaticResource sizeConverter}}">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="140"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition MaxWidth="400" Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition MaxWidth="400" Width="0.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="exitButton" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Gray" BorderBrush="Gray"
+                            Padding="0" Height="20" Width="20" Margin="8 5 8 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Cursor="">
+                            <materialDesign:PackIcon Kind="WindowClose"></materialDesign:PackIcon>
+                        </Button>
+
+                        
+                    </Grid>
+                </ScrollViewer>
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+
     </Grid>
 </Window>

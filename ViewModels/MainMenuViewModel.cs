@@ -24,6 +24,32 @@ namespace AutoService.ViewModels
 
         public ObservableCollection<RegistrationDTO> Registrations { get; set; }
 
+        private bool isDialogOpen;
+        public bool IsDialogOpen
+        {
+            get
+            {
+                return isDialogOpen;
+            }
+            set
+            {
+                isDialogOpen = value;
+                OnPropertyChanged();
+            }
+        }
+        private RegistrationDTO selectedRegistraytion;
+        public RegistrationDTO SelectedRegistraytion
+        {
+            get
+            {
+                return selectedRegistraytion;
+            }
+            set
+            {
+                selectedRegistraytion = value;
+                IsDialogOpen = true;
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
