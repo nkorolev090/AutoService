@@ -329,38 +329,87 @@ AutoGenerateColumns="False"
         
         <!--Диалоговое окно-->
 
-        <materialDesign:DialogHost Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" DialogMargin="8" Style="{StaticResource MaterialDesignEmbeddedDialogHost}" 
+        <materialDesign:DialogHost Grid.Row="1" DialogMargin="8" Style="{StaticResource MaterialDesignEmbeddedDialogHost}" 
         IsOpen="{Binding IsDialogOpen}" >
             <materialDesign:DialogHost.DialogContent >
                 <ScrollViewer CanContentScroll="False" Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualHeight,Converter={StaticResource sizeConverter}}"
-                      Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualHeight,Converter={StaticResource sizeConverter}}">
+                      Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualWidth,Converter={StaticResource sizeConverter}}">
                     <Grid>
-
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition Height="50"></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="140"></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="9*"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                            <ColumnDefinition MaxWidth="400" Width="0.5*"></ColumnDefinition>
-                            <ColumnDefinition MaxWidth="400" Width="0.5*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Button x:Name="exitButton" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Gray" BorderBrush="Gray"
+
+                        <Button x:Name="exitButton" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Gray" BorderBrush="Gray"
                             Padding="0" Height="20" Width="20" Margin="8 5 8 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Cursor="">
                             <materialDesign:PackIcon Kind="WindowClose"></materialDesign:PackIcon>
                         </Button>
+                        <TextBlock Grid.Row="1"/>
+                        <DataGrid Grid.Row="2"
+              CanUserAddRows="False"
+AutoGenerateColumns="False"
+  ItemsSource="{Binding CartSlots}"
+                        SelectedItem="{Binding SelectedCartSlot}"
+      >
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Width="0.6*">
+                                    <DataGridTemplateColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" Kind="CartOutline"/>
+                                            <TextBlock Text="Корзина"/>
+                                        </StackPanel>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox
+  IsChecked="{Binding DataContext.SlotIsUnChecked, RelativeSource={RelativeSource AncestorType=Window}}"
+  Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}">
+                                                <materialDesign:PackIcon Width="20" Kind="Plus"/>
+                                            </CheckBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
 
-                        
+                                <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding breakdown_name}">
+                                    <DataGridTextColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="HammerWrench"/>
+                                            <TextBlock Text="Вид работ"/>
+                                        </StackPanel>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_time}">
+                                    <DataGridTextColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
+                                            <TextBlock Text="Время"/>
+                                        </StackPanel>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="0.8*" IsReadOnly="True" CanUserResize="False" Binding="{Binding mechanic_name}">
+                                    <DataGridTextColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="FaceMan"/>
+                                            <TextBlock Text="ФИО Мастера"/>
+                                        </StackPanel>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding cost}">
+                                    <DataGridTextColumn.Header>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>
+                                            <TextBlock Text="Стоимость"/>
+                                        </StackPanel>
+                                    </DataGridTextColumn.Header>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
                     </Grid>
                 </ScrollViewer>
             </materialDesign:DialogHost.DialogContent>
