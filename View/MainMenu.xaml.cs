@@ -22,10 +22,10 @@ namespace AutoService.Views
     /// </summary>
     public partial class MainMenu : Window
     {
-        public MainMenu(ICarService carService, IClientService clientService, IRegistrationService registrationService)
+        public MainMenu(ICarService carService, IClientService clientService, IRegistrationService registrationService, ISlotService slotService)
         {
             InitializeComponent();
-            DataContext = new MainMenuViewModel(carService, clientService, registrationService);
+            DataContext = new MainMenuViewModel(carService, clientService, registrationService, slotService);
             
         }
 

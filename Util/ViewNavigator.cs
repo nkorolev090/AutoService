@@ -55,7 +55,7 @@ namespace AutoService.Util
                     currentView = new MainWindow();
                     break;
                 case Views.MainMenuView:
-                    currentView = new MainMenu(carService, clientService, registrationService);
+                    currentView = new MainMenu(carService, clientService, registrationService, slotService);
                     break;
                 case Views.AddRegistrationView:
                     currentView = new AddRegistration(slotService, registrationService, breakdownService, carService, clientService);

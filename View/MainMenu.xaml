@@ -202,7 +202,7 @@ AutoGenerateColumns="False"
               ItemsSource="{Binding Registrations}"
               CanUserAddRows="True"
 AutoGenerateColumns="False"
-                                SelectedItem="{Binding SelectedRegistraytion}"
+                                SelectedItem="{Binding SelectedRegistration}"
       >
                                 <DataGrid.Columns>
 
@@ -349,28 +349,11 @@ AutoGenerateColumns="False"
                         <DataGrid Grid.Row="2"
               CanUserAddRows="False"
 AutoGenerateColumns="False"
-  ItemsSource="{Binding CartSlots}"
-                        SelectedItem="{Binding SelectedCartSlot}"
+  ItemsSource="{Binding RegistrationSlots}"
+                       
       >
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Width="0.6*">
-                                    <DataGridTemplateColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" Kind="CartOutline"/>
-                                            <TextBlock Text="Корзина"/>
-                                        </StackPanel>
-                                    </DataGridTemplateColumn.Header>
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <CheckBox
-  IsChecked="{Binding DataContext.SlotIsUnChecked, RelativeSource={RelativeSource AncestorType=Window}}"
-  Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}">
-                                                <materialDesign:PackIcon Width="20" Kind="Plus"/>
-                                            </CheckBox>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-
+                               
                                 <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding breakdown_name}">
                                     <DataGridTextColumn.Header>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -380,7 +363,7 @@ AutoGenerateColumns="False"
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_time}">
+                                <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding  start_time}">
                                     <DataGridTextColumn.Header>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
@@ -389,7 +372,7 @@ AutoGenerateColumns="False"
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Width="0.8*" IsReadOnly="True" CanUserResize="False" Binding="{Binding mechanic_name}">
+                                <DataGridTextColumn Width="0.8*" IsReadOnly="True" CanUserResize="False" Binding="{Binding  mechanic_name}">
                                     <DataGridTextColumn.Header>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="FaceMan"/>
@@ -398,7 +381,7 @@ AutoGenerateColumns="False"
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding cost}">
+                                <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding  cost}">
                                     <DataGridTextColumn.Header>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>

@@ -17,12 +17,15 @@ namespace AutoService.ViewModels
     public class MainMenuViewModel : INotifyPropertyChanged
     {
         ICarService carService;
+        ISlotService slotService;
         IClientService clientService;
         IRegistrationService registrationService;
         public ObservableCollection<CarModel> Cars { get; set; }
         public ClientDTO Client { get; set; }
 
         public ObservableCollection<RegistrationDTO> Registrations { get; set; }
+
+        public ObservableCollection<SlotDTO> RegistrationSlots { get; set; }
 
         private bool isDialogOpen;
         public bool IsDialogOpen
@@ -37,16 +40,18 @@ namespace AutoService.ViewModels
                 OnPropertyChanged();
             }
         }
-        private RegistrationDTO selectedRegistraytion;
-        public RegistrationDTO SelectedRegistraytion
+        private RegistrationDTO selectedRegistration;
+        public RegistrationDTO SelectedRegistration
         {
             get
             {
-                return selectedRegistraytion;
+                return selectedRegistration;
             }
             set
             {
-                selectedRegistraytion = value;
+                selectedRegistration = value;
+                RegistrationSlots.Clear();
+                RegistrationSlots.AddRange(slotService.GetRegistrationSlots(selectedRegistration.id));
                 IsDialogOpen = true;
             }
         }
@@ -57,15 +62,16 @@ namespace AutoService.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        public MainMenuViewModel(ICarService carService, IClientService clientService, IRegistrationService registrationService) { 
+        public MainMenuViewModel(ICarService carService, IClientService clientService, IRegistrationService registrationService, ISlotService slotService) { 
             this.registrationService = registrationService;
             this.carService = carService;
             this.clientService = clientService;
+            this.slotService = slotService;
             Client = clientService.GetClientDTO(2);
             Cars = new ObservableCollection<CarModel>(carService.GetAllCarDTO(Client.id).Select(i => new CarModel(i)));
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetClientRegistrations(Client.id));
-            
-        }
+            RegistrationSlots = new ObservableCollection<SlotDTO>();
+           }
 
 
         private RelayCommand openAddRegCommand;

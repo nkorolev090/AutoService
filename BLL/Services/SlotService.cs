@@ -27,6 +27,11 @@ namespace BLL.Services
             return db.Slots.GetList().Where(i => i.start_date == startDate && i.breakdown_id == null).Where(i=> mechanic_ids.Contains(i.mechanic_id)).Select(i => new SlotDTO(i)).ToList();
         }
 
+        public List<SlotDTO> GetRegistrationSlots(int regId)
+        {
+            return db.Slots.GetList().Where(i => i.registration_id == regId).Select(i => new SlotDTO(i)).ToList();
+        }
+
         public SlotDTO GetSlot(int id)
         {
             return new SlotDTO(db.Slots.GetItem(id));
