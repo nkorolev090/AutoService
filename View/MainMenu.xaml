@@ -338,14 +338,23 @@ AutoGenerateColumns="False"
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="1*"/>
-                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
 
                         <Button x:Name="exitButton" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Gray" BorderBrush="Gray"
                             Padding="0" Height="20" Width="20" Margin="8 5 8 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Cursor="">
                             <materialDesign:PackIcon Kind="WindowClose"></materialDesign:PackIcon>
                         </Button>
-                        <TextBlock Grid.Row="1"/>
+                        <Grid Grid.Row="1">
+                              
+                            <TextBlock  Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="20, 0, 0, 0">
+                                <Run Text="Запись на ремонт от "/>
+                                <Run Text="{Binding SelectedRegistration.start_date}"/>
+                            </TextBlock>
+                           
+                        </Grid>
                         <DataGrid Grid.Row="2"
               CanUserAddRows="False"
 AutoGenerateColumns="False"
@@ -392,7 +401,43 @@ AutoGenerateColumns="False"
                             </DataGrid.Columns>
 
                         </DataGrid>
+                        <TextBlock Grid.Row="3" Text="{Binding SelectedRegistration.info, StringFormat=Доп. информация: {0} }" 
+           Foreground="DarkSlateGray"  
+           Style="{StaticResource MaterialDesignBody1TextBlock}" 
+           Margin="5" />
+                        <Grid Grid.Row="4">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
 
+                                <TextBlock Text="{Binding SelectedRegistration.car_name, StringFormat=Автомобиль: {0} }" 
+                                           Foreground="DarkSlateGray"  
+                                           Style="{StaticResource MaterialDesignBody1TextBlock}" 
+                                           Margin="5" />
+
+                                <TextBlock Text="{Binding SelectedRegistration.reg_price, StringFormat=Стоимость: {0} Руб.}" 
+                                            Foreground="DarkSlateGray"  
+                                            Style="{StaticResource MaterialDesignBody1TextBlock}" 
+                                            Margin="5" />
+
+                                <TextBlock Text="{Binding ClientDiscount, StringFormat=Скидка: {0}%}" 
+                                            Foreground="DarkSlateGray"  
+                                            Style="{StaticResource MaterialDesignBody1TextBlock}" 
+                                            Margin="5" />
+
+
+                            </StackPanel>
+                            <Button 
+            HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+            Width="150"
+Margin="5,0,0,0"
+materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+materialDesign:ButtonProgressAssist.Value="-1"
+Content="Удалить запись"
+                Command="{Binding DeleteRegistration}"
+IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+Style="{StaticResource MaterialDesignRaisedButton}" />
+                        </Grid>
                     </Grid>
                 </ScrollViewer>
             </materialDesign:DialogHost.DialogContent>

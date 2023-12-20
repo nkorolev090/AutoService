@@ -45,7 +45,7 @@ namespace AutoService.ViewModels
             }
         }
 
-        public string ClientDiscountName { get; set; }
+        
         public int ClientDiscount { get; set; }
 
         //привязка для комбобокса с видами работ
@@ -100,7 +100,7 @@ namespace AutoService.ViewModels
             Breakdowns = new ObservableCollection<BreakdownDTO>(breakdownService.GetAllBreakdowns());
             Cars = new ObservableCollection<CarDTO>(carService.GetAllCarDTO(2));
             ClientDiscount = clientService.GetClientDiscount(client_id);
-            ClientDiscountName = ClientDiscount.ToString() + "%";
+            
             
         }
 
@@ -181,14 +181,14 @@ namespace AutoService.ViewModels
             }
         }
 
-        private RelayCommand createRegistraytion;
-        public RelayCommand CreateRegistraytion
+        private RelayCommand createRegistration;
+        public RelayCommand CreateRegistration
         {
             get
             {
 
-                return createRegistraytion ?? (
-                    createRegistraytion = new RelayCommand(obj =>
+                return createRegistration ?? (
+                    createRegistration = new RelayCommand(obj =>
                     {
                         if (CartSlots.Count > 0)
                         {

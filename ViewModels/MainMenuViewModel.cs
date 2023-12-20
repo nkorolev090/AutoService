@@ -22,6 +22,7 @@ namespace AutoService.ViewModels
         IRegistrationService registrationService;
         public ObservableCollection<CarModel> Cars { get; set; }
         public ClientDTO Client { get; set; }
+        public int ClientDiscount { get; set; }
 
         public ObservableCollection<RegistrationDTO> Registrations { get; set; }
 
@@ -50,6 +51,7 @@ namespace AutoService.ViewModels
             set
             {
                 selectedRegistration = value;
+                OnPropertyChanged();
                 RegistrationSlots.Clear();
                 RegistrationSlots.AddRange(slotService.GetRegistrationSlots(selectedRegistration.id));
                 IsDialogOpen = true;
@@ -71,6 +73,7 @@ namespace AutoService.ViewModels
             Cars = new ObservableCollection<CarModel>(carService.GetAllCarDTO(Client.id).Select(i => new CarModel(i)));
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetClientRegistrations(Client.id));
             RegistrationSlots = new ObservableCollection<SlotDTO>();
+            ClientDiscount = clientService.GetClientDiscount(Client.id);
            }
 
 
