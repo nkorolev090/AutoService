@@ -190,7 +190,7 @@ namespace AutoService.ViewModels
                 return createRegistration ?? (
                     createRegistration = new RelayCommand(obj =>
                     {
-                        if (CartSlots.Count > 0)
+                        if (CartSlots.Count > 0)//перенести всю логику в сервис
                         {
                             RegistrationDTO registration = new RegistrationDTO();
                             registration.car_id = SelectedCar.id;

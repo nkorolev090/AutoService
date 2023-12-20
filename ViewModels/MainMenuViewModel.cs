@@ -53,8 +53,11 @@ namespace AutoService.ViewModels
                 selectedRegistration = value;
                 OnPropertyChanged();
                 RegistrationSlots.Clear();
-                RegistrationSlots.AddRange(slotService.GetRegistrationSlots(selectedRegistration.id));
-                IsDialogOpen = true;
+                if (SelectedRegistration != null)
+                {
+                    RegistrationSlots.AddRange(slotService.GetRegistrationSlots(selectedRegistration.id));
+                    IsDialogOpen = true;
+                }
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -88,6 +91,21 @@ namespace AutoService.ViewModels
                     {
                         ViewNavigator.SwitchViewTo(Util.Views.AddRegistrationView);
 
+                    }));
+            }
+        }
+
+        private RelayCommand deleteRegCommand;
+        public RelayCommand DeleteRegCommand
+        {
+            get
+            {
+
+                return deleteRegCommand ?? (
+                    deleteRegCommand = new RelayCommand(obj =>
+                    {
+                        registrationService.DeleteRegistration(SelectedRegistration.id);
+                        Registrations.Remove(SelectedRegistration);
                     }));
             }
         }

@@ -14,7 +14,7 @@ namespace BLL.Services
     {
         IDbRepository db;
         public RegistrationService(IDbRepository db) { this.db = db; }
-        public int CreateRegistration(RegistrationDTO registration)
+        public int CreateRegistration(RegistrationDTO registration)//тип возвращаемого значения и логика слотов
         {
             Registration reg = new Registration();
             reg.car_id = registration.car_id;
@@ -57,6 +57,24 @@ namespace BLL.Services
             reg.Status1 = db.Statuses.GetItem(registration.status);
             db.Save();
 
+        }
+
+        public void DeleteRegistration(int registration_id)
+        {
+            Registration registration = db.Registrations.GetItem(registration_id);
+            foreach(Slot slot in  registration.Slots)
+            {
+              
+                slot.Breakdown = null;
+                slot.breakdown_id = null;
+                slot.Registration = null;
+                slot.registration_id = null;
+            }
+            db.Save();
+
+            db.Registrations.Delete(registration_id);
+
+            db.Save();
         }
     }
 }

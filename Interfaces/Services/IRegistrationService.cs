@@ -13,5 +13,6 @@ namespace Interfaces.Services
         List<RegistrationDTO> GetClientRegistrations(int client_id);
         int CreateRegistration(RegistrationDTO registration);
         void UpdateRegistration(RegistrationDTO registration);
+        void DeleteRegistration(int registration_id);
     }
 }

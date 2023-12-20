@@ -434,7 +434,7 @@ materialDesign:ButtonProgressAssist.IsIndeterminate="True"
 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
 materialDesign:ButtonProgressAssist.Value="-1"
 Content="Удалить запись"
-                Command="{Binding DeleteRegistration}"
+                Command="{Binding DeleteRegCommand}"
 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
 Style="{StaticResource MaterialDesignRaisedButton}" />
                         </Grid>
