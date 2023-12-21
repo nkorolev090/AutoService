@@ -45,7 +45,21 @@ namespace AutoService.ViewModels
             }
         }
 
-        
+
+        private bool isDialogOpen;
+        public bool IsDialogOpen
+        {
+            get
+            {
+                return isDialogOpen;
+            }
+            set
+            {
+                isDialogOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int ClientDiscount { get; set; }
 
         //привязка для комбобокса с видами работ
@@ -57,6 +71,7 @@ namespace AutoService.ViewModels
             set
             {
                 selectedBreakdown = value;
+                OnPropertyChanged();
                 List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
                 Slots.Clear();
                 foreach (SlotDTO s in listS)
@@ -121,7 +136,7 @@ namespace AutoService.ViewModels
                 return openAboutBreakdown ?? (
                     openAboutBreakdown = new RelayCommand(obj =>
                     {
-                        //MessageBox.Show(SelectedBreakdown.title + "\n" + SelectedBreakdown.info + "\n " + SelectedBreakdown.price + "Руб.");
+                        IsDialogOpen = true;
                       
                     }));
             }

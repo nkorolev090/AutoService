@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoService"
+        xmlns:util="clr-namespace:AutoService.Util"
+         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="AddRegistration" MinHeight="410" MinWidth="705"
         Height="410"
@@ -17,6 +19,9 @@ TextOptions.TextFormattingMode="Ideal"
 TextOptions.TextRenderingMode="Auto"
 Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <util:RegistrationDialogConverter x:Key="sizeConverter"></util:RegistrationDialogConverter>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -288,9 +293,68 @@ HorizontalAlignment="Left" Width="212" Height="48">
     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
     materialDesign:ButtonProgressAssist.Value="-1"
     Content="Создать заявку"
-                    Command="{Binding CreateRegistration}"
+             
     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-    Style="{StaticResource MaterialDesignRaisedButton}" />
+    Style="{StaticResource MaterialDesignRaisedButton}" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding CreateRegistration}"/>
+                        <i:InvokeCommandAction  Command="{Binding CancelWindow}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </Grid>
+
+        <!--Диалоговое окно-->
+
+        <materialDesign:DialogHost Grid.Row="1" DialogMargin="8"  Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
+        IsOpen="{Binding IsDialogOpen}" >
+            <materialDesign:DialogHost.DialogContent >
+
+                <Grid Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualHeight,Converter={StaticResource sizeConverter}}"
+                      Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualWidth,Converter={StaticResource sizeConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                      
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="exitButton" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Gray" BorderBrush="Gray"
+                            Padding="0" Height="20" Width="20" Margin="8 5 8 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Cursor="">
+                        <materialDesign:PackIcon Kind="WindowClose"></materialDesign:PackIcon>
+                    </Button>
+                  
+                        <ScrollViewer Grid.Row="1" CanContentScroll="False" >
+                        <StackPanel  Orientation ="Vertical">
+                            <TextBlock  Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                                    Margin="20, 0, 0, 0"  
+                                    Text="{Binding SelectedBreakdown.title}"
+                                        Foreground="DarkSlateGray"  />
+                            <TextBlock  TextWrapping="Wrap"
+                                        
+                                        Text="{Binding SelectedBreakdown.info, StringFormat=Дополнительная информация: {0} }"
+                                        Foreground="DarkSlateGray"  
+                                        Style="{StaticResource MaterialDesignBody1TextBlock}" 
+                                        Margin="5" />
+                            <TextBlock  
+             
+             Text="{Binding SelectedBreakdown.warranty, StringFormat=Гарантия: {0} Мес. }"
+             Foreground="DarkSlateGray"  
+             Style="{StaticResource MaterialDesignBody1TextBlock}" 
+             Margin="5" />
+                            <TextBlock  
+             
+             Text="{Binding SelectedBreakdown.price, StringFormat=Стоимость: {0} Руб.}"
+             Foreground="DarkSlateGray"  
+             Style="{StaticResource MaterialDesignBody1TextBlock}" 
+             Margin="5" />
+                        </StackPanel>
+                        </ScrollViewer>
+
+                </Grid>
+
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
     </Grid>
 </Window>

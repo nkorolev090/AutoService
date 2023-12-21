@@ -22,7 +22,7 @@ namespace DomainModel
         [StringLength(50)]
         public string title { get; set; }
 
-        [StringLength(255)]
+        [StringLength(500)]
         public string info { get; set; }
 
         public int price { get; set; }
