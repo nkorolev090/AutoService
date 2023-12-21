@@ -35,10 +35,5 @@ namespace AutoService.Views
         
     }
 
-    public class gridItem
-    {
-        public string time { get; set; }
-        public string fullName { get; set; }
-        public int cost { get; set; }
-    }
+    
 }

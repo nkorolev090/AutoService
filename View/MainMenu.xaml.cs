@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoService.ViewModels;
+using Interfaces.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,15 +12,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AutoService.ViewModels;
-using Interfaces.Services;
 
 namespace AutoService.Views
 {
     /// <summary>
-    /// Логика взаимодействия для Page1.xaml
+    /// Логика взаимодействия для MainMenu.xaml
     /// </summary>
     public partial class MainMenu : Window
     {
@@ -26,9 +25,9 @@ namespace AutoService.Views
         {
             InitializeComponent();
             DataContext = new MainMenuViewModel(carService, clientService, registrationService, slotService);
-            
+
         }
 
-      
+
     }
 }
