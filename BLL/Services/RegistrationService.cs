@@ -42,6 +42,19 @@ namespace BLL.Services
             return db.Registrations.GetList().Where(i => i.Car.owner_id == client_id).ToList().Select(i => new RegistrationDTO(i)).ToList();
         }
 
+        public List<StatusDTO> GetStatuses()
+        {
+            return db.Statuses.GetList().Select(i => new StatusDTO(i)).ToList();
+        }
+        public StatusDTO GetStatus(int id)
+        {
+            return new StatusDTO(db.Statuses.GetItem(id));
+        }
+
+        public List<RegistrationDTO> GetMechanicRegistrations(int mechanic_id)
+        {
+            return db.Slots.GetList().Where(i => i.mechanic_id == mechanic_id).ToList().Select(i => new RegistrationDTO(i.Registration)).ToList();
+        }
         public void UpdateRegistration(RegistrationDTO registration)
         {
             Registration reg = db.Registrations.GetItem(registration.id);

@@ -110,57 +110,7 @@ Text="{Binding  Mechanic.tel_number}" />
 
                         </Grid>
                         <Grid Grid.Row="1">
-                            <StackPanel>
-                                <TextBlock
-                                    Text="Автомобили"
-                                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                                    Padding="5, 0, 0, 0"/>
-                                <DataGrid 
-              ItemsSource="{Binding Cars}"
-              CanUserAddRows="True"
-AutoGenerateColumns="False"
-      >
-                                    <DataGrid.Columns>
-
-                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Brand}">
-                                            <DataGridTextColumn.Header>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Marker"/>
-                                                    <TextBlock Text="Марка"/>
-                                                </StackPanel>
-                                            </DataGridTextColumn.Header>
-                                        </DataGridTextColumn>
-
-                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Model}">
-                                            <DataGridTextColumn.Header>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
-                                                    <TextBlock Text="Модель"/>
-                                                </StackPanel>
-                                            </DataGridTextColumn.Header>
-                                        </DataGridTextColumn>
-
-                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Color}">
-                                            <DataGridTextColumn.Header>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Color"/>
-                                                    <TextBlock Text="Цвет"/>
-                                                </StackPanel>
-                                            </DataGridTextColumn.Header>
-                                        </DataGridTextColumn>
-
-                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Mileage}">
-                                            <DataGridTextColumn.Header>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Counter"/>
-                                                    <TextBlock Text="Пробег"/>
-                                                </StackPanel>
-                                            </DataGridTextColumn.Header>
-                                        </DataGridTextColumn>
-                                    </DataGrid.Columns>
-
-                                </DataGrid>
-                            </StackPanel>
+                         
                         </Grid>
                     </Grid>
                 </TabItem>
@@ -183,7 +133,7 @@ AutoGenerateColumns="False"
                         <TextBlock Margin="8" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Записи"/>
                         <DataGrid 
               ItemsSource="{Binding Registrations}"
-              CanUserAddRows="True"
+              CanUserAddRows="False"
 AutoGenerateColumns="False"
                                 SelectedItem="{Binding SelectedRegistration}"
       >
@@ -216,14 +166,6 @@ AutoGenerateColumns="False"
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding reg_price}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CurrencyRub"/>
-                                            <TextBlock Text="Стоимость"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
 
                                 <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding status_name}">
                                     <DataGridTextColumn.Header>
@@ -233,8 +175,30 @@ AutoGenerateColumns="False"
                                         </StackPanel>
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
+
+                                
                             </DataGrid.Columns>
                         </DataGrid>
+                        <ComboBox 
+                                        ItemsSource="{Binding Statuses}"
+                                        
+                                        Margin="10,0,0,0"
+                                        
+                                       SelectedItem="{Binding SelectedStatus}"
+materialDesign:ComboBoxAssist.MaxLength="10"
+materialDesign:HintAssist.Hint="Статус заявки"
+materialDesign:HintAssist.HintOpacity=".5"
+materialDesign:HintAssist.HelperText="Выберите статус"
+Style="{StaticResource MaterialDesignOutlinedComboBox}"
+HorizontalAlignment="Left" Width="auto">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding name}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+
+
+                        </ComboBox>
                     </StackPanel>
 
 

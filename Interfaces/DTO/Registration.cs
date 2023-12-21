@@ -1,8 +1,10 @@
 ﻿using DomainModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +24,9 @@ namespace Interfaces.DTO
         public string info { get; set; }
 
         public int status { get; set; }
+       
         public string status_name { get; set; }
+       
 
         public int? review_id { get; set; }
         public int? reg_price { get; set; }
@@ -49,7 +53,7 @@ namespace Interfaces.DTO
             start_date = minDate.ToShortDateString();
             start_time = minTime.ToString();
         }
-
+       
         public RegistrationDTO()
         {
         }

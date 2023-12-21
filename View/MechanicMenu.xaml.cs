@@ -23,10 +23,10 @@ namespace AutoService.View
     public partial class MechanicMenu : Window
     {
  
-        public MechanicMenu(IMechanicService mechanicService)
+        public MechanicMenu(IMechanicService mechanicService, IRegistrationService registrationService, ISlotService slotService)
         {
             InitializeComponent();
-            DataContext = new MechanicMenuViewModel(mechanicService);
+            DataContext = new MechanicMenuViewModel(mechanicService, registrationService, slotService);
         }
     }
 }
