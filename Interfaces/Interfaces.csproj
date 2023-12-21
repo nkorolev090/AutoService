@@ -88,6 +88,7 @@
     <Compile Include="DTO\Breakdown.cs" />
     <Compile Include="DTO\Car.cs" />
     <Compile Include="DTO\Client.cs" />
+    <Compile Include="DTO\Mechanic.cs" />
     <Compile Include="DTO\Registration.cs" />
     <Compile Include="DTO\Slot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Services\IBreakdownService.cs" />
     <Compile Include="Services\ICarService.cs" />
     <Compile Include="Services\IClientService.cs" />
+    <Compile Include="Services\IMechanicService.cs" />
     <Compile Include="Services\IRegistrationService.cs" />
     <Compile Include="Services\ISlotService.cs" />
   </ItemGroup>

@@ -45,5 +45,19 @@ namespace AutoService.ViewModels
                     }));
             }
         }
+
+        private RelayCommand openMechanicMenuCommand;
+        public RelayCommand OpenMechanicMenuCommand
+        {
+            get
+            {
+                return openMechanicMenuCommand ?? (
+                    openMechanicMenuCommand = new RelayCommand(obj =>
+                    {
+                        ViewNavigator.SwitchViewTo(Util.Views.MechanicMenu);
+
+                    }));
+            }
+        }
     }
 }

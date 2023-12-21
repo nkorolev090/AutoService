@@ -28,6 +28,33 @@ namespace AutoService.ViewModels
 
         public ObservableCollection<SlotDTO> RegistrationSlots { get; set; }
 
+        private Visibility visibilityDelRegBtn;
+        public Visibility VisibilityDelRegBtn
+        {
+            get
+            {
+                return visibilityDelRegBtn;
+            }
+            set
+            {
+                visibilityDelRegBtn = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility visibilityWarrantyBtn;
+        public Visibility VisibilityWarrantyBtn
+        {
+            get
+            {
+                return visibilityWarrantyBtn;
+            }
+            set
+            {
+                visibilityWarrantyBtn = value;
+                OnPropertyChanged();
+            }
+        }
         private bool isDialogOpen;
         public bool IsDialogOpen
         {
@@ -53,6 +80,22 @@ namespace AutoService.ViewModels
                 selectedRegistration = value;
                 OnPropertyChanged();
                 RegistrationSlots.Clear();
+                switch (selectedRegistration.status){
+                    case 4: //завершена
+                        VisibilityDelRegBtn = Visibility.Collapsed;
+                        VisibilityWarrantyBtn = Visibility.Visible;
+                        break;
+                    case 3: //отклонена
+                        VisibilityDelRegBtn = Visibility.Collapsed;
+                        VisibilityWarrantyBtn = Visibility.Collapsed;
+                        break;
+                    default: //в обработке или одобрена
+                        VisibilityDelRegBtn = Visibility.Visible;
+                        VisibilityWarrantyBtn = Visibility.Collapsed;
+                        break;
+
+                }
+               
                 if (SelectedRegistration != null)
                 {
                     RegistrationSlots.AddRange(slotService.GetRegistrationSlots(selectedRegistration.id));

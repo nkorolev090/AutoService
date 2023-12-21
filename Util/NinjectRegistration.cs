@@ -18,6 +18,7 @@ namespace AutoService.Util
             Bind<ISlotService>().To<SlotService>();
             Bind<IRegistrationService>().To<RegistrationService>();
             Bind<IBreakdownService>().To<BreakdownService>();
+            Bind<IMechanicService>().To<MechanicService>();
         }
     }
 }

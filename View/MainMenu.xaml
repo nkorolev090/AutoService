@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:AutoService"
         xmlns:util="clr-namespace:AutoService.Util"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        WindowStartupLocation ="CenterScreen"
       mc:Ignorable="d" 
       MinHeight="450" MinWidth="800"
       WindowStyle="None"
@@ -338,7 +339,7 @@ AutoGenerateColumns="False"
                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualWidth,Converter={StaticResource sizeConverter}}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2*"/>
                             <RowDefinition Height="4*"/>
                             <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
@@ -348,11 +349,17 @@ AutoGenerateColumns="False"
                             <materialDesign:PackIcon Kind="WindowClose"></materialDesign:PackIcon>
                         </Button>
                         <Grid Grid.Row="1">
-
-                            <TextBlock  Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="20, 0, 0, 0">
+                        <StackPanel Orientation="Vertical">
+                             <TextBlock  Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="10, 0, 0, 0">
                                 <Run Text="Запись на ремонт от "/>
                                 <Run Text="{Binding SelectedRegistration.start_date}"/>
                             </TextBlock>
+                            <TextBlock Text="{Binding SelectedRegistration.status_name, StringFormat=Статус: {0} }" 
+           Foreground="DarkSlateGray"  
+           Style="{StaticResource MaterialDesignBody1TextBlock}" 
+           Margin="10, 5, 5, 5" />
+                        </StackPanel>
+                           
 
                         </Grid>
                     <ScrollViewer Grid.Row="2" CanContentScroll="False" >
@@ -438,13 +445,14 @@ AutoGenerateColumns="False"
             HorizontalAlignment="Right"
                 VerticalAlignment="Center"
             Width="150"
-Margin="5,0,0,0"
+Margin="5,0,10,0"
 materialDesign:ButtonProgressAssist.IsIndeterminate="True"
 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
 materialDesign:ButtonProgressAssist.Value="-1"
 Content="Удалить запись"    
 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-Style="{StaticResource MaterialDesignRaisedButton}" >
+Style="{StaticResource MaterialDesignRaisedButton}"
+                                Visibility="{Binding VisibilityDelRegBtn}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <i:InvokeCommandAction Command="{Binding DeleteRegCommand}"/>
@@ -452,7 +460,26 @@ Style="{StaticResource MaterialDesignRaisedButton}" >
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Button>
-                        </Grid>
+                        <Button 
+            HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+            Width="200"
+Margin="5,0,10,0"
+materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+materialDesign:ButtonProgressAssist.Value="-1"
+Content="Ремонт по гарантии"    
+IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+Style="{StaticResource MaterialDesignRaisedButton}"
+                                Visibility="{Binding VisibilityWarrantyBtn}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding WarrantyCommand}"/>
+                                    <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </Grid>
                     </Grid>
                
             </materialDesign:DialogHost.DialogContent>

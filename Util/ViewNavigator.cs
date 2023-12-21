@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoService.Views;
 using Interfaces.Services;
+using AutoService.View;
 
 namespace AutoService.Util
 {
@@ -13,7 +14,8 @@ namespace AutoService.Util
     {
         MainWindowView,
         MainMenuView,
-        AddRegistrationView
+        AddRegistrationView,
+        MechanicMenu
     }
     internal static class ViewNavigator
     {
@@ -22,16 +24,18 @@ namespace AutoService.Util
         private static IRegistrationService registrationService;
         private static ISlotService slotService;
         private static IBreakdownService    breakdownService;
+        private static IMechanicService mechanicService;
 
         private static Window currentView_;
 
-        public static void SetServices(ICarService carS, IClientService clientS, IRegistrationService registrationS, ISlotService slotS, IBreakdownService breakdownS)
+        public static void SetServices(ICarService carS, IClientService clientS, IRegistrationService registrationS, ISlotService slotS, IBreakdownService breakdownS, IMechanicService mechanicS)
         {
             carService = carS;
             clientService = clientS;
             registrationService = registrationS;
             slotService = slotS;
             breakdownService = breakdownS;
+            mechanicService = mechanicS;
         }
         private static Window currentView
         { 
@@ -59,6 +63,9 @@ namespace AutoService.Util
                     break;
                 case Views.AddRegistrationView:
                     currentView = new AddRegistration(slotService, registrationService, breakdownService, carService, clientService);
+                    break;
+                case Views.MechanicMenu:
+                    currentView = new MechanicMenu(mechanicService);
                     break;
             }
             previousView.Close();
