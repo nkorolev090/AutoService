@@ -1,5 +1,6 @@
 ﻿<Window x:Class="AutoService.Views.MainMenu"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -433,10 +434,16 @@ Margin="5,0,0,0"
 materialDesign:ButtonProgressAssist.IsIndeterminate="True"
 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
 materialDesign:ButtonProgressAssist.Value="-1"
-Content="Удалить запись"
-                Command="{Binding DeleteRegCommand}"
+Content="Удалить запись"    
 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-Style="{StaticResource MaterialDesignRaisedButton}" />
+Style="{StaticResource MaterialDesignRaisedButton}" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding DeleteRegCommand}"/>
+                                        <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                             </Button>
                         </Grid>
                     </Grid>
                 </ScrollViewer>
