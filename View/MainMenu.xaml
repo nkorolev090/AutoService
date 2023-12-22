@@ -8,7 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         WindowStartupLocation ="CenterScreen"
       mc:Ignorable="d" 
-      MinHeight="450" MinWidth="800"
+      MinHeight="550" MinWidth="960"
       WindowStyle="None"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -20,6 +20,7 @@ Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
         <util:RegistrationDialogConverter x:Key="sizeConverter"></util:RegistrationDialogConverter>
+        <util:DateConverter x:Key="dateConverter"></util:DateConverter>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -208,7 +209,7 @@ AutoGenerateColumns="False"
       >
                                 <DataGrid.Columns>
 
-                                    <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_date}">
+                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding reg_date, Converter={StaticResource dateConverter}}">
                                         <DataGridTextColumn.Header>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CalendarRange"/>
@@ -217,14 +218,14 @@ AutoGenerateColumns="False"
                                         </DataGridTextColumn.Header>
                                     </DataGridTextColumn>
 
-                                    <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_time}">
+                                    <!--<DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_time}">
                                         <DataGridTextColumn.Header>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
                                                 <TextBlock Text="Время"/>
                                             </StackPanel>
                                         </DataGridTextColumn.Header>
-                                    </DataGridTextColumn>
+                                    </DataGridTextColumn>-->
 
                                     <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding car_name}">
                                         <DataGridTextColumn.Header>
@@ -352,7 +353,7 @@ AutoGenerateColumns="False"
                             
                             <TextBlock  Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="25, 0, 0, 0" VerticalAlignment="Bottom">
                                 <Run Text="Запись на ремонт от "/>
-                                <Run Text="{Binding SelectedRegistration.start_date}"/>
+                                <Run Text="{Binding SelectedRegistration.reg_date, Converter={StaticResource dateConverter}}"/>
                             </TextBlock>
                         <TextBlock Text="{Binding SelectedRegistration.status_name, StringFormat=Статус: {0} }" 
                                        VerticalAlignment="Bottom"
@@ -369,7 +370,7 @@ AutoGenerateColumns="False"
               CanUserAddRows="False"
 AutoGenerateColumns="False"
   ItemsSource="{Binding RegistrationSlots}"
-                       
+        SelectedItem="{Binding SelectedSlot}"               
       >
                             <DataGrid.Columns>
 
@@ -382,16 +383,33 @@ AutoGenerateColumns="False"
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding  start_time}">
+                                    <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding breakdown_warranty, StringFormat = {}{0} Мес.}">
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="TimerAlert"/>
+                                                <TextBlock Text="Гарантия"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                
+                                    <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding  start_time}">
                                     <DataGridTextColumn.Header>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
                                             <TextBlock Text="Время"/>
                                         </StackPanel>
                                     </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Width="0.5*" IsReadOnly="True" CanUserResize="False" Binding="{Binding  start_date, Converter= {StaticResource dateConverter}}">
+                                        <DataGridTextColumn.Header>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Calendar"/>
+                                                <TextBlock Text="Дата"/>
+                                            </StackPanel>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
 
-                                <DataGridTextColumn Width="0.8*" IsReadOnly="True" CanUserResize="False" Binding="{Binding  mechanic_name}">
+                                    <DataGridTextColumn Width="0.8*" IsReadOnly="True" CanUserResize="False" Binding="{Binding  mechanic_name}">
                                     <DataGridTextColumn.Header>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="FaceMan"/>
@@ -439,6 +457,26 @@ AutoGenerateColumns="False"
 
                             </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <ComboBox 
+                                        ItemsSource="{Binding RegistrationSlots}"
+                                        Visibility="{Binding VisibilityWarrantyBtn}"
+                                        Margin="10,0,0,15"
+                                        
+                                       SelectedItem="{Binding SelectedSlot, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+materialDesign:ComboBoxAssist.MaxLength="10"
+materialDesign:HintAssist.Hint="Поиск"
+materialDesign:HintAssist.HintOpacity=".5"
+materialDesign:HintAssist.HelperText="Выберите вид работ"
+Style="{StaticResource MaterialDesignOutlinedComboBox}"
+HorizontalAlignment="Left" Width="311">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding breakdown_name}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+
+
+                            </ComboBox>
                             <UniformGrid Columns="2">
                                  <DatePicker Grid.Column="0"
                                              Margin="10"

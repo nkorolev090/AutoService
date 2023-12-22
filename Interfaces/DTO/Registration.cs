@@ -18,8 +18,7 @@ namespace Interfaces.DTO
 
         public string car_name {  get; set; }
 
-        public string start_date {  get; set; }
-        public string start_time {  get; set; }
+        public DateTime? reg_date {  get; set; }
 
         public string info { get; set; }
 
@@ -41,18 +40,7 @@ namespace Interfaces.DTO
             status_name = registration.Status1.name;
             review_id = registration.review_id;
             reg_price = registration.reg_price;
-            DateTime minDate = new DateTime(3000, 1, 1);
-            TimeSpan minTime = new TimeSpan();
-            foreach(Slot slot in registration.Slots)
-            {
-                if(slot.start_date < minDate)
-                {
-                    minDate = slot.start_date;
-                    minTime = slot.start_time;
-                }
-            }
-            start_date = minDate.ToShortDateString();
-            start_time = minTime.ToString();
+            reg_date = registration.reg_date;
         }
        
         public RegistrationDTO()

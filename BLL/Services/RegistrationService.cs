@@ -21,6 +21,7 @@ namespace BLL.Services
             reg.reg_price = registration.reg_price;
             reg.info = registration.info;
             reg.review_id = registration.review_id;
+            reg.reg_date = registration.reg_date;
             reg.status = registration.status;
             reg.Car = db.Cars.GetItem(registration.car_id);
             if(registration.review_id != null)
@@ -61,6 +62,7 @@ namespace BLL.Services
             reg.reg_price = registration.reg_price;
             reg.info = registration.info;
             reg.car_id = registration.car_id;
+            reg.reg_date = registration.reg_date;
             reg.Car = db.Cars.GetItem(registration.car_id);
             reg.Slots = db.Slots.GetList().Where(i => i.registration_id == registration.id).ToList();
             reg.status = registration.status;

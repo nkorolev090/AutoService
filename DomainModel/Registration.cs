@@ -28,6 +28,9 @@ namespace DomainModel
 
         public int? reg_price { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime? reg_date { get; set; }
+
         public virtual Car Car { get; set; }
 
         public virtual Repair_Review Repair_Review { get; set; }

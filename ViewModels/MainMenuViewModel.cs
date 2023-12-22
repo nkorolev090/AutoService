@@ -14,7 +14,7 @@ using AutoService.Models;
 
 namespace AutoService.ViewModels
 {
-    public class MainMenuViewModel : INotifyPropertyChanged
+    public class MainMenuViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         ICarService carService;
         ISlotService slotService;
@@ -27,6 +27,19 @@ namespace AutoService.ViewModels
         public ObservableCollection<RegistrationDTO> Registrations { get; set; }
 
         public ObservableCollection<SlotDTO> RegistrationSlots { get; set; }
+        private SlotDTO selectedSlot;
+        public SlotDTO SelectedSlot 
+        { 
+            get 
+            { 
+                return selectedSlot; 
+            } 
+            set 
+            { 
+                selectedSlot = value;
+                OnPropertyChanged();
+            } 
+        }
 
         private Visibility visibilityDelRegBtn;
         public Visibility VisibilityDelRegBtn
@@ -109,7 +122,43 @@ namespace AutoService.ViewModels
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+        public string Error
+        {
+            get { return "...."; }
+        }
+        public string this[string columnName]
+        {
+            get
+            {
+                return Validate(columnName);
+            }
+        }
 
+        private string Validate(string propertyName)
+        {
+            // Return error message if there is error on else return empty or null string
+            string validationMessage = string.Empty;
+            switch (propertyName)
+            {
+                case "SelectedSlot": 
+
+                    if(SelectedSlot != null)
+                    {
+                        
+                        DateTime warrantyDate = SelectedSlot.start_date;
+                        warrantyDate = warrantyDate.Date.AddDays(SelectedSlot.breakdown_warranty*30);
+                        if (warrantyDate < DateTime.Now)
+                        {
+                            validationMessage = "Гарантия истекла";
+                        }
+                            
+                    }
+                        
+                    break;
+            }
+
+            return validationMessage;
+        }
         public MainMenuViewModel(ICarService carService, IClientService clientService, IRegistrationService registrationService, ISlotService slotService) { 
             this.registrationService = registrationService;
             this.carService = carService;

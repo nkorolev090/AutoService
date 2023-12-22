@@ -212,6 +212,7 @@ namespace AutoService.ViewModels
                             registration.review_id = null;
                             registration.info = null;
                             registration.status = 1;
+                            registration.reg_date = DateTime.Now;
                             registration.reg_price = RegPrice;
                             int reg_id = registrationService.CreateRegistration(registration);
 

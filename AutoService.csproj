@@ -77,6 +77,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Util\DateConverter.cs" />
     <Compile Include="ViewModels\MechanicMenuViewModel.cs" />
     <Compile Include="View\MechanicMenu.xaml.cs">
       <DependentUpon>MechanicMenu.xaml</DependentUpon>
