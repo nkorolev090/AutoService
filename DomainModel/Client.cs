@@ -24,8 +24,7 @@ namespace DomainModel
         public int discount_id { get; set; }
 
         [Required]
-        [StringLength(10)]
-        public string discount_points { get; set; }
+        public int discount_points { get; set; }
 
         [Required]
         [StringLength(50)]

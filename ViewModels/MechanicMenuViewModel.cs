@@ -10,6 +10,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace AutoService.ViewModels
 {
@@ -19,6 +20,7 @@ namespace AutoService.ViewModels
         IMechanicService mechanicService;
         IRegistrationService registrationService;
         ISlotService slotService;
+        IClientService clientService;
         public MechanicDTO Mechanic {get; set;}
         public ObservableCollection<RegistrationDTO> Registrations { get; set;}
         private RegistrationDTO selectedRegistration;
@@ -34,12 +36,15 @@ namespace AutoService.ViewModels
                 if(selectedRegistration.status == 4)
                 {
                     Statuses.Clear();
+                    Statuses.Add(registrationService.GetStatus(selectedRegistration.status));
                 }
                 else
                 {
                     Statuses.Clear();
                     Statuses.AddRange(registrationService.GetStatuses());
                 }
+                SelectedStatus = registrationService.GetStatus(selectedRegistration.status);
+                Info = SelectedRegistration.info;
                 OnPropertyChanged();
             }
         }
@@ -60,10 +65,25 @@ namespace AutoService.ViewModels
             }
         }
 
-        public MechanicMenuViewModel(IMechanicService mechanicService, IRegistrationService registrationService, ISlotService slotService)
+        private string info;
+        public string Info
+        {
+            get
+            {
+                    return info;
+            }
+            set
+            {
+                info = value;
+                OnPropertyChanged();
+            }
+        }
+        public MechanicMenuViewModel(IMechanicService mechanicService, IRegistrationService registrationService, ISlotService slotService, IClientService clientService)
         {
             this.mechanicService = mechanicService;
             this.registrationService = registrationService;
+            this.slotService = slotService;
+            this.clientService = clientService;
             Mechanic = mechanicService.GetMechanic(m_id);
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetMechanicRegistrations(Mechanic.id));
             Statuses = new ObservableCollection<StatusDTO>(registrationService.GetStatuses());
@@ -87,6 +107,33 @@ namespace AutoService.ViewModels
                     {
                         ViewNavigator.SwitchViewTo(Util.Views.MainWindowView);
 
+                    }));
+            }
+        }
+        private RelayCommand updateRegCommand;
+        public RelayCommand UpdateRegCommand
+        {
+            get
+            {
+
+                return updateRegCommand ?? (
+                    updateRegCommand = new RelayCommand(obj =>
+                    {
+                        if (MessageBox.Show("Вы действительно хотите отредактировать запись?",
+                    "Изменение записи",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        {
+                            SelectedRegistration.status = selectedStatus.id;
+                            SelectedRegistration.info = info;
+                            registrationService.UpdateRegistration(SelectedRegistration);
+                            if(SelectedRegistration.status == 4)
+                            {
+                                clientService.UpdateClientDiscount(SelectedRegistration.client_id, (int)SelectedRegistration.reg_price);
+                            }
+                           
+                        }
+                        
                     }));
             }
         }

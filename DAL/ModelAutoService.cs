@@ -68,9 +68,9 @@ namespace DAL
                 .Property(e => e.name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Client>()
-                .Property(e => e.discount_points)
-                .IsFixedLength();
+            //modelBuilder.Entity<Client>()
+            //    .Property(e => e.discount_points)
+            //    .IsFixedLength();
 
             modelBuilder.Entity<Client>()
                 .Property(e => e.surname)

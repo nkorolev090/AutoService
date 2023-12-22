@@ -19,7 +19,7 @@ namespace Interfaces.DTO
 
         public string discount_name { get; set; }
 
-        public string discount_points { get; set; }
+        public int discount_points { get; set; }
 
         public string surname { get; set; }
 

@@ -27,7 +27,7 @@ namespace Interfaces.DTO
        
         public string status_name { get; set; }
        
-
+        public int client_id {  get; set; }
         public int? review_id { get; set; }
         public int? reg_price { get; set; }
 
@@ -35,6 +35,7 @@ namespace Interfaces.DTO
             id = registration.id;
             car_id = registration.car_id;
             car_name = registration.Car.brand + " " + registration.Car.model;
+            client_id = registration.Car.owner_id;
             info = registration.info;
             status = registration.status;
             status_name = registration.Status1.name;

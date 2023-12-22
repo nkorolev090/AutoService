@@ -34,6 +34,50 @@ namespace BLL.Services
             return new ClientDTO(db.Clients.GetItem(id));
         }
 
+        public void UpdateClientDiscount(int id, int count)
+        {
+            Client client = db.Clients.GetItem(id);
+            client.discount_points += count;
+            if (client.discount_points >= 25000)
+            {
+                client.discount_id = 7;
+            }
+            else
+            {
+                if (client.discount_points >= 20000)
+                {
+                    client.discount_id = 4;
+                }
+                else
+                {
+                    if (client.discount_points >= 15000)
+                    {
+                        client.discount_id = 3;
+                    }
+                    else
+                    {
+                        if (client.discount_points >= 10000)
+                        {
+                            client.discount_id = 2;
+                        }
+                        else
+                        {
+                            if(client.discount_points >= 5000)
+                            {
+                                client.discount_id = 1;
+                            }
+                            else
+                            {
+                                client.discount_id = 0;
+                            }
+                        }
+                    }
+                }
+            }
+            client.Discount = db.Discouts.GetItem(client.discount_id);
+            db.Save();
+        }
+
         public void UpdateClientDTO(ClientDTO p)
         {
             throw new NotImplementedException();

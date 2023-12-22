@@ -21,6 +21,7 @@ namespace DAL.Repository
         private MechanicBreakdownRepositorySQL mechanicBreakdownRepository;
         private Repair_ReviewRepositorySQL reviewRepository;
         private StatusRepositorySQL statusRepository;
+        private DiscountRepositorySQL discountRepository;
         public DbRepositorySQL() {
             db = new ModelAutoService();
         }
@@ -133,6 +134,17 @@ namespace DAL.Repository
                     statusRepository = new StatusRepositorySQL(db);
                 }
                 return statusRepository;
+            }
+        }
+        public IRepository<Discount> Discouts
+        {
+            get
+            {
+                if (discountRepository == null)
+                {
+                    discountRepository = new DiscountRepositorySQL(db);
+                }
+                return discountRepository;
             }
         }
         public int Save()

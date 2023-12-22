@@ -179,15 +179,22 @@ AutoGenerateColumns="False"
                                 
                             </DataGrid.Columns>
                         </DataGrid>
-                        <ComboBox 
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                     materialDesign:HintAssist.Hint="Информация для клиента"
+                                     VerticalAlignment="Center"
+                                     Margin="10,10,0,0" Text="{Binding Info}"
+                                     MinWidth="300" MaxLines="1"/>
+                            <ComboBox 
                                         ItemsSource="{Binding Statuses}"
-                                        
-                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Margin="10,10,0,0"
                                         
                                        SelectedItem="{Binding SelectedStatus}"
 materialDesign:ComboBoxAssist.MaxLength="10"
-materialDesign:HintAssist.Hint="Статус заявки"
-materialDesign:HintAssist.HintOpacity=".5"
+materialDesign:HintAssist.Hint="{Binding SelectedStatus.name}"
+materialDesign:HintAssist.HintOpacity="1"
 materialDesign:HintAssist.HelperText="Выберите статус"
 Style="{StaticResource MaterialDesignOutlinedComboBox}"
 HorizontalAlignment="Left" Width="auto">
@@ -199,6 +206,22 @@ HorizontalAlignment="Left" Width="auto">
 
 
                         </ComboBox>
+                            <Button Grid.Column="2"
+            HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+            Width="150"
+Margin="10,0,0,0"
+materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+materialDesign:ButtonProgressAssist.Value="-1"
+Content="Отредактировать заявку"
+Command="{Binding UpdateRegCommand}"
+IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+Style="{StaticResource MaterialDesignRaisedButton}" >
+                               
+                            </Button>
+                        </StackPanel>
+                        
                     </StackPanel>
 
 

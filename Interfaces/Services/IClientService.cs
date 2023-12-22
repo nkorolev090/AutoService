@@ -12,6 +12,7 @@ namespace Interfaces.Services
         List<ClientDTO> GetAllClientDTO();
         bool CreateClientDTO(ClientDTO p);
         void UpdateClientDTO(ClientDTO p);
+        void UpdateClientDiscount(int id, int count);
         ClientDTO GetClientDTO(int id);
         void DeleteClientDTO(int id);
         int GetClientDiscount(int id);

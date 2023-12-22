@@ -339,31 +339,30 @@ AutoGenerateColumns="False"
                       Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}},Path=ActualWidth,Converter={StaticResource sizeConverter}}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="2*"/>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="3*"/>
                         </Grid.RowDefinitions>
 
                         <Button x:Name="exitButton" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Gray" BorderBrush="Gray"
                             Padding="0" Height="20" Width="20" Margin="8 5 8 0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Cursor="">
                             <materialDesign:PackIcon Kind="WindowClose"></materialDesign:PackIcon>
                         </Button>
-                        <Grid Grid.Row="1">
-                        <StackPanel Orientation="Vertical">
-                             <TextBlock  Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="10, 0, 0, 0">
+                        <Grid Grid.Row="1" >
+                            
+                            <TextBlock  Style="{StaticResource MaterialDesignHeadline4TextBlock}" Margin="25, 0, 0, 0" VerticalAlignment="Bottom">
                                 <Run Text="Запись на ремонт от "/>
                                 <Run Text="{Binding SelectedRegistration.start_date}"/>
                             </TextBlock>
-                            <TextBlock Text="{Binding SelectedRegistration.status_name, StringFormat=Статус: {0} }" 
+                        <TextBlock Text="{Binding SelectedRegistration.status_name, StringFormat=Статус: {0} }" 
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Right"
            Foreground="DarkSlateGray"  
            Style="{StaticResource MaterialDesignBody1TextBlock}" 
-           Margin="10, 5, 5, 5" />
-                        </StackPanel>
-                           
-
-                        </Grid>
+           Margin="10, 5, 25, 5" />
+                    </Grid>
                     <ScrollViewer Grid.Row="2" CanContentScroll="False" >
-                        <StackPanel Orientation ="Vertical">
+                        <StackPanel Orientation ="Vertical" Margin ="20 5 20 0">
                             
                             <DataGrid 
                                 Margin="5"
@@ -421,8 +420,12 @@ AutoGenerateColumns="False"
                   
                         </StackPanel>
                           </ScrollViewer>
-                    <Grid Grid.Row="3">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Grid Grid.Row="3" Margin="10, 5, 10, 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 35">
 
                                 <TextBlock Text="{Binding SelectedRegistration.car_name, StringFormat=Автомобиль: {0} }" 
                                            Foreground="DarkSlateGray"  
@@ -434,18 +437,34 @@ AutoGenerateColumns="False"
                                             Style="{StaticResource MaterialDesignBody1TextBlock}" 
                                             Margin="5" />
 
-                                <TextBlock Text="{Binding ClientDiscount, StringFormat=Скидка: {0}%}" 
-                                            Foreground="DarkSlateGray"  
-                                            Style="{StaticResource MaterialDesignBody1TextBlock}" 
-                                            Margin="5" />
-
-
                             </StackPanel>
-                            <Button 
+                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <UniformGrid Columns="2">
+                                 <DatePicker Grid.Column="0"
+                                             Margin="10"
+                                HorizontalContentAlignment="Center"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                 Visibility="{Binding VisibilityWarrantyBtn}"
+                                Width="150"
+                                materialDesign:HintAssist.Hint="Дата"
+                                materialDesign:HintAssist.HintOpacity=".5"
+                                materialDesign:HintAssist.HelperText="Выберите желаемую дату"            />
+                                <materialDesign:TimePicker Grid.Column="1"
+                                                           Margin="10"
+                                HorizontalContentAlignment="Center" 
+                                Style="{StaticResource MaterialDesignOutlinedTimePicker}"
+                                 Visibility="{Binding VisibilityWarrantyBtn}"
+                                Width="150"
+                                materialDesign:HintAssist.Hint="Время"
+                                materialDesign:HintAssist.HintOpacity=".5"
+                                materialDesign:HintAssist.HelperText="Выберите желаемое время" />
+                            </UniformGrid>
+                           
+                          <Button 
             HorizontalAlignment="Right"
                 VerticalAlignment="Center"
             Width="150"
-Margin="5,0,10,0"
+Margin="10"
 materialDesign:ButtonProgressAssist.IsIndeterminate="True"
 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
 materialDesign:ButtonProgressAssist.Value="-1"
@@ -460,15 +479,15 @@ Style="{StaticResource MaterialDesignRaisedButton}"
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Button>
-                        <Button 
+                          <Button 
             HorizontalAlignment="Right"
                 VerticalAlignment="Center"
-            Width="200"
-Margin="5,0,10,0"
+            Width="250"
+Margin="10"
 materialDesign:ButtonProgressAssist.IsIndeterminate="True"
 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
 materialDesign:ButtonProgressAssist.Value="-1"
-Content="Ремонт по гарантии"    
+Content="Выполнить ремонт по гарантии"    
 IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
 Style="{StaticResource MaterialDesignRaisedButton}"
                                 Visibility="{Binding VisibilityWarrantyBtn}">
@@ -478,7 +497,9 @@ Style="{StaticResource MaterialDesignRaisedButton}"
                                     <i:InvokeCommandAction Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
-                        </Button>
+                        </Button>  
+                        </StackPanel>
+                        
                     </Grid>
                     </Grid>
                
