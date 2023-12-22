@@ -27,6 +27,8 @@ namespace AutoService.ViewModels
         public ObservableCollection<RegistrationDTO> Registrations { get; set; }
 
         public ObservableCollection<SlotDTO> RegistrationSlots { get; set; }
+        public DateTime SelectedDate { get; set; }
+        public DateTime SelectedTime { get; set; }
         private SlotDTO selectedSlot;
         public SlotDTO SelectedSlot 
         { 
@@ -146,7 +148,7 @@ namespace AutoService.ViewModels
                     {
                         
                         DateTime warrantyDate = SelectedSlot.start_date;
-                        warrantyDate = warrantyDate.Date.AddDays(SelectedSlot.breakdown_warranty*30);
+                        warrantyDate = warrantyDate.Date.AddMonths(SelectedSlot.breakdown_warranty);
                         if (warrantyDate < DateTime.Now)
                         {
                             validationMessage = "Гарантия истекла";
@@ -169,6 +171,8 @@ namespace AutoService.ViewModels
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetClientRegistrations(Client.id));
             RegistrationSlots = new ObservableCollection<SlotDTO>();
             ClientDiscount = clientService.GetClientDiscount(Client.id);
+            SelectedDate = DateTime.Now;
+            SelectedTime = DateTime.Now;
            }
 
 
@@ -201,7 +205,36 @@ namespace AutoService.ViewModels
                     }));
             }
         }
+        private RelayCommand warrantyCommand;
+        public RelayCommand WarrantyCommand
+        {
+            get
+            {
 
+                return warrantyCommand ?? (
+                    warrantyCommand = new RelayCommand(obj =>
+                    {
+                       RegistrationDTO registration = new RegistrationDTO();
+                        registration.reg_price = 0;
+                        registration.reg_date = DateTime.Now;
+                        registration.status = 1;
+                        registration.car_id = SelectedRegistration.car_id;
+                        registration.review_id = SelectedRegistration.review_id;
+                        registration.info = "Гарантийный ремонт";
+                        registration = registrationService.CreateRegistration(registration);
+                        SlotDTO slot = new SlotDTO();
+                        slot.start_time = SelectedTime.TimeOfDay;
+                        slot.start_date = SelectedDate;
+                        slot.registration_id = registration.id;
+                        slot.cost = 0;
+                        slot.breakdown_id = SelectedSlot.breakdown_id;
+                        slot.mechanic_id = SelectedSlot.mechanic_id;
+                        slot = slotService.CreateSlot(slot);
+                        registrationService.UpdateRegistration(registration);
+
+                    }));
+            }
+        }
         private RelayCommand cancelWindow;
         public RelayCommand CancelWindow
         {

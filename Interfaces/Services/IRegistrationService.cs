@@ -14,7 +14,7 @@ namespace Interfaces.Services
         List<RegistrationDTO> GetMechanicRegistrations(int mechanic_id);
         List<StatusDTO> GetStatuses();
         StatusDTO GetStatus(int id);
-        int CreateRegistration(RegistrationDTO registration);
+        RegistrationDTO CreateRegistration(RegistrationDTO registration);
         void UpdateRegistration(RegistrationDTO registration);
         void DeleteRegistration(int registration_id);
     }

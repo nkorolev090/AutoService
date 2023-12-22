@@ -486,7 +486,8 @@ HorizontalAlignment="Left" Width="311">
                                 Width="150"
                                 materialDesign:HintAssist.Hint="Дата"
                                 materialDesign:HintAssist.HintOpacity=".5"
-                                materialDesign:HintAssist.HelperText="Выберите желаемую дату"            />
+                                materialDesign:HintAssist.HelperText="Выберите желаемую дату"  
+                                SelectedDate="{Binding SelectedDate}"/>
                                 <materialDesign:TimePicker Grid.Column="1"
                                                            Margin="10"
                                 HorizontalContentAlignment="Center" 
@@ -495,7 +496,8 @@ HorizontalAlignment="Left" Width="311">
                                 Width="150"
                                 materialDesign:HintAssist.Hint="Время"
                                 materialDesign:HintAssist.HintOpacity=".5"
-                                materialDesign:HintAssist.HelperText="Выберите желаемое время" />
+                                materialDesign:HintAssist.HelperText="Выберите желаемое время"
+                                SelectedTime="{Binding SelectedTime}"/>
                             </UniformGrid>
                            
                           <Button 

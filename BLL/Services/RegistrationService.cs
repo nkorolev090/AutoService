@@ -14,7 +14,7 @@ namespace BLL.Services
     {
         IDbRepository db;
         public RegistrationService(IDbRepository db) { this.db = db; }
-        public int CreateRegistration(RegistrationDTO registration)//тип возвращаемого значения и логика слотов
+        public RegistrationDTO CreateRegistration(RegistrationDTO registration)//тип возвращаемого значения и логика слотов
         {
             Registration reg = new Registration();
             reg.car_id = registration.car_id;
@@ -30,7 +30,7 @@ namespace BLL.Services
             db.Registrations.Create(reg);
             db.Save();
 
-            return db.Registrations.GetList().Last().id;
+            return new RegistrationDTO(db.Registrations.GetList().Last());
             
         }
         public RegistrationDTO GetItem(int id)

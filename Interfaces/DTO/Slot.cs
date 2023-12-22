@@ -50,5 +50,6 @@ namespace Interfaces.DTO
             this.finish_date = slot.finish_date;
             this.registration_id = slot.registration_id;
         }
+        public SlotDTO() { }
     }
 }

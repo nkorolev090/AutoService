@@ -14,6 +14,29 @@ namespace BLL.Services
     {
         IDbRepository db;
         public SlotService(IDbRepository db) { this.db = db; }
+        public SlotDTO CreateSlot(SlotDTO slotDTO)
+        {
+            Slot slot = new Slot();
+            slot.start_date = slotDTO.start_date;
+            slot.start_time = slotDTO.start_time;
+            slot.registration_id = slotDTO.registration_id;
+            if(slot.registration_id != null)
+            {
+                slot.Registration = db.Registrations.GetItem((int)slot.registration_id);
+            }
+            slot.breakdown_id = slotDTO.breakdown_id;
+            if(slot.breakdown_id != null)
+            {
+                slot.Breakdown = db.Breakdowns.GetItem((int) slot.breakdown_id);
+            }
+            slot.mechanic_id = slotDTO.mechanic_id;
+          
+                slot.Mechanic = db.Mechanics.GetItem((int)slot.mechanic_id);
+
+            db.Slots.Create(slot);
+            db.Save();
+            return new SlotDTO(db.Slots.GetList().Last());
+        }
         public List<SlotDTO> GetAllSlots()
         {
            return db.Slots.GetList().Where(i => i.registration_id == null).Select( i => new SlotDTO(i)).ToList();

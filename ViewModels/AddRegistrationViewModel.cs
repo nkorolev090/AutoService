@@ -214,15 +214,15 @@ namespace AutoService.ViewModels
                             registration.status = 1;
                             registration.reg_date = DateTime.Now;
                             registration.reg_price = RegPrice;
-                            int reg_id = registrationService.CreateRegistration(registration);
+                            registration = registrationService.CreateRegistration(registration);
 
                             foreach (SlotDTO slotDTO in CartSlots)
                             {
-                                slotDTO.registration_id = reg_id;
+                                slotDTO.registration_id = registration.id;
                                 slotService.UpdateSlot(slotDTO);
                             }
                             CartSlots.Clear();
-                            registration = registrationService.GetItem(reg_id);
+                            registration = registrationService.GetItem(registration.id);
                             registrationService.UpdateRegistration(registration);
                         }
                     }));
