@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoService"
         xmlns:util="clr-namespace:AutoService.Util"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         WindowStartupLocation ="CenterScreen"
       mc:Ignorable="d" 
@@ -142,7 +143,7 @@ AutoGenerateColumns="False"
       >
                                         <DataGrid.Columns>
 
-                                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Brand}">
+                                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding brand}">
                                                 <DataGridTextColumn.Header>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Marker"/>
@@ -151,7 +152,7 @@ AutoGenerateColumns="False"
                                                 </DataGridTextColumn.Header>
                                             </DataGridTextColumn>
 
-                                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Model}">
+                                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding model}">
                                                 <DataGridTextColumn.Header>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
@@ -160,7 +161,7 @@ AutoGenerateColumns="False"
                                                 </DataGridTextColumn.Header>
                                             </DataGridTextColumn>
 
-                                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Color}">
+                                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding color}">
                                                 <DataGridTextColumn.Header>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Color"/>
@@ -169,7 +170,7 @@ AutoGenerateColumns="False"
                                                 </DataGridTextColumn.Header>
                                             </DataGridTextColumn>
 
-                                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding Mileage}">
+                                            <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding mileage}">
                                                 <DataGridTextColumn.Header>
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                         <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="Counter"/>
@@ -256,8 +257,6 @@ AutoGenerateColumns="False"
                                 </DataGrid.Columns>
                             </DataGrid>
                         </StackPanel>
-
-
                     </TabItem>
                     <TabItem MinWidth="110">
                         <TabItem.Header>
@@ -268,29 +267,47 @@ AutoGenerateColumns="False"
             Width="24"
             Height="24"
             HorizontalAlignment="Center"
-            Kind="CogBox" />
+            Kind="ChartDonut" />
                                 <TextBlock
             HorizontalAlignment="Center"
-            Text="Настройки" />
+            Text="Отчет" />
                             </StackPanel>
                         </TabItem.Header>
-                        <StackPanel
+                        <Grid
         Margin="16">
-                            <TextBlock
-          Margin="0,0,0,8"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="9*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+          Margin="8"
+                                   VerticalAlignment="Center"
           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-          Text="Photos" />
-                            <TextBlock>
-          <Run
-            Text="tab 3 content. Default look and behaviors." />
-          <LineBreak />
-          <LineBreak />
-          <Run
-            FontStyle="Italic">
-          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </Run>
-                            </TextBlock>
-                        </StackPanel>
+          Text="Отчет" />
+                        <ComboBox
+                                        ItemsSource="{Binding Cars}"
+                                       SelectedItem="{Binding SelectedCar}"
+materialDesign:ComboBoxAssist.MaxLength="10"
+materialDesign:HintAssist.Hint="Поиск"
+materialDesign:HintAssist.HintOpacity=".5"
+materialDesign:HintAssist.HelperText="Выберите автомобиль"
+Style="{StaticResource MaterialDesignOutlinedComboBox}"
+           Margin="10,0,0,0"    
+HorizontalAlignment="Right" Width="212" Height="48">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding br_mod}"></TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+
+
+                        </ComboBox>
+                        <Grid Grid.Row="1">
+                            <lvc:PieChart
+    Series="{Binding Series}">
+                            </lvc:PieChart>
+                        </Grid>
+                    </Grid>
                     </TabItem>
                     <TabItem MinWidth="110">
                         <TabItem.Header>

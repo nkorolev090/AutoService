@@ -10,7 +10,11 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using AutoService.Models;
+
+using LiveCharts;
+using LiveCharts.Definitions.Series;
+using LiveCharts.Wpf;
+using LiveCharts.Defaults;
 
 namespace AutoService.ViewModels
 {
@@ -20,15 +24,42 @@ namespace AutoService.ViewModels
         ISlotService slotService;
         IClientService clientService;
         IRegistrationService registrationService;
-        public ObservableCollection<CarModel> Cars { get; set; }
+        public ObservableCollection<CarDTO> Cars { get; set; }
         public ClientDTO Client { get; set; }
         public int ClientDiscount { get; set; }
 
         public ObservableCollection<RegistrationDTO> Registrations { get; set; }
 
         public ObservableCollection<SlotDTO> RegistrationSlots { get; set; }
+        public Dictionary<string, int> CarSlots { get; set; }
+        public SeriesCollection Series { get; set; }
         public DateTime SelectedDate { get; set; }
         public DateTime SelectedTime { get; set; }
+        private CarDTO selectedCar;
+        public CarDTO SelectedCar
+        {
+            get { return selectedCar; }
+            set
+            {
+                selectedCar = value;
+                
+                CarSlots.Clear();
+                CarSlots = slotService.GetCarSlots(selectedCar.id);
+                Series.Clear();
+                foreach (string breakdown in CarSlots.Keys)
+                {
+                    Series.Add(
+                    new PieSeries
+                    {
+                        Title = breakdown,
+                        Values = new ChartValues<ObservableValue> { new ObservableValue(CarSlots[breakdown]) }
+                    });
+                }
+                OnPropertyChanged();
+                
+                
+            }
+        }
         private SlotDTO selectedSlot;
         public SlotDTO SelectedSlot 
         { 
@@ -167,13 +198,31 @@ namespace AutoService.ViewModels
             this.clientService = clientService;
             this.slotService = slotService;
             Client = clientService.GetClientDTO(2);
-            Cars = new ObservableCollection<CarModel>(carService.GetAllCarDTO(Client.id).Select(i => new CarModel(i)));
+            Cars = new ObservableCollection<CarDTO>(carService.GetAllCarDTO(Client.id));
+            if(Cars.Count > 0)
+            {
+                selectedCar = Cars.First();
+                OnPropertyChanged(nameof(SelectedCar));
+            }
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetClientRegistrations(Client.id));
             RegistrationSlots = new ObservableCollection<SlotDTO>();
+            CarSlots = slotService.GetCarSlots(SelectedCar.id);
             ClientDiscount = clientService.GetClientDiscount(Client.id);
             SelectedDate = DateTime.Now;
             SelectedTime = DateTime.Now;
-           }
+            Series = new SeriesCollection();
+
+            foreach (string breakdown in CarSlots.Keys)
+            {
+                Series.Add(
+                new PieSeries
+                {
+                    Title = breakdown,
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(CarSlots[breakdown]) }
+                });
+            }
+
+        }
 
 
         private RelayCommand openAddRegCommand;

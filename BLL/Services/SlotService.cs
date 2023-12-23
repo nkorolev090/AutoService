@@ -3,6 +3,7 @@ using Interfaces.DTO;
 using Interfaces.Repository;
 using Interfaces.Services;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,7 +55,23 @@ namespace BLL.Services
         {
             return db.Slots.GetList().Where(i => i.registration_id == regId).Select(i => new SlotDTO(i)).ToList();
         }
-
+        public Dictionary<string, int> GetCarSlots(int carId)
+        {
+            List<SlotDTO> carSlots = db.Slots.GetList().Where(i => i.Registration.car_id == carId).Select(i => new SlotDTO(i)).ToList();
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            foreach(SlotDTO carSlot in carSlots)
+            {
+                if (dictionary.ContainsKey(carSlot.breakdown_name))
+                {
+                    dictionary[carSlot.breakdown_name] += 1;
+                }
+                else
+                {
+                    dictionary.Add(carSlot.breakdown_name, 1);
+                }
+            }
+            return dictionary;
+        }
         public SlotDTO GetSlot(int id)
         {
             return new SlotDTO(db.Slots.GetItem(id));
