@@ -55,9 +55,9 @@ namespace BLL.Services
         {
             return db.Slots.GetList().Where(i => i.registration_id == regId).Select(i => new SlotDTO(i)).ToList();
         }
-        public Dictionary<string, int> GetCarSlots(int carId)
+        public Dictionary<string, int> GetCarSlotsReport(int carId)
         {
-            List<SlotDTO> carSlots = db.Slots.GetList().Where(i => i.Registration.car_id == carId).Select(i => new SlotDTO(i)).ToList();
+            List<SlotDTO> carSlots = db.Slots.GetList().Where(i =>i.registration_id != null && i.Registration.car_id == carId).Select(i => new SlotDTO(i)).ToList();
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
             foreach(SlotDTO carSlot in carSlots)
             {
@@ -68,6 +68,47 @@ namespace BLL.Services
                 else
                 {
                     dictionary.Add(carSlot.breakdown_name, 1);
+                }
+            }
+            return dictionary;
+        }
+        public Dictionary<string, int> GetMechanicSlotsReport(int mechanicId, string mounths)
+        {
+            int mnth;
+            switch (mounths)
+            {
+                case "Месяц":
+                    mnth = 1; break;
+                case "Квартал":
+                    mnth = 3; break;
+                case "Полгода":
+                    mnth = 6; break;
+                case "Год":
+                    mnth = 12; break;
+                default:
+                    mnth = 0; break;
+
+            }
+            List<SlotDTO> mSlots;
+            if (mnth == 0)
+            {
+                mSlots = db.Slots.GetList().Where(i =>i.registration_id != null && i.Registration.status == 4 && i.mechanic_id == mechanicId).Select(i => new SlotDTO(i)).ToList();
+            }
+            else
+            {
+                DateTime reportDate = DateTime.Now.AddMonths(-mnth);
+                mSlots = db.Slots.GetList().Where(i => i.registration_id != null && i.Registration.status == 4 && i.mechanic_id == mechanicId && i.start_date > reportDate).Select(i => new SlotDTO(i)).ToList();
+            }
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            foreach (SlotDTO mSlot in mSlots)
+            {
+                if (dictionary.ContainsKey(mSlot.breakdown_name))
+                {
+                    dictionary[mSlot.breakdown_name] += 1;
+                }
+                else
+                {
+                    dictionary.Add(mSlot.breakdown_name, 1);
                 }
             }
             return dictionary;

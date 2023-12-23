@@ -283,7 +283,7 @@ AutoGenerateColumns="False"
           Margin="8"
                                    VerticalAlignment="Center"
           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-          Text="Отчет" />
+          Text="Отчет об оказанных услугах" />
                         <ComboBox
                                         ItemsSource="{Binding Cars}"
                                        SelectedItem="{Binding SelectedCar}"
@@ -304,6 +304,7 @@ HorizontalAlignment="Right" Width="212" Height="48">
                         </ComboBox>
                         <Grid Grid.Row="1">
                             <lvc:PieChart
+                                LegendLocation="Bottom"
     Series="{Binding Series}">
                             </lvc:PieChart>
                         </Grid>

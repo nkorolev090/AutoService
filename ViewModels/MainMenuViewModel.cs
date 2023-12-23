@@ -44,15 +44,19 @@ namespace AutoService.ViewModels
                 selectedCar = value;
                 
                 CarSlots.Clear();
-                CarSlots = slotService.GetCarSlots(selectedCar.id);
+                CarSlots = slotService.GetCarSlotsReport(selectedCar.id);
                 Series.Clear();
+                Func<ChartPoint, string> PointLabel = chartPoint =>
+                         string.Format("{0:P}", chartPoint.Participation);
                 foreach (string breakdown in CarSlots.Keys)
                 {
                     Series.Add(
                     new PieSeries
                     {
                         Title = breakdown,
-                        Values = new ChartValues<ObservableValue> { new ObservableValue(CarSlots[breakdown]) }
+                        Values = new ChartValues<ObservableValue> { new ObservableValue(CarSlots[breakdown]) },
+                        DataLabels = true,
+                        //LabelPoint = PointLabel
                     });
                 }
                 OnPropertyChanged();
@@ -206,19 +210,22 @@ namespace AutoService.ViewModels
             }
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetClientRegistrations(Client.id));
             RegistrationSlots = new ObservableCollection<SlotDTO>();
-            CarSlots = slotService.GetCarSlots(SelectedCar.id);
+            CarSlots = slotService.GetCarSlotsReport(SelectedCar.id);
             ClientDiscount = clientService.GetClientDiscount(Client.id);
             SelectedDate = DateTime.Now;
             SelectedTime = DateTime.Now;
             Series = new SeriesCollection();
-
+            Func<ChartPoint, string> PointLabel = chartPoint =>
+                          string.Format("{0:P}", chartPoint.Participation);
             foreach (string breakdown in CarSlots.Keys)
             {
                 Series.Add(
                 new PieSeries
                 {
                     Title = breakdown,
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(CarSlots[breakdown]) }
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(CarSlots[breakdown]) },
+                    DataLabels = true,
+                    //LabelPoint = PointLabel
                 });
             }
 

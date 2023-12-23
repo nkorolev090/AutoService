@@ -54,10 +54,22 @@ namespace BLL.Services
 
         public List<RegistrationDTO> GetMechanicRegistrations(int mechanic_id)
         {
-            return db.Slots.GetList().Where(i => i.mechanic_id == mechanic_id).ToList().Select(i => new RegistrationDTO(i.Registration)).ToList();
+            return db.Slots.GetList().Where(i => i.registration_id != null && i.mechanic_id == mechanic_id).ToList().Select(i => new RegistrationDTO(i.Registration)).ToList();
         }
         public void UpdateRegistration(RegistrationDTO registration)
         {
+            if(registration.status == 3)//если заявка отклонена то необходимо освободить слоты
+            {
+                List<Slot> regSlots = db.Slots.GetList().Where(i=>i.registration_id == registration.id).ToList();
+                foreach (Slot regSlot in regSlots)
+                {
+                    regSlot.registration_id = null;
+                    regSlot.Registration = null;
+                    regSlot.breakdown_id = null;
+                    regSlot.Breakdown = null;
+                }
+                db.Save();
+            }
             Registration reg = db.Registrations.GetItem(registration.id);
             reg.reg_price = registration.reg_price;
             reg.info = registration.info;

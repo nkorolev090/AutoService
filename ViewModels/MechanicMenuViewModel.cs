@@ -11,6 +11,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 
 namespace AutoService.ViewModels
 {
@@ -22,7 +25,41 @@ namespace AutoService.ViewModels
         ISlotService slotService;
         IClientService clientService;
         public MechanicDTO Mechanic {get; set;}
+        public SeriesCollection Series { get; set; }
         public ObservableCollection<RegistrationDTO> Registrations { get; set;}
+        public Dictionary<string, int> MechanicSlots { get; set; }
+        public List<string> Intervals { get; }
+        private string selectedInterval;
+        public string SelectedInterval
+        {
+            get 
+            {
+                return selectedInterval;
+            }
+            set
+            {
+
+                selectedInterval = value;
+
+                MechanicSlots.Clear();
+                MechanicSlots = slotService.GetMechanicSlotsReport(Mechanic.id, SelectedInterval);
+                Series.Clear();
+                Func<ChartPoint, string> PointLabel = chartPoint =>
+              string.Format("{0:P}", chartPoint.Participation);
+                foreach (string breakdown in MechanicSlots.Keys)
+                {
+                    Series.Add(
+                    new PieSeries
+                    {
+                        Title = breakdown,
+                        Values = new ChartValues<ObservableValue> { new ObservableValue(MechanicSlots[breakdown]) },
+                        DataLabels = true,
+                        //LabelPoint = PointLabel
+                    });
+                }
+                OnPropertyChanged();
+            }
+        }
         private RegistrationDTO selectedRegistration;
         public RegistrationDTO SelectedRegistration
         { get
@@ -33,7 +70,7 @@ namespace AutoService.ViewModels
             {
                 selectedRegistration = value;
                
-                if(selectedRegistration.status == 4)
+                if(selectedRegistration.status == 4 || selectedRegistration.status == 3)
                 {
                     Statuses.Clear();
                     Statuses.Add(registrationService.GetStatus(selectedRegistration.status));
@@ -87,6 +124,24 @@ namespace AutoService.ViewModels
             Mechanic = mechanicService.GetMechanic(m_id);
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetMechanicRegistrations(Mechanic.id));
             Statuses = new ObservableCollection<StatusDTO>(registrationService.GetStatuses());
+            Intervals = new List<string> { "Месяц", "Квартал", "Полгода", "Год", "Все время" };
+            selectedInterval = Intervals.Last();
+            MechanicSlots = slotService.GetMechanicSlotsReport(Mechanic.id, SelectedInterval);
+            Series = new SeriesCollection();
+            Func<ChartPoint, string> PointLabel = chartPoint =>
+                          string.Format("{0:P}", chartPoint.Participation);
+            foreach (string breakdown in MechanicSlots.Keys)
+            {
+                Series.Add(
+                new PieSeries
+                {
+                    Title = breakdown,
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(MechanicSlots[breakdown]) },
+                    DataLabels = true,
+                    //LabelPoint = PointLabel
+                });
+            }
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:util="clr-namespace:AutoService.Util"
         xmlns:local="clr-namespace:AutoService.View"
         Title="Mechanice"
               mc:Ignorable="d" 
@@ -17,6 +19,10 @@ TextOptions.TextFormattingMode="Ideal"
 TextOptions.TextRenderingMode="Auto"
 Background="{DynamicResource MaterialDesignPaper}"
 FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        
+        <util:DateConverter x:Key="dateConverter"></util:DateConverter>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -139,20 +145,11 @@ AutoGenerateColumns="False"
       >
                             <DataGrid.Columns>
 
-                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_date}">
+                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding reg_date, Converter= {StaticResource dateConverter}}">
                                     <DataGridTextColumn.Header>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CalendarRange"/>
                                             <TextBlock Text="Дата"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
-
-                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding start_time}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ClockOutline"/>
-                                            <TextBlock Text="Время"/>
                                         </StackPanel>
                                     </DataGridTextColumn.Header>
                                 </DataGridTextColumn>
@@ -190,7 +187,7 @@ AutoGenerateColumns="False"
                                         ItemsSource="{Binding Statuses}"
                                         VerticalAlignment="Center"
                                         Margin="10,10,0,0"
-                                        
+                                        MinWidth="100"
                                        SelectedItem="{Binding SelectedStatus}"
 materialDesign:ComboBoxAssist.MaxLength="10"
 materialDesign:HintAssist.Hint="{Binding SelectedStatus.name}"
@@ -232,32 +229,46 @@ Style="{StaticResource MaterialDesignRaisedButton}" >
           Width="auto"
           Height="auto">
                             <materialDesign:PackIcon
-            Width="24"
-            Height="24"
-            HorizontalAlignment="Center"
-            Kind="CogBox" />
+Width="24"
+Height="24"
+HorizontalAlignment="Center"
+Kind="ChartDonut" />
                             <TextBlock
-            HorizontalAlignment="Center"
-            Text="Настройки" />
+HorizontalAlignment="Center"
+Text="Отчет" />
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel
+                    <Grid
         Margin="16">
-                        <TextBlock
-          Margin="0,0,0,8"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="9*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+          Margin="8"
+                                   VerticalAlignment="Center"
           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-          Text="Photos" />
-                        <TextBlock>
-          <Run
-            Text="tab 3 content. Default look and behaviors." />
-          <LineBreak />
-          <LineBreak />
-          <Run
-            FontStyle="Italic">
-          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </Run>
-                        </TextBlock>
-                    </StackPanel>
+          Text="Отчет об оказанных услугах" />
+                        <ComboBox
+                                        ItemsSource="{Binding Intervals}"
+                                       SelectedItem="{Binding SelectedInterval}"
+materialDesign:ComboBoxAssist.MaxLength="10"
+materialDesign:HintAssist.Hint="Временной промежуток"
+materialDesign:HintAssist.HintOpacity=".5"
+materialDesign:HintAssist.HelperText="Выберите промежуток составления отчета"
+Style="{StaticResource MaterialDesignOutlinedComboBox}"
+           Margin="10,0,0,0"    
+HorizontalAlignment="Right" Width="212" Height="48">
+                           
+
+                        </ComboBox>
+                        <Grid Grid.Row="1">
+                            <lvc:PieChart
+                                LegendLocation="Bottom"
+    Series="{Binding Series}">
+                            </lvc:PieChart>
+                        </Grid>
+                    </Grid>
                 </TabItem>
                 <TabItem MinWidth="110">
                     <TabItem.Header>
