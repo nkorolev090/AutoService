@@ -201,8 +201,13 @@ AutoGenerateColumns="False"
             Text="Записи" />
                             </StackPanel>
                         </TabItem.Header>
-                        <StackPanel>
-                            <TextBlock Margin="8" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Записи"/>
+                        <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="8*"/>
+                        </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Margin="8" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Записи"/>
+                        <ScrollViewer Grid.Row="1" CanContentScroll="False" >
                             <DataGrid 
               ItemsSource="{Binding Registrations}"
               CanUserAddRows="True"
@@ -211,7 +216,7 @@ AutoGenerateColumns="False"
       >
                                 <DataGrid.Columns>
 
-                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding reg_date, Converter={StaticResource dateConverter}}">
+                                    <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding reg_date, Converter={StaticResource dateConverter}}">
                                         <DataGridTextColumn.Header>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                 <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CalendarRange"/>
@@ -257,7 +262,8 @@ AutoGenerateColumns="False"
                                     </DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
-                        </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
                     </TabItem>
                     <TabItem MinWidth="110">
                         <TabItem.Header>

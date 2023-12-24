@@ -137,49 +137,55 @@ Text="{Binding  Mechanic.tel_number}" />
             Text="Записи" />
                         </StackPanel>
                     </TabItem.Header>
-                    <StackPanel>
-                        <TextBlock Margin="8" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Записи"/>
-                        <DataGrid 
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Margin="8" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="Записи"/>
+                        <ScrollViewer Grid.Row="1" CanContentScroll="False" >
+                                <DataGrid 
               ItemsSource="{Binding Registrations}"
               CanUserAddRows="False"
 AutoGenerateColumns="False"
                                 SelectedItem="{Binding SelectedRegistration}"
       >
-                            <DataGrid.Columns>
+                                    <DataGrid.Columns>
 
-                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding reg_date, Converter= {StaticResource dateConverter}}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CalendarRange"/>
-                                            <TextBlock Text="Дата"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding reg_date, Converter= {StaticResource dateConverter}}">
+                                            <DataGridTextColumn.Header>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CalendarRange"/>
+                                                    <TextBlock Text="Дата"/>
+                                                </StackPanel>
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
 
-                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding car_name}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
-                                            <TextBlock Text="Автомобиль"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding car_name}">
+                                            <DataGridTextColumn.Header>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CarSports"/>
+                                                    <TextBlock Text="Автомобиль"/>
+                                                </StackPanel>
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
 
 
-                                <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding status_name}">
-                                    <DataGridTextColumn.Header>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ProgressCheck"/>
-                                            <TextBlock Text="Статус"/>
-                                        </StackPanel>
-                                    </DataGridTextColumn.Header>
-                                </DataGridTextColumn>
+                                        <DataGridTextColumn Width="*" IsReadOnly="True" CanUserResize="False" Binding="{Binding status_name}">
+                                            <DataGridTextColumn.Header>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="ProgressCheck"/>
+                                                    <TextBlock Text="Статус"/>
+                                                </StackPanel>
+                                            </DataGridTextColumn.Header>
+                                        </DataGridTextColumn>
 
-                                
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        
-                        <StackPanel Orientation="Horizontal">
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </ScrollViewer>
+                            <StackPanel VerticalAlignment="Top" Grid.Row="2" Orientation="Horizontal">
                             <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                      materialDesign:HintAssist.Hint="Информация для клиента"
                                      VerticalAlignment="Center"
@@ -221,7 +227,7 @@ Style="{StaticResource MaterialDesignRaisedButton}" >
                             </Button>
                         </StackPanel>
                         
-                    </StackPanel>
+                    </Grid>
 
 
                 </TabItem>

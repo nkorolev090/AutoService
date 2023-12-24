@@ -54,7 +54,16 @@ namespace BLL.Services
 
         public List<RegistrationDTO> GetMechanicRegistrations(int mechanic_id)
         {
-            return db.Slots.GetList().Where(i => i.registration_id != null && i.mechanic_id == mechanic_id).ToList().Select(i => new RegistrationDTO(i.Registration)).ToList();
+            List<RegistrationDTO> regs = db.Slots.GetList().Where(i => i.registration_id != null && i.mechanic_id == mechanic_id).ToList().Select(i => new RegistrationDTO(i.Registration)).ToList();
+            List<RegistrationDTO> regsRet = new List<RegistrationDTO>();
+            foreach (var reg in regs)
+            {
+                if (!regsRet.Any(i => i.id == reg.id))
+                {
+                    regsRet.Add(reg);
+                }
+            }
+            return regsRet;
         }
         public void UpdateRegistration(RegistrationDTO registration)
         {
