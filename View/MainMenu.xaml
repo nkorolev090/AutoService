@@ -97,6 +97,7 @@ Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
                                             <Button
 HorizontalAlignment="Left"
 VerticalAlignment="Bottom"
+                                                IsEnabled="False"
 Content="{materialDesign:PackIcon Kind=Pencil,Size=22}"
 Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
 
@@ -505,7 +506,7 @@ HorizontalAlignment="Left" Width="311">
                                 materialDesign:HintAssist.Hint="Дата"
                                 materialDesign:HintAssist.HintOpacity=".5"
                                 materialDesign:HintAssist.HelperText="Выберите желаемую дату"  
-                                SelectedDate="{Binding SelectedDate}"/>
+                                SelectedDate="{Binding SelectedDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                                 <materialDesign:TimePicker Grid.Column="1"
                                                            Margin="10"
                                 HorizontalContentAlignment="Center" 
@@ -515,7 +516,7 @@ HorizontalAlignment="Left" Width="311">
                                 materialDesign:HintAssist.Hint="Время"
                                 materialDesign:HintAssist.HintOpacity=".5"
                                 materialDesign:HintAssist.HelperText="Выберите желаемое время"
-                                SelectedTime="{Binding SelectedTime}"/>
+                                SelectedTime="{Binding SelectedTime, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
                             </UniformGrid>
                            
                           <Button 
@@ -527,7 +528,7 @@ materialDesign:ButtonProgressAssist.IsIndeterminate="True"
 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
 materialDesign:ButtonProgressAssist.Value="-1"
 Content="Удалить запись"    
-IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+IsEnabled="True"
 Style="{StaticResource MaterialDesignRaisedButton}"
                                 Visibility="{Binding VisibilityDelRegBtn}">
                                 <i:Interaction.Triggers>
@@ -546,7 +547,7 @@ materialDesign:ButtonProgressAssist.IsIndeterminate="True"
 materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
 materialDesign:ButtonProgressAssist.Value="-1"
 Content="Выполнить ремонт по гарантии"    
-IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+IsEnabled="{Binding BtnWarrantyEnable}"
 Style="{StaticResource MaterialDesignRaisedButton}"
                                 Visibility="{Binding VisibilityWarrantyBtn}">
                             <i:Interaction.Triggers>

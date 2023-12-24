@@ -91,6 +91,7 @@ Foreground="{DynamicResource SecondaryHueMidForegroundBrush}"
 HorizontalAlignment="Left"
 VerticalAlignment="Bottom"
 Content="{materialDesign:PackIcon Kind=Pencil,Size=22}"
+                                            IsEnabled="False"
 Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryButton}" />
 
                                         <StackPanel>
@@ -213,7 +214,7 @@ materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
 materialDesign:ButtonProgressAssist.Value="-1"
 Content="Отредактировать заявку"
 Command="{Binding UpdateRegCommand}"
-IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+IsEnabled="{Binding BtnUpdateEnable}"
 Style="{StaticResource MaterialDesignRaisedButton}" >
                                
                             </Button>

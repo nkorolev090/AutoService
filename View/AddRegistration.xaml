@@ -76,7 +76,7 @@ FontFamily="{DynamicResource MaterialDesignFont}">
                                         
                                         Margin="10,0,0,0"
                                         
-                                       SelectedItem="{Binding SelectedBreakdown}"
+                                       SelectedItem="{Binding SelectedBreakdown, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
 materialDesign:ComboBoxAssist.MaxLength="10"
 materialDesign:HintAssist.Hint="Поиск"
 materialDesign:HintAssist.HintOpacity=".5"
@@ -100,7 +100,8 @@ HorizontalAlignment="Left" Width="311">
                                         Height="40"
                                         Command="{Binding OpenAboutBreakdown}"
   Style="{StaticResource MaterialDesignFloatingActionButton}"
-  ToolTip="MaterialDesignFloatingActionSecondaryLightButton">
+  ToolTip="MaterialDesignFloatingActionSecondaryLightButton"
+                                        IsEnabled="{Binding BtnAboutEnable}">
                                         <materialDesign:PackIcon
     Width="30"
     Height="30"
@@ -112,7 +113,7 @@ HorizontalAlignment="Left" Width="311">
                                 <DatePicker
 Width="140"
                   Margin="10"
-                                    SelectedDate="{Binding StartDate}"
+                                    SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
 materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="1"
 materialDesign:HintAssist.FloatingOffset="0,-22"
 materialDesign:HintAssist.HelperText="Выберите дату"
@@ -295,7 +296,7 @@ HorizontalAlignment="Left" Width="212" Height="48">
     materialDesign:ButtonProgressAssist.Value="-1"
     Content="Создать заявку"
              
-    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+    IsEnabled="{Binding BtnCreateEnable}"
     Style="{StaticResource MaterialDesignRaisedButton}" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">

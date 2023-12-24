@@ -29,6 +29,20 @@ namespace AutoService.ViewModels
         public ObservableCollection<RegistrationDTO> Registrations { get; set;}
         public Dictionary<string, int> MechanicSlots { get; set; }
         public List<string> Intervals { get; }
+        private bool btnUpdateEnable;
+        public bool BtnUpdateEnable 
+        {  
+            get
+            {
+                return btnUpdateEnable;
+            }
+
+            set
+            {
+                btnUpdateEnable = value;
+                OnPropertyChanged();
+            } 
+        }
         private string selectedInterval;
         public string SelectedInterval
         {
@@ -74,11 +88,13 @@ namespace AutoService.ViewModels
                 {
                     Statuses.Clear();
                     Statuses.Add(registrationService.GetStatus(selectedRegistration.status));
+                    BtnUpdateEnable = false;
                 }
                 else
                 {
                     Statuses.Clear();
                     Statuses.AddRange(registrationService.GetStatuses());
+                    BtnUpdateEnable = true;
                 }
                 SelectedStatus = registrationService.GetStatus(selectedRegistration.status);
                 Info = SelectedRegistration.info;
@@ -121,6 +137,7 @@ namespace AutoService.ViewModels
             this.registrationService = registrationService;
             this.slotService = slotService;
             this.clientService = clientService;
+            BtnUpdateEnable = false;
             Mechanic = mechanicService.GetMechanic(m_id);
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetMechanicRegistrations(Mechanic.id));
             Statuses = new ObservableCollection<StatusDTO>(registrationService.GetStatuses());

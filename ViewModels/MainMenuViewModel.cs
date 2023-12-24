@@ -35,6 +35,78 @@ namespace AutoService.ViewModels
         public SeriesCollection Series { get; set; }
         public DateTime SelectedDate { get; set; }
         public DateTime SelectedTime { get; set; }
+        private bool cmbWarratyEnable;
+        public bool CmbWarratyEnable
+        {
+            get
+            {
+                return cmbWarratyEnable;
+            }
+            set
+            {
+                cmbWarratyEnable = value;
+                if(cmbWarratyEnable && timeWarratyEnable && dateWarratyEnable) {
+                    BtnWarrantyEnable = true;
+                }
+                else
+                {
+                    BtnWarrantyEnable = false;
+                }
+            }
+        }
+        private bool timeWarratyEnable;
+        public bool TimeWarratyEnable
+        {
+            get
+            {
+                return timeWarratyEnable;
+            }
+            set
+            {
+                timeWarratyEnable = value;
+                if (cmbWarratyEnable && timeWarratyEnable && dateWarratyEnable)
+                {
+                    BtnWarrantyEnable = true;
+                }
+                else
+                {
+                    BtnWarrantyEnable = false;
+                }
+            }
+        }
+        private bool dateWarratyEnable;
+        public bool DateWarratyEnable
+        {
+            get
+            {
+                return dateWarratyEnable;
+            }
+            set
+            {
+                dateWarratyEnable = value;
+                if (cmbWarratyEnable && timeWarratyEnable && dateWarratyEnable)
+                {
+                    BtnWarrantyEnable = true;
+                }
+                else
+                {
+                    BtnWarrantyEnable = false;
+                }
+            }
+        }
+        private bool btnWarrantyEnable;
+        public bool BtnWarrantyEnable
+        {
+            get
+            {
+                return btnWarrantyEnable;
+            }
+            set
+            {
+                btnWarrantyEnable = value;
+                OnPropertyChanged();
+            }
+        }
         private CarDTO selectedCar;
         public CarDTO SelectedCar
         {
@@ -74,6 +146,7 @@ namespace AutoService.ViewModels
             set 
             { 
                 selectedSlot = value;
+                //cmbWarratyEnable = true;
                 OnPropertyChanged();
             } 
         }
@@ -187,11 +260,46 @@ namespace AutoService.ViewModels
                         if (warrantyDate < DateTime.Now)
                         {
                             validationMessage = "Гарантия истекла";
+                            CmbWarratyEnable = false;
+                        }
+                        else
+                        {
+                            CmbWarratyEnable = true;
                         }
                             
                     }
                         
                     break;
+                case "SelectedDate":
+                    if(SelectedDate != null)
+                    {
+                        if(SelectedDate.Date < DateTime.Now.Date)
+                        {
+                            validationMessage = "Выберете дату в будующем";
+                            DateWarratyEnable = false;
+                        }
+                        else
+                        {
+                            DateWarratyEnable = true;
+                        }
+                        Validate("SelectedTime");
+                    }
+                    break;
+                case "SelectedTime":
+                    if (SelectedTime != null)
+                    {
+                        if(SelectedDate.Date == DateTime.Now.Date && SelectedTime.TimeOfDay < DateTime.Now.TimeOfDay)
+                        {
+                            validationMessage = "Выберете время в будующем";
+                            TimeWarratyEnable = false;
+                        }
+                        else
+                        {
+                            TimeWarratyEnable = true;
+                        }
+                    }
+                    break;
+
             }
 
             return validationMessage;
@@ -212,6 +320,8 @@ namespace AutoService.ViewModels
             RegistrationSlots = new ObservableCollection<SlotDTO>();
             CarSlots = slotService.GetCarSlotsReport(SelectedCar.id);
             ClientDiscount = clientService.GetClientDiscount(Client.id);
+            CmbWarratyEnable = false;
+           
             SelectedDate = DateTime.Now;
             SelectedTime = DateTime.Now;
             Series = new SeriesCollection();

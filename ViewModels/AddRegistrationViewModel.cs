@@ -29,8 +29,50 @@ namespace AutoService.ViewModels
         public SlotDTO SelectedCartSlot { get; set; }
         public ObservableCollection<SlotDTO> Slots { get; set; }
         public SlotDTO SelectedSlot { get; set; }
-        public ObservableCollection<CarDTO> Cars { get; set; } 
-        public CarDTO SelectedCar { get; set; }
+        public ObservableCollection<CarDTO> Cars { get; set; }
+        private CarDTO selectedCar;
+        public CarDTO SelectedCar 
+        {
+            get
+            {
+                return selectedCar;
+            }
+            set
+            {
+                selectedCar = value;
+                if(CartSlots.Count > 0)
+                {
+                    BtnCreateEnable = true;
+                }
+            }
+        }
+        private bool btnCreateEnable;
+        public bool BtnCreateEnable
+        {
+            get
+            {
+                return btnCreateEnable;
+            }
+            set
+            {
+                btnCreateEnable = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool btnAboutEnable;
+        public bool BtnAboutEnable
+        {
+            get
+            {
+                return btnAboutEnable;
+            }
+            set
+            {
+                btnAboutEnable = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private int regPrice;
         public int RegPrice
         {
@@ -72,12 +114,17 @@ namespace AutoService.ViewModels
             {
                 selectedBreakdown = value;
                 OnPropertyChanged();
-                List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
-                Slots.Clear();
-                foreach (SlotDTO s in listS)
+                if(selectedBreakdown != null && startDate.Date >= DateTime.Now.Date)
                 {
-                    Slots.Add(s);
+                    BtnAboutEnable = true;
+                    List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
+                    Slots.Clear();
+                    foreach (SlotDTO s in listS)
+                    {
+                        Slots.Add(s);
+                    }
                 }
+               
             }
         }
         //Привязка для календаря
@@ -88,7 +135,7 @@ namespace AutoService.ViewModels
             set
             {
                 startDate = value;
-                if (selectedBreakdown != null)
+                if (selectedBreakdown != null && startDate.Date >= DateTime.Now.Date)
                 {
                     List<SlotDTO> listS = slotService.GetSlotsByDate_Breakdown(StartDate, SelectedBreakdown.id);
                     Slots.Clear();
@@ -113,6 +160,7 @@ namespace AutoService.ViewModels
             Slots = new ObservableCollection<SlotDTO>();
             CartSlots = new ObservableCollection<SlotDTO>();
             Breakdowns = new ObservableCollection<BreakdownDTO>(breakdownService.GetAllBreakdowns());
+            SelectedBreakdown = null;
             Cars = new ObservableCollection<CarDTO>(carService.GetAllCarDTO(2));
             ClientDiscount = clientService.GetClientDiscount(client_id);
             
@@ -124,6 +172,40 @@ namespace AutoService.ViewModels
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public string Error
+        {
+            get { return "...."; }
+        }
+        public string this[string columnName]
+        {
+            get
+            {
+                return Validate(columnName);
+            }
+        }
+
+        private string Validate(string propertyName)
+        {
+            
+            string validationMessage = string.Empty;
+            switch (propertyName)
+            {
+                case "StartDate":
+                    if (StartDate != null)
+                    {
+                        if(StartDate.Date < DateTime.Now.Date)
+                        {
+                            validationMessage = "Выберете дату в будующем";
+                        }
+                    }
+                   
+                    break;
+               
+            }
+
+            return validationMessage;
         }
 
         //Команда для вывода доп сведений об виде работ
@@ -157,6 +239,10 @@ namespace AutoService.ViewModels
                 slotService.UpdateSlot(SelectedSlot);
                 RegPrice += (int)(SelectedSlot.cost * (double)((100-ClientDiscount)/100.0));
                 CartSlots.Add(SelectedSlot);
+                if (SelectedCar != null)
+                {
+                    BtnCreateEnable = true;
+                }
                 Slots.Remove(SelectedSlot);
             }
         }
@@ -177,7 +263,10 @@ namespace AutoService.ViewModels
                 SelectedCartSlot.breakdown_name = null;
                 slotService.UpdateSlot(SelectedCartSlot);
                 CartSlots.Remove(SelectedCartSlot);
-               
+                if(CartSlots.Count == 0)
+                {
+                    BtnCreateEnable = false;
+                }
             }
         }
 
@@ -190,6 +279,18 @@ namespace AutoService.ViewModels
                 return cancelWindow ?? (
                     cancelWindow = new RelayCommand(obj =>
                     {
+                        if(CartSlots.Count  > 0)
+                        {
+                            foreach(SlotDTO cartSlot in CartSlots)
+                            {
+                                cartSlot.breakdown_id = null;
+                                cartSlot.cost = 0;
+                                cartSlot.breakdown_name = null;
+                                slotService.UpdateSlot(cartSlot);
+                               
+                            }
+                            CartSlots.Clear();
+                        }
                         ViewNavigator.SwitchViewTo(Util.Views.MainMenuView);
 
                     }));
