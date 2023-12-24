@@ -8,9 +8,8 @@
         WindowStartupLocation ="CenterScreen"
          xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="AddRegistration" MinHeight="410" MinWidth="705"
-        Height="410"
-        Width="705"
+        Title="AddRegistration" MinHeight="410" MinWidth="780"
+      
         WindowStyle="None"
            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 TextElement.Foreground="{DynamicResource MaterialDesignBody}"

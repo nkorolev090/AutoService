@@ -323,25 +323,65 @@ HorizontalAlignment="Right" Width="212" Height="48">
             Kind="InformationSlabBox" />
                                 <TextBlock
             HorizontalAlignment="Center"
-            Text="О программе" />
+            Text="О нас" />
                             </StackPanel>
                         </TabItem.Header>
                         <StackPanel
         Margin="16">
                             <TextBlock
           Margin="0,0,0,8"
+                                HorizontalAlignment="Center"
           Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-          Text="Sounds" />
-                            <TextBlock>
-          <Run
-            Text="tab 4 content. Default look and behaviors." />
-          <LineBreak />
-          <LineBreak />
-          <Run
-            FontStyle="Italic">
-          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </Run>
-                            </TextBlock>
+          Text="Автосервис 37" />
+                            <TextBlock HorizontalAlignment="Left" Width="800" TextWrapping="Wrap" Style="{StaticResource MaterialDesignBody1TextBlock}">
+       <Run>
+           Наш автосервис — это место, где вы можете получить качественное обслуживание для вашего автомобиля. Мы предлагаем широкий спектр услуг,
+                                включая техническое обслуживание, ремонт и замену деталей. Наша команда опытных механиков готова помочь вам с любыми проблемами,
+                                связанными с вашим автомобилем. Мы также предлагаем услуги по установке дополнительного оборудования, такого как сигнализация, 
+                                мультимедийные системы, навигация и другие.
+       </Run>   
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run>
+                                    Наш адрес: г. Иваново, пр. Строителей, д.43Б
+                                </Run>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run>
+                                     Почта для связи:
+                                </Run>
+                                <Hyperlink Style="{StaticResource MaterialDesignBody1Hyperlink}">
+                                    autosevice37@mail.ru
+                                </Hyperlink>
+                                <LineBreak/>
+                                <LineBreak/>
+                                <Run>
+     Теефон для связи:
+</Run>
+<Hyperlink Style="{StaticResource MaterialDesignBody1Hyperlink}">
+    +78005353737
+</Hyperlink>
+                                <LineBreak/>
+                                
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Style="{StaticResource MaterialDesignHeadline6TextBlock}">
+                            О программе
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}">
+                            <Run>
+                                Система управления автосервисом
+                            </Run>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run>
+                                Версия: 1.0.0
+                            </Run>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run>
+                                Автор: Королев Н.Е.
+                            </Run>
+                        </TextBlock>
                         </StackPanel>
                     </TabItem>
                 </TabControl>

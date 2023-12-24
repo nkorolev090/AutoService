@@ -288,19 +288,23 @@ HorizontalAlignment="Right" Width="212" Height="48">
                     </TabItem.Header>
                     <StackPanel
         Margin="16">
-                        <TextBlock
-          Margin="0,0,0,8"
-          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-          Text="Sounds" />
-                        <TextBlock>
-          <Run
-            Text="tab 4 content. Default look and behaviors." />
-          <LineBreak />
-          <LineBreak />
-          <Run
-            FontStyle="Italic">
-          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </Run>
+                        <TextBlock HorizontalAlignment="Center" Style="{StaticResource MaterialDesignHeadline5TextBlock}">
+    О программе
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}">
+    <Run>
+        Система управления автосервисом
+    </Run>
+    <LineBreak/>
+    <LineBreak/>
+    <Run>
+        Версия: 1.0.0
+    </Run>
+    <LineBreak/>
+    <LineBreak/>
+    <Run>
+        Автор: Королев Н.Е.
+    </Run>
                         </TextBlock>
                     </StackPanel>
                 </TabItem>
