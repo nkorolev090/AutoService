@@ -27,6 +27,7 @@ namespace AutoService.ViewModels
         public MechanicDTO Mechanic {get; set;}
         public SeriesCollection Series { get; set; }
         public ObservableCollection<RegistrationDTO> Registrations { get; set;}
+        public ObservableCollection<SlotDTO> RegistrationSlots { get; set; }
         public Dictionary<string, int> MechanicSlots { get; set; }
         public List<string> Intervals { get; }
         private bool btnUpdateEnable;
@@ -58,8 +59,7 @@ namespace AutoService.ViewModels
                 MechanicSlots.Clear();
                 MechanicSlots = slotService.GetMechanicSlotsReport(Mechanic.id, SelectedInterval);
                 Series.Clear();
-                Func<ChartPoint, string> PointLabel = chartPoint =>
-              string.Format("{0:P}", chartPoint.Participation);
+                
                 foreach (string breakdown in MechanicSlots.Keys)
                 {
                     Series.Add(
@@ -68,12 +68,27 @@ namespace AutoService.ViewModels
                         Title = breakdown,
                         Values = new ChartValues<ObservableValue> { new ObservableValue(MechanicSlots[breakdown]) },
                         DataLabels = true,
-                        //LabelPoint = PointLabel
+                       
                     });
                 }
                 OnPropertyChanged();
             }
         }
+
+        private bool isDialogOpen;
+        public bool IsDialogOpen
+        {
+            get
+            {
+                return isDialogOpen;
+            }
+            set
+            {
+                isDialogOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
         private RegistrationDTO selectedRegistration;
         public RegistrationDTO SelectedRegistration
         { get
@@ -83,22 +98,38 @@ namespace AutoService.ViewModels
             set
             {
                 selectedRegistration = value;
-               
-                if(selectedRegistration.status == 4 || selectedRegistration.status == 3)
-                {
+               if(selectedRegistration != null )
+               {
+                     if(selectedRegistration.status == 4 || selectedRegistration.status == 3)//отклонена или завершена
+                    {
                     Statuses.Clear();
                     Statuses.Add(registrationService.GetStatus(selectedRegistration.status));
                     BtnUpdateEnable = false;
-                }
-                else
-                {
+                    }
+                    else
+                    {
+                    if(selectedRegistration.status == 5)//гарантийный ремонт можно только завершить
+                    {
+                        Statuses.Clear();
+                        Statuses.Add(registrationService.GetStatus(4));
+                        BtnUpdateEnable = true;
+                    }
+                    else
+                    {
                     Statuses.Clear();
                     Statuses.AddRange(registrationService.GetStatuses());
                     BtnUpdateEnable = true;
-                }
-                SelectedStatus = registrationService.GetStatus(selectedRegistration.status);
-                Info = SelectedRegistration.info;
-                OnPropertyChanged();
+                    }
+                   
+                    }
+                    SelectedStatus = registrationService.GetStatus(selectedRegistration.status);
+                    Info = SelectedRegistration.info;
+                    OnPropertyChanged();
+                    RegistrationSlots.Clear();
+                    RegistrationSlots.AddRange(slotService.GetRegistrationSlots(selectedRegistration.id));
+                    IsDialogOpen = true;
+               }
+               
             }
         }
         
@@ -140,13 +171,13 @@ namespace AutoService.ViewModels
             BtnUpdateEnable = false;
             Mechanic = mechanicService.GetMechanic(m_id);
             Registrations = new ObservableCollection<RegistrationDTO>(registrationService.GetMechanicRegistrations(Mechanic.id));
+            RegistrationSlots = new ObservableCollection<SlotDTO>();
             Statuses = new ObservableCollection<StatusDTO>(registrationService.GetStatuses());
             Intervals = new List<string> { "Месяц", "Квартал", "Полгода", "Год", "Все время" };
             selectedInterval = Intervals.Last();
             MechanicSlots = slotService.GetMechanicSlotsReport(Mechanic.id, SelectedInterval);
             Series = new SeriesCollection();
-            Func<ChartPoint, string> PointLabel = chartPoint =>
-                          string.Format("{0:P}", chartPoint.Participation);
+            
             foreach (string breakdown in MechanicSlots.Keys)
             {
                 Series.Add(
@@ -155,7 +186,7 @@ namespace AutoService.ViewModels
                     Title = breakdown,
                     Values = new ChartValues<ObservableValue> { new ObservableValue(MechanicSlots[breakdown]) },
                     DataLabels = true,
-                    //LabelPoint = PointLabel
+                
                 });
             }
 

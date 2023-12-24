@@ -203,7 +203,9 @@ namespace AutoService.ViewModels
                 selectedRegistration = value;
                 OnPropertyChanged();
                 RegistrationSlots.Clear();
-                switch (selectedRegistration.status){
+                if(selectedRegistration != null)
+                {
+                    switch (selectedRegistration.status){
                     case 4: //завершена
                         VisibilityDelRegBtn = Visibility.Collapsed;
                         VisibilityWarrantyBtn = Visibility.Visible;
@@ -216,14 +218,12 @@ namespace AutoService.ViewModels
                         VisibilityDelRegBtn = Visibility.Visible;
                         VisibilityWarrantyBtn = Visibility.Collapsed;
                         break;
+                }
+                RegistrationSlots.AddRange(slotService.GetRegistrationSlots(selectedRegistration.id));
+                    IsDialogOpen = true;
 
                 }
                
-                if (SelectedRegistration != null)
-                {
-                    RegistrationSlots.AddRange(slotService.GetRegistrationSlots(selectedRegistration.id));
-                    IsDialogOpen = true;
-                }
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -383,7 +383,7 @@ namespace AutoService.ViewModels
                        RegistrationDTO registration = new RegistrationDTO();
                         registration.reg_price = 0;
                         registration.reg_date = DateTime.Now;
-                        registration.status = 1;
+                        registration.status = 5;
                         registration.car_id = SelectedRegistration.car_id;
                         registration.review_id = SelectedRegistration.review_id;
                         registration.info = "Гарантийный ремонт";
