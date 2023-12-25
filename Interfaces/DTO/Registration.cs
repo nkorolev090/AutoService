@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.DTO
 {
-    public class RegistrationDTO
+    public class RegistrationDTO : INotifyPropertyChanged
     {
         public int id { get; set; }
 
@@ -20,11 +20,37 @@ namespace Interfaces.DTO
 
         public DateTime? reg_date {  get; set; }
 
-        public string info { get; set; }
+        private string _info;
+        public string info 
+        {
+            get
+            {
+                return _info;
+            }
+            set
+            {
+                _info = value;
+                OnPropertyChanged();
+            }
+
+        }
+
 
         public int status { get; set; }
-       
-        public string status_name { get; set; }
+
+        private string _status_name;
+        public string status_name 
+        {
+            get
+            {
+                return _status_name;
+            }
+            set
+            {
+                _status_name = value;
+                OnPropertyChanged();
+            }
+        }
        
         public int client_id {  get; set; }
         public int? review_id { get; set; }
@@ -45,6 +71,13 @@ namespace Interfaces.DTO
        
         public RegistrationDTO()
         {
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

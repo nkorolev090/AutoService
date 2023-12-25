@@ -98,30 +98,47 @@ namespace AutoService.ViewModels
             set
             {
                 selectedRegistration = value;
+                //StatusDTO preStatus;
+                //if ( selectedRegistration != null )
+                //{
+                //    preStatus = registrationService.GetStatus(selectedRegistration.status);
+                //}
+                //else
+                //{
+                //    preStatus = registrationService.GetStatus(4);
+                //}
+                
+                
                if(selectedRegistration != null )
                {
                      if(selectedRegistration.status == 4 || selectedRegistration.status == 3)//отклонена или завершена
-                    {
-                    Statuses.Clear();
-                    Statuses.Add(registrationService.GetStatus(selectedRegistration.status));
-                    BtnUpdateEnable = false;
-                    }
-                    else
-                    {
-                    if(selectedRegistration.status == 5)//гарантийный ремонт можно только завершить
-                    {
+                     {
                         Statuses.Clear();
-                        Statuses.Add(registrationService.GetStatus(4));
-                        BtnUpdateEnable = true;
-                    }
-                    else
-                    {
-                    Statuses.Clear();
-                    Statuses.AddRange(registrationService.GetStatuses());
-                    BtnUpdateEnable = true;
-                    }
+                        Statuses.Add(registrationService.GetStatus(selectedRegistration.status));
+                        BtnUpdateEnable = false;
+                     }
+                     else
+                        {
+                            if(selectedRegistration.status == 5)//гарантийный ремонт можно только завершить
+                            {
+                                Statuses.Clear();
+                                Statuses.Add(registrationService.GetStatus(4));
+                            Statuses.Add(registrationService.GetStatus(5));
+                            BtnUpdateEnable = true;
+                            }
+                        else
+                        {
+                            Statuses.Clear();
+                            Statuses.AddRange(registrationService.GetStatuses());
+                            
+                            BtnUpdateEnable = true;
+                        }
                    
-                    }
+                     }
+                    //if (SelectedStatus!= null && !Statuses.Any(i => i.id == preStatus.id))
+                    //{
+                    //    Statuses.Add(preStatus);
+                    //}
                     SelectedStatus = registrationService.GetStatus(selectedRegistration.status);
                     Info = SelectedRegistration.info;
                     OnPropertyChanged();
@@ -227,7 +244,8 @@ namespace AutoService.ViewModels
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Question) == MessageBoxResult.Yes)
                         {
-                            SelectedRegistration.status = selectedStatus.id;
+                            SelectedRegistration.status = SelectedStatus.id;
+                            SelectedRegistration.status_name = SelectedStatus.name;
                             SelectedRegistration.info = info;
                             registrationService.UpdateRegistration(SelectedRegistration);
                             if(SelectedRegistration.status == 4)

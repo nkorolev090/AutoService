@@ -30,11 +30,7 @@ FontFamily="{DynamicResource MaterialDesignFont}">
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="5 2 5 0"  VerticalAlignment="Top">
-                <Button Height="20" Width="20" Padding="0" Margin="0 0 5 0"
-Background="Transparent"
-Command="{Binding CancelWindow}">
-                    <materialDesign:PackIcon Foreground="DarkSlateGray" Kind="CheckboxBlankOutline" Width="15" Height="15"/>
-                </Button>
+                
                 <Button Height="20" Width="20" Padding="0"
             Background="Transparent"
             Command="{Binding CancelWindow}">
@@ -439,7 +435,7 @@ AutoGenerateColumns="False"
       >
                             <DataGrid.Columns>
 
-                                <DataGridTextColumn Width="0.6*" IsReadOnly="True" CanUserResize="False" Binding="{Binding breakdown_name}">
+                                <DataGridTextColumn Width="1.2*" IsReadOnly="True" CanUserResize="False" Binding="{Binding breakdown_name}">
                                     <DataGridTextColumn.Header>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                             <materialDesign:PackIcon Width="24" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="HammerWrench"/>

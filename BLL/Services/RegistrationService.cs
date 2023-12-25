@@ -45,7 +45,7 @@ namespace BLL.Services
 
         public List<StatusDTO> GetStatuses()
         {
-            return db.Statuses.GetList().Select(i => new StatusDTO(i)).ToList();
+            return db.Statuses.GetList().Where(i => i.id < 5).Select(i => new StatusDTO(i)).ToList();
         }
         public StatusDTO GetStatus(int id)
         {
